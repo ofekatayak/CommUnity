@@ -1,12 +1,12 @@
 .search-bar {
   display: flex;
   justify-content: center;
-  width: 100%; /* תופס את כל הרוחב הפנוי */
+  width: 100%;
 }
 
 .search-bar-input {
   width: 100%;
-  max-width: 400px; /* רוחב מקסימלי */
+  max-width: 400px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -21,10 +21,9 @@
   outline: none;
 }
 
-/* התאמות למסכים קטנים */
 @media (max-width: 768px) {
   .search-bar-input {
-    max-width: 90%; /* מתכווץ בהתאם למסך קטן */
-    font-size: 12px; /* טקסט קטן יותר */
+    max-width: 90%;
+    font-size: 12px;
   }
 }
