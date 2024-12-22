@@ -8,17 +8,17 @@ import mapImage from "./utilities/map.png";
 const App: React.FC = () => {
   return (
     <div className="app-container">
-      {/* כותרת עליונה */}
+      {/* Top header section */}
       <Header />
 
-      {/* תוכן הדף */}
+      {/* Main content area */}
       <div className="app-content">
-        {/* מקרא בצד שמאל */}
+        {/* Sidebar for legend */}
         <div className="app-sidebar">
           <Legend />
         </div>
 
-        {/* תוכן מרכזי */}
+        {/* Main section displaying the map */}
         <div className="app-main">
           <img src={mapImage} alt="Map" className="map-image" />
         </div>
