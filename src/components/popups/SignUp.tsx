@@ -1,26 +1,65 @@
 import React, { useState } from "react";
+import { db } from "../../DB/firebase/firebase-config"; // Import Firestore configuration
+import { collection, addDoc } from "firebase/firestore"; // Firestore methods
+import { User } from "../../models/User"; // Import User model
 
 const SignUp: React.FC = () => {
   // State to manage form data for the sign-up fields
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<User>({
     id: "",
     fullName: "",
     role: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    status: "pending", // Default status
+    isAdmin: false, // Default admin status
   });
+
+  const [confirmPassword, setConfirmPassword] = useState(""); // Separate state for confirm password
+  const [message, setMessage] = useState(""); // Feedback message for the user
 
   // Handle input field changes and update state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    if (name === "confirmPassword") {
+      setConfirmPassword(value);
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Sign Up Data:", formData);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();  
+    // Validate passwords match
+    if (formData.password !== confirmPassword) {
+      setMessage("Passwords do not match.");
+      return;
+    }
+  
+    try {
+      const usersCollection = collection(db, "users");
+      await addDoc(usersCollection, {
+        ...formData,
+        createdAt: new Date().toISOString(), // Add timestamp
+      });
+  
+      setMessage("Registration successful. Waiting for admin approval.");
+      setFormData({
+        id: "",
+        fullName: "",
+        role: "",
+        email: "",
+        password: "",
+        status: "pending",
+        isAdmin: false,
+      });
+      setConfirmPassword(""); // Reset confirm password
+    } catch (error) {
+      setMessage("An error occurred. Please try again.");
+    }
   };
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -84,7 +123,7 @@ const SignUp: React.FC = () => {
       <input
         type="password"
         name="confirmPassword"
-        value={formData.confirmPassword}
+        value={confirmPassword}
         onChange={handleChange}
         placeholder="Confirm your password"
         required
@@ -92,6 +131,7 @@ const SignUp: React.FC = () => {
 
       {/* Submit button */}
       <button type="submit">Sign Up</button>
+      {message && <p>{message}</p>} {/* Display feedback message */}
     </form>
   );
 };

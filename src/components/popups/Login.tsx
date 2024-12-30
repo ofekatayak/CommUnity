@@ -1,26 +1,66 @@
 import React, { useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../../DB/firebase/firebase-config";
+import { useAuth } from "../../context/AuthContext"; // Auth context for login/logout
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
-  // State to manage form data for email and password
+  const { login } = useAuth(); // Use login from Auth context
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Handle input field changes and update state
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
+    setErrorMessage("");
+
+    try {
+      const usersCollection = collection(db, "users");
+      const q = query(
+        usersCollection,
+        where("email", "==", formData.email),
+        where("password", "==", formData.password)
+      );
+      const querySnapshot = await getDocs(q);
+
+      if (querySnapshot.empty) {
+        setErrorMessage("Invalid email or password.");
+        return;
+      }
+
+      const userData = querySnapshot.docs[0].data();
+
+      if (userData.status !== "approved") {
+        setErrorMessage("Your account is not approved yet.");
+        return;
+      }
+
+      // Update AuthContext
+      login(userData.isAdmin);
+      console.log("Login successful:", userData);
+
+      // Navigate to the correct page
+      if (userData.isAdmin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+      setErrorMessage("An error occurred. Please try again.");
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Email input field */}
       <label>Email</label>
       <input
         type="email"
@@ -30,8 +70,6 @@ const Login: React.FC = () => {
         placeholder="Enter your email"
         required
       />
-
-      {/* Password input field */}
       <label>Password</label>
       <input
         type="password"
@@ -41,9 +79,8 @@ const Login: React.FC = () => {
         placeholder="Enter your password"
         required
       />
-
-      {/* Submit button */}
       <button type="submit">Login</button>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
     </form>
   );
 };
