@@ -1,29 +1,41 @@
 import React from "react";
-import Header from "./components/Header";
-import Legend from "./components/Legend";
-import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./components/Home";
+import AdminPanel from "./components/AdminPanel";
+import { AuthProvider, useAuth } from "./context/AuthContext";
 
-import mapImage from "./utilities/map.png";
+const AppContent: React.FC = () => {
+  const { isLoggedIn, isAdmin } = useAuth();
+
+  return (
+    <Router>
+      <Routes>
+        {/* Default route */}
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/admin"
+          element={
+            isLoggedIn ? (
+              isAdmin ? (
+                <AdminPanel />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+      </Routes>
+    </Router>
+  );
+};
 
 const App: React.FC = () => {
   return (
-    <div className="app-container">
-      {/* Top header section */}
-      <Header />
-
-      {/* Main content area */}
-      <div className="app-content">
-        {/* Sidebar for legend */}
-        <div className="app-sidebar">
-          <Legend />
-        </div>
-
-        {/* Main section displaying the map */}
-        <div className="app-main">
-          <img src={mapImage} alt="Map" className="map-image" />
-        </div>
-      </div>
-    </div>
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 };
 

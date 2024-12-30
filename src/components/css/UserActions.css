@@ -1,0 +1,57 @@
+.user-actions {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.user-action-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.user-action-button:hover {
+    transform: scale(1.05);
+}
+
+.approve-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.block-button {
+    background-color: #ff9800;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .user-actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .user-action-button {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-actions {
+        gap: 4px;
+    }
+
+    .user-action-button {
+        font-size: 0.65rem;
+        padding: 4px 6px;
+    }
+}
