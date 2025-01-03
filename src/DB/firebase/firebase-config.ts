@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-// Firebase configuration (שנה את הפרטים בהתאם לפרויקט שלך ב-Firebase Console)
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCt63M9LLqQRfP7CY0VCdIUaFQssEZNaYY",
   authDomain: "community-117aa.firebaseapp.com",

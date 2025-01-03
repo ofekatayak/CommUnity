@@ -1,80 +1,84 @@
 import React from "react";
 import { db } from "../DB/firebase/firebase-config";
-import { collection, query, where, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { User } from "../models/User";
-import "./css/UserActions.css";
 
 interface UserActionsProps {
   user: User;
-  refreshUsers: () => Promise<void>; // Function to refresh the user list
+  refreshUsers: () => Promise<void>;
 }
 
 const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
-  // Function to update the status of a user
   const updateUserStatus = async (status: "approved" | "blocked") => {
     try {
       const usersCollection = collection(db, "users");
-      const q = query(usersCollection, where("id", "==", user.id)); // Query the user by their ID
+      const q = query(usersCollection, where("id", "==", user.id));
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        alert("User not found."); // Alert if no matching user is found
+        alert("User not found.");
         return;
       }
 
-      const userDocRef = snapshot.docs[0].ref; // Get the first matching document reference
-      await updateDoc(userDocRef, { status }); // Update the status field in Firestore
-      alert(`User status updated to ${status}.`); // Notify success
-      await refreshUsers(); // Refresh the user list
+      const userDocRef = snapshot.docs[0].ref;
+      await updateDoc(userDocRef, { status });
+      alert(`User status updated to ${status}.`);
+      await refreshUsers();
     } catch (error) {
-      console.error("Error updating user status:", error); // Log error details
-      alert("Failed to update user status. Please try again."); // Notify failure
+      console.error("Error updating user status:", error);
+      alert("Failed to update user status. Please try again.");
     }
   };
 
-  // Function to delete a user from the database
   const deleteUser = async () => {
     try {
       const usersCollection = collection(db, "users");
-      const q = query(usersCollection, where("id", "==", user.id)); // Query the user by their ID
+      const q = query(usersCollection, where("id", "==", user.id));
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        alert("User not found."); // Alert if no matching user is found
+        alert("User not found.");
         return;
       }
 
-      const userDocRef = snapshot.docs[0].ref; // Get the first matching document reference
-      await deleteDoc(userDocRef); // Delete the document from Firestore
-      alert("User deleted."); // Notify success
-      await refreshUsers(); // Refresh the user list
+      const userDocRef = snapshot.docs[0].ref;
+      await deleteDoc(userDocRef);
+      alert("User deleted.");
+      await refreshUsers();
     } catch (error) {
-      console.error("Error deleting user:", error); // Log error details
-      alert("Failed to delete user. Please try again."); // Notify failure
+      console.error("Error deleting user:", error);
+      alert("Failed to delete user. Please try again.");
     }
   };
 
   return (
-    <div className="user-actions">
-      {/* Button to approve a user */}
+    <div className="flex gap-4">
+      {/* Approve Button */}
       <button
-        className="user-action-button approve-button"
+        className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition"
         onClick={() => updateUserStatus("approved")}
       >
         Approve
       </button>
 
-      {/* Button to block a user */}
+      {/* Block Button */}
       <button
-        className="user-action-button block-button"
+        className="px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition"
         onClick={() => updateUserStatus("blocked")}
       >
         Block
       </button>
 
-      {/* Button to delete a user */}
+      {/* Delete Button */}
       <button
-        className="user-action-button delete-button"
+        className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition"
         onClick={deleteUser}
       >
         Delete
@@ -84,4 +88,3 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
 };
 
 export default UserActions;
-export {};

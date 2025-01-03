@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 import Popup from "./popups/Popup";
-import "./css/Legend.css";
 
 const Legend: React.FC = () => {
-  // State to manage the currently active community for displaying in the popup
   const [activeCommunity, setActiveCommunity] = useState<string | null>(null);
 
-  // Function to open the popup for a specific community
   const handleOpenPopup = (community: string) => {
     setActiveCommunity(community);
   };
 
-  // Function to close the popup
   const handleClosePopup = () => {
     setActiveCommunity(null);
   };
 
-  // List of communities with their names and corresponding colors
   const communities = [
     { name: "Community 1", color: "#ff6666" },
     { name: "Community 2", color: "#66b3ff" },
@@ -31,36 +26,43 @@ const Legend: React.FC = () => {
   ];
 
   return (
-    <div className="legend-container">
-      {/* Title for the Legend section */}
-      <h3 className="legend-title">Legend</h3>
+    <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+      {/* Title */}
+      <div className="text-center">
+        <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
+          Legend
+        </h3>
+        <hr className="border-t-2 border-blue-200" />
+      </div>
 
-      {/* List of communities */}
-      <ul className="legend-list">
+      {/* Community List */}
+      <ul className="space-y-2 mt-4">
         {communities.map((community, index) => (
           <li
             key={index}
-            className="legend-item"
+            className="flex items-center gap-3 p-2 cursor-pointer hover:bg-gray-100 rounded-lg transition"
             onClick={() => handleOpenPopup(community.name)}
           >
-            {/* Color indicator for each community */}
+            {/* Color Indicator */}
             <span
-              className="legend-color"
+              className="w-4 h-4 rounded-full"
               style={{ backgroundColor: community.color }}
             ></span>
-            {community.name}
+            <span className="text-gray-600">{community.name}</span>
           </li>
         ))}
       </ul>
 
-      {/* Popup to display information about the selected community */}
+      {/* Popup */}
       {activeCommunity && (
         <Popup
           title={activeCommunity}
           isOpen={!!activeCommunity}
           onClose={handleClosePopup}
         >
-          <p>This is information about {activeCommunity}.</p>
+          <p className="text-gray-600">
+            This is information about {activeCommunity}.
+          </p>
         </Popup>
       )}
     </div>
