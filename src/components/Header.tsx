@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useAuth } from "../context/AuthContext"; // Import Auth context
+import { useAuth } from "../context/AuthContext";
 import Popup from "./popups/Popup";
 import SignUp from "./popups/SignUp";
 import Login from "./popups/Login";
