@@ -1,14 +1,14 @@
 import React from "react";
 import { User } from "../models/User";
 import UserActions from "./UserActions";
-import "./css/UserTable.css"; // CSS for table styling
+import "./css/UserTable.css";
 
 interface UserTableProps {
   users: User[];
-  setUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  refreshUsers: () => Promise<void>; // Function to refresh users
 }
 
-const UserTable: React.FC<UserTableProps> = ({ users, setUsers }) => {
+const UserTable: React.FC<UserTableProps> = ({ users, refreshUsers }) => {
   return (
     <div className="user-table-wrapper">
       <table className="user-table">
@@ -29,7 +29,7 @@ const UserTable: React.FC<UserTableProps> = ({ users, setUsers }) => {
               <td>{user.email}</td>
               <td>{user.status}</td>
               <td>
-                <UserActions user={user} setUsers={setUsers} />
+                <UserActions user={user} refreshUsers={refreshUsers} />
               </td>
             </tr>
           ))}

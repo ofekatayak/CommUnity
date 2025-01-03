@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Legend from "./Legend";
+import Header from "../components/Header";
+import Legend from "../components/Legend";
 import "./css/Home.css";
 import mapImage from "../utilities/map.png";
 
