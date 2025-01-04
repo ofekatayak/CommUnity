@@ -43,17 +43,14 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         return;
       }
 
-      // Update AuthContext
-      login(userData.isAdmin);
+      login(userData.isAdmin); // עדכון AuthContext
 
-      // Navigate to the correct page
       if (userData.isAdmin) {
         navigate("/admin");
       } else {
         navigate("/");
       }
 
-      // Close the popup
       onClose();
     } catch (error) {
       console.error("Error logging in:", error);
