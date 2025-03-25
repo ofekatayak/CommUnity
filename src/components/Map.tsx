@@ -19,8 +19,8 @@ const Map: React.FC<MapProps> = ({
   activeCommunity,
   setActiveCommunity,
 }) => {
-  const defaultCenter = { lat: 31.7683, lon: 34.7818 }; // Default map center
-  const defaultZoom = 7; // Default zoom level
+  const defaultCenter = { lat: 31.7683, lon: 34.7818 }; // Default map center (Israel)
+  const defaultZoom = 7;
 
   const [center, setCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(defaultZoom);
@@ -30,20 +30,38 @@ const Map: React.FC<MapProps> = ({
       const community = communities.find((c) => c.name === activeCommunity);
       if (community) {
         setCenter({ lat: community.lat, lon: community.lon });
-        setZoom(15); // Zoom level for selected community
+        setZoom(15);
       }
     }
   }, [activeCommunity, communities]);
 
-  // Function to reset map to default view
   const resetMapView = () => {
-    setActiveCommunity(null); // Reset active community
+    setActiveCommunity(null);
     setCenter(defaultCenter);
     setZoom(defaultZoom);
   };
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full" dir="rtl">
+      <style>
+        {`
+    .modebar {
+      left: 10px !important;
+      right: unset !important;
+      transform: scale(1.05);
+      transform-origin: top left;
+      border-radius: 8px;
+    }
+
+    .modebar-btn:hover .modebar-btn-text {
+    right: 5px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+  `}
+      </style>
+
       <Plot
         data={[
           {
@@ -51,11 +69,12 @@ const Map: React.FC<MapProps> = ({
             lat: communities.map((c) => c.lat),
             lon: communities.map((c) => c.lon),
             text: communities.map((c) => c.name),
-            mode: "markers",
+            mode: "markers+text" as any,
             marker: {
               size: 14,
               color: communities.map((c) => c.color),
             },
+            textposition: "top center",
           },
         ]}
         layout={{
@@ -67,21 +86,19 @@ const Map: React.FC<MapProps> = ({
           margin: { t: 0, r: 0, l: 0, b: 0 },
           autosize: true,
         }}
-        useResizeHandler
-        style={{ width: "100%", height: "100%" }}
         config={{
-          mapboxAccessToken: "YOUR_MAPBOX_ACCESS_TOKEN",
-          displaylogo: false, // Disable Plotly logo
+          mapboxAccessToken: "YOUR_MAPBOX_ACCESS_TOKEN", // Replace if needed
+          displaylogo: false,
           modeBarButtonsToRemove: ["lasso2d", "select2d"],
           displayModeBar: true,
           modeBarButtons: [
             [
               {
                 name: "Home",
-                title: "Reset to Default View",
+                title: "",
                 icon: {
                   path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
-                  transform: "scale(1.5)",
+                  transform: "scale(0.75)",
                   ascent: 1,
                   descent: 0,
                 },
@@ -89,10 +106,10 @@ const Map: React.FC<MapProps> = ({
               },
               {
                 name: "Zoom In",
-                title: "Zoom In",
+                title: "",
                 icon: {
-                  path: "M12 10h-2v2H8v2h2v2h2v-2h2v-2h-2v-2zm-2-6c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S15.52 4 10 4zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8-8 8z",
-                  transform: "scale(1.5)",
+                  path: "M12 4v8h8v2h-8v8h-2v-8H4v-2h6V4h2z",
+                  transform: "scale(0.7)",
                   ascent: 1,
                   descent: 0,
                 },
@@ -100,10 +117,10 @@ const Map: React.FC<MapProps> = ({
               },
               {
                 name: "Zoom Out",
-                title: "Zoom Out",
+                title: "",
                 icon: {
-                  path: "M15 11H9v2h6v-2zm-3-9c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S15.52 2 10 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8-8 8z",
-                  transform: "scale(1.5)",
+                  path: "M19 13H5v-2h14v2z",
+                  transform: "scale(0.7)",
                   ascent: 1,
                   descent: 0,
                 },
@@ -112,6 +129,8 @@ const Map: React.FC<MapProps> = ({
             ],
           ],
         }}
+        style={{ width: "100%", height: "100%" }}
+        useResizeHandler
         onRelayout={(event: Partial<Record<string, unknown>>) => {
           if (event["mapbox.center"]) {
             const mapboxCenter = event["mapbox.center"] as {

@@ -23,17 +23,17 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        alert("User not found.");
+        alert("המשתמש לא נמצא.");
         return;
       }
 
       const userDocRef = snapshot.docs[0].ref;
       await updateDoc(userDocRef, { status });
-      alert(`User status updated to ${status}.`);
+      alert(`הסטטוס עודכן ל-${status === "approved" ? "מאושר" : "חסום"}.`);
       await refreshUsers();
     } catch (error) {
       console.error("Error updating user status:", error);
-      alert("Failed to update user status. Please try again.");
+      alert("עדכון סטטוס נכשל. נסה שוב.");
     }
   };
 
@@ -44,28 +44,28 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        alert("User not found.");
+        alert("המשתמש לא נמצא.");
         return;
       }
 
       const userDocRef = snapshot.docs[0].ref;
       await deleteDoc(userDocRef);
-      alert("User deleted.");
+      alert("המשתמש נמחק.");
       await refreshUsers();
     } catch (error) {
       console.error("Error deleting user:", error);
-      alert("Failed to delete user. Please try again.");
+      alert("מחיקת המשתמש נכשלה. נסה שוב.");
     }
   };
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-2 justify-end" dir="rtl">
       {/* Approve Button */}
       <button
         className="px-4 py-2 bg-green-500 text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition"
         onClick={() => updateUserStatus("approved")}
       >
-        Approve
+        ✅ אשר
       </button>
 
       {/* Block Button */}
@@ -73,7 +73,7 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
         className="px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition"
         onClick={() => updateUserStatus("blocked")}
       >
-        Block
+        ⛔ חסום
       </button>
 
       {/* Delete Button */}
@@ -81,7 +81,7 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
         className="px-4 py-2 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75 transition"
         onClick={deleteUser}
       >
-        Delete
+        🗑 מחק
       </button>
     </div>
   );

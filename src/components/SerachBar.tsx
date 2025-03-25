@@ -6,7 +6,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  placeholder = "Search...", // Default placeholder text
+  placeholder = "חיפוש...", // Default placeholder text (Hebrew)
   onSearch,
 }) => {
   // Handle input changes and trigger the onSearch callback if provided
@@ -17,11 +17,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-full" dir="rtl">
       {/* Search input field */}
       <input
         type="text"
-        className="w-full max-w-md px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 placeholder-gray-400"
+        className="w-full max-w-md px-4 py-2 text-gray-800 bg-white border border-gray-300 rounded-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 placeholder-gray-400 text-right"
         placeholder={placeholder}
         onChange={handleInputChange}
       />

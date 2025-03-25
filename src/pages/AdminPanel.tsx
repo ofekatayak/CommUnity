@@ -18,7 +18,7 @@ const AdminPanel: React.FC = () => {
       })) as User[];
       setUsers(usersList);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("שגיאה בעת שליפת משתמשים:", error);
     }
   };
 
@@ -27,17 +27,17 @@ const AdminPanel: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100 text-right" dir="rtl">
       {/* Header */}
       <Header />
 
       {/* Main content */}
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
-          Admin Panel
+        <h1 className="text-4xl font-bold text-center text-blue-600 mb-8">
+          פאנל ניהול
         </h1>
 
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="bg-white shadow-lg rounded-lg p-6 border border-gray-200">
           <UserTable users={users} refreshUsers={fetchUsers} />
         </div>
       </div>

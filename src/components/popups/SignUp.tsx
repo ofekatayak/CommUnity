@@ -1,9 +1,15 @@
 import React, { useState } from "react";
-import { db } from "../../DB/firebase/firebase-config";
-import { collection, addDoc } from "firebase/firestore";
+import { db, auth } from "../../DB/firebase/firebase-config";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { User } from "../../models/User";
 
-const SignUp: React.FC = () => {
+interface SignUpProps {
+  onClose: () => void;
+  onSuccess: () => void;
+}
+
+const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
   const [formData, setFormData] = useState<User>({
     id: "",
     fullName: "",
@@ -17,6 +23,7 @@ const SignUp: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
 
+  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "confirmPassword") {
@@ -26,21 +33,42 @@ const SignUp: React.FC = () => {
     }
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setMessage("");
+
     if (formData.password !== confirmPassword) {
-      setMessage("Passwords do not match.");
+      setMessage("הסיסמאות אינן תואמות.");
       return;
     }
 
     try {
-      const usersCollection = collection(db, "users");
-      await addDoc(usersCollection, {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", formData.email)
+      );
+      const snapshot = await getDocs(q);
+      if (!snapshot.empty) {
+        setMessage("אימייל זה כבר רשום.");
+        return;
+      }
+
+      await createUserWithEmailAndPassword(
+        auth,
+        formData.email,
+        formData.password || ""
+      );
+
+      await auth.signOut();
+
+      await addDoc(collection(db, "users"), {
         ...formData,
         createdAt: new Date().toISOString(),
+        status: "pending",
+        isAdmin: false,
       });
 
-      setMessage("Registration successful. Waiting for admin approval.");
       setFormData({
         id: "",
         fullName: "",
@@ -51,116 +79,93 @@ const SignUp: React.FC = () => {
         isAdmin: false,
       });
       setConfirmPassword("");
-    } catch (error) {
-      setMessage("An error occurred. Please try again.");
+
+      onClose();
+      onSuccess();
+    } catch (error: any) {
+      console.error("Sign up error:", error);
+      setMessage(error.message || "אירעה שגיאה. נסה שוב.");
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
+      dir="rtl"
       className="max-w-lg mx-auto bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-lg rounded-xl p-6 space-y-4 sm:p-8"
     >
-      {/* Input field for ID */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">ID</label>
-        <input
-          type="text"
-          name="id"
-          value={formData.id}
-          onChange={handleChange}
-          placeholder="Enter your ID"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      {/* Form fields in Hebrew */}
+      <input
+        type="text"
+        name="id"
+        value={formData.id}
+        onChange={handleChange}
+        placeholder="תעודת זהות"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Input field for Full Name */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">
-          Full Name
-        </label>
-        <input
-          type="text"
-          name="fullName"
-          value={formData.fullName}
-          onChange={handleChange}
-          placeholder="Enter your full name"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      <input
+        type="text"
+        name="fullName"
+        value={formData.fullName}
+        onChange={handleChange}
+        placeholder="שם מלא"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Input field for Role */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">Role</label>
-        <input
-          type="text"
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-          placeholder="Enter your role"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      <input
+        type="text"
+        name="role"
+        value={formData.role}
+        onChange={handleChange}
+        placeholder="תפקיד בקהילה"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Input field for Email */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          placeholder="Enter your email"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="אימייל"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Input field for Password */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Enter your password"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      <input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="סיסמה"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Input field for Confirm Password */}
-      <div>
-        <label className="block text-gray-600 font-medium mb-1">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleChange}
-          placeholder="Confirm your password"
-          required
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm"
-        />
-      </div>
+      <input
+        type="password"
+        name="confirmPassword"
+        value={confirmPassword}
+        onChange={handleChange}
+        placeholder="אימות סיסמה"
+        required
+        className="w-full border border-gray-300 rounded-lg px-3 py-2 text-right"
+      />
 
-      {/* Submit button */}
       <div className="text-center">
         <button
           type="submit"
-          className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white px-5 py-2 rounded-lg font-medium shadow-md transition-transform transform hover:scale-105"
+          className="bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-600 text-white px-6 py-2 rounded-lg font-medium shadow-md hover:scale-105 transition-transform"
         >
-          Sign Up
+          הרשם
         </button>
       </div>
 
       {message && (
-        <p className="text-center text-red-500 font-medium mt-4">{message}</p>
+        <p className="text-center text-red-600 font-medium mt-4">{message}</p>
       )}
     </form>
   );

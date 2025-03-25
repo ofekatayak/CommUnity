@@ -23,10 +23,13 @@ const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-sm">
+    <div
+      className="bg-white shadow-md rounded-lg p-6 w-full max-w-sm"
+      dir="rtl"
+    >
       <div className="text-center">
         <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-500">
-          Legend
+          מקרא קהילות
         </h3>
         <hr className="border-t-2 border-blue-200" />
       </div>
@@ -35,14 +38,16 @@ const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
         {communities.map((community: Community, index: number) => (
           <li
             key={index}
-            className="flex items-center gap-3 p-2 cursor-pointer hover:bg-gray-100 rounded-lg transition"
+            className="flex flex-row-reverse items-center gap-3 p-2 cursor-pointer hover:bg-gray-100 rounded-lg transition text-right"
             onClick={() => handleOpenPopup(community.name)}
           >
+            <span className="text-gray-600 w-full text-right">
+              {community.name}
+            </span>
             <span
-              className="w-4 h-4 rounded-full"
+              className="w-4 h-4 rounded-full flex-shrink-0"
               style={{ backgroundColor: community.color }}
             ></span>
-            <span className="text-gray-600">{community.name}</span>
           </li>
         ))}
       </ul>
@@ -53,8 +58,8 @@ const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
           isOpen={!!activeCommunity}
           onClose={handleClosePopup}
         >
-          <p className="text-gray-600">
-            This is information about {activeCommunity}.
+          <p className="text-gray-600 text-right">
+            זו מידע על הקהילה: {activeCommunity}
           </p>
         </Popup>
       )}

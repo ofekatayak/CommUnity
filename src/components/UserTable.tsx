@@ -9,24 +9,27 @@ interface UserTableProps {
 
 const UserTable: React.FC<UserTableProps> = ({ users, refreshUsers }) => {
   return (
-    <div className="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200">
-      <table className="min-w-full divide-y divide-gray-200">
+    <div
+      className="overflow-x-auto bg-white shadow-lg rounded-lg border border-gray-200"
+      dir="rtl"
+    >
+      <table className="min-w-full divide-y divide-gray-200 text-right">
         <thead className="bg-gradient-to-r from-blue-500 to-blue-400 text-white">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              ID
+            <th className="px-6 py-3 text-xs font-medium uppercase tracking-wider">
+              ת"ז
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Full Name
+            <th className="px-6 py-3 text-xs font-medium uppercase tracking-wider">
+              שם מלא
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Email
+            <th className="px-6 py-3 text-xs font-medium uppercase tracking-wider">
+              אימייל
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Status
+            <th className="px-6 py-3 text-xs font-medium uppercase tracking-wider">
+              סטטוס
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-              Actions
+            <th className="px-6 py-3 text-xs font-medium uppercase tracking-wider">
+              פעולות
             </th>
           </tr>
         </thead>
@@ -43,7 +46,11 @@ const UserTable: React.FC<UserTableProps> = ({ users, refreshUsers }) => {
                 {user.email}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                {user.status}
+                {user.status === "approved"
+                  ? "מאושר"
+                  : user.status === "pending"
+                  ? "ממתין לאישור"
+                  : "חסום"}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                 <UserActions user={user} refreshUsers={refreshUsers} />
@@ -57,4 +64,3 @@ const UserTable: React.FC<UserTableProps> = ({ users, refreshUsers }) => {
 };
 
 export default UserTable;
-export {};
