@@ -42,25 +42,68 @@ const Map: React.FC<MapProps> = ({
   };
 
   return (
-    <div className="relative w-full h-full" dir="rtl">
+    <div
+      className="relative w-full h-[550px] bg-white rounded-b-xl overflow-hidden"
+      dir="rtl"
+    >
       <style>
         {`
-    .modebar {
-      left: 10px !important;
-      right: unset !important;
-      transform: scale(1.05);
-      transform-origin: top left;
-      border-radius: 8px;
-    }
+          .modebar {
+            left: 10px !important;
+            right: unset !important;
+            transform: scale(1.05);
+            transform-origin: top left;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+          }
 
-    .modebar-btn:hover .modebar-btn-text {
-    right: 5px;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-  `}
+          .modebar-btn {
+            color: #6366f1 !important;
+          }
+
+          .modebar-btn:hover {
+            background-color: #eef2ff !important;
+          }
+
+          .modebar-btn:hover .modebar-btn-text {
+            right: 5px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            color: #4f46e5 !important;
+          }
+          
+          .main-svg {
+            background-color: transparent !important;
+          }
+          
+          .mapboxgl-ctrl-logo {
+            display: none !important;
+          }
+        `}
       </style>
+
+      {/* Info message */}
+      <div className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-3 rounded-xl shadow-md border border-indigo-100 max-w-xs">
+        <div className="flex items-center gap-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-indigo-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            />
+          </svg>
+          <span className="text-sm font-medium text-gray-800">
+            לחץ על נקודה כדי לצפות בפרטי הקהילה
+          </span>
+        </div>
+      </div>
 
       <Plot
         data={[
@@ -71,10 +114,21 @@ const Map: React.FC<MapProps> = ({
             text: communities.map((c) => c.name),
             mode: "markers+text" as any,
             marker: {
-              size: 14,
+              size: communities.map((c) =>
+                c.name === activeCommunity ? 18 : 14
+              ),
               color: communities.map((c) => c.color),
+              opacity: communities.map((c) =>
+                c.name === activeCommunity ? 1 : 0.8
+              ),
             },
             textposition: "top center",
+            hoverinfo: "text",
+            hoverlabel: {
+              bgcolor: "#4f46e5",
+              bordercolor: "#4f46e5",
+              font: { color: "white", size: 14 },
+            },
           },
         ]}
         layout={{
@@ -85,49 +139,13 @@ const Map: React.FC<MapProps> = ({
           },
           margin: { t: 0, r: 0, l: 0, b: 0 },
           autosize: true,
+          paper_bgcolor: "transparent",
         }}
         config={{
           mapboxAccessToken: "YOUR_MAPBOX_ACCESS_TOKEN", // Replace if needed
           displaylogo: false,
-          modeBarButtonsToRemove: ["lasso2d", "select2d"],
-          displayModeBar: true,
-          modeBarButtons: [
-            [
-              {
-                name: "Home",
-                title: "",
-                icon: {
-                  path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
-                  transform: "scale(0.75)",
-                  ascent: 1,
-                  descent: 0,
-                },
-                click: resetMapView,
-              },
-              {
-                name: "Zoom In",
-                title: "",
-                icon: {
-                  path: "M12 4v8h8v2h-8v8h-2v-8H4v-2h6V4h2z",
-                  transform: "scale(0.7)",
-                  ascent: 1,
-                  descent: 0,
-                },
-                click: () => setZoom((prevZoom) => Math.min(prevZoom + 1, 20)),
-              },
-              {
-                name: "Zoom Out",
-                title: "",
-                icon: {
-                  path: "M19 13H5v-2h14v2z",
-                  transform: "scale(0.7)",
-                  ascent: 1,
-                  descent: 0,
-                },
-                click: () => setZoom((prevZoom) => Math.max(prevZoom - 1, 1)),
-              },
-            ],
-          ],
+          modeBarButtonsToRemove: ["lasso2d", "select2d", "toggleHover"],
+          displayModeBar: false,
         }}
         style={{ width: "100%", height: "100%" }}
         useResizeHandler
@@ -144,7 +162,66 @@ const Map: React.FC<MapProps> = ({
             setZoom(mapboxZoom);
           }
         }}
+        onClick={(data) => {
+          if (data.points && data.points[0]) {
+            const pointIndex = data.points[0].pointIndex;
+            if (typeof pointIndex === "number" && communities[pointIndex]) {
+              setActiveCommunity(communities[pointIndex].name);
+            }
+          }
+        }}
       />
+
+      {/* Zoom controls - Alternative to modebar */}
+      <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+        <button
+          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+          onClick={() => setZoom((prevZoom) => Math.min(prevZoom + 1, 20))}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-indigo-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        <button
+          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+          onClick={() => setZoom((prevZoom) => Math.max(prevZoom - 1, 1))}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-indigo-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
+        <button
+          className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+          onClick={resetMapView}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-indigo-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };
