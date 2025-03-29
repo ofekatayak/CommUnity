@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 180" preserveAspectRatio="xMidYMid meet">
+  <!-- Background circles representing communities -->
+  <circle cx="100" cy="100" r="40" fill="#4F46E5" opacity="0.2" />
+  <circle cx="150" cy="120" r="40" fill="#4F46E5" opacity="0.3" />
+  <circle cx="200" cy="100" r="40" fill="#4F46E5" opacity="0.4" />
+  
+  <!-- Connected communities with location markers -->
+  <path d="M120 80 L180 80" stroke="#4F46E5" stroke-width="3" />
+  <path d="M170 110 L230 110" stroke="#4F46E5" stroke-width="3" />
+  
+  <!-- Location pins -->
+  <path d="M100 100 L100 80 Q100 70 110 70 H120 Q130 70 130 80 L130 100 Q115 120 100 100 Z" fill="#4F46E5" />
+  <path d="M200 100 L200 80 Q200 70 210 70 H220 Q230 70 230 80 L230 100 Q215 120 200 100 Z" fill="#4F46E5" />
+  <path d="M150 120 L150 100 Q150 90 160 90 H170 Q180 90 180 100 L180 120 Q165 140 150 120 Z" fill="#4F46E5" />
+  
+  <!-- Shield symbol representing protection/emergency -->
+  <path d="M290 70 L320 70 L330 85 L320 130 L290 130 L280 85 Z" fill="none" stroke="#4F46E5" stroke-width="3" />
+  <path d="M290 78 L320 78 L328 90 L320 122 L290 122 L282 90 Z" fill="#4F46E5" opacity="0.2" />
+  <path d="M305 85 L305 115 M295 95 L315 95 M295 105 L315 105" stroke="#4F46E5" stroke-width="2" />
+  
+  <!-- Text - only the main CommUnity title, positioned higher -->
+  <text x="200" y="165" font-family="Arial, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="#4F46E5">CommUnity</text>
+</svg>

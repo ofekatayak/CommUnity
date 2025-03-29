@@ -4,8 +4,8 @@ import Popup from "./popups/Popup";
 import SignUp from "./popups/SignUp";
 import Login from "./popups/Login";
 import AlertPopup from "./popups/AlertPopup";
-import logo from "../utilities/photos/logo.png";
 import { useNavigate } from "react-router-dom";
+const logoUrl = "/logo.svg";
 
 interface HeaderProps {
   onContactClick?: () => void;
@@ -51,13 +51,13 @@ const Header: React.FC<HeaderProps> = ({ onContactClick, onAboutClick }) => {
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
         {/* Logo - הפך להיות לחיץ */}
         <div
-          className="h-16 flex items-center cursor-pointer"
+          className="h-24 flex items-center cursor-pointer" // הגדלת גובה הקונטיינר מ-20 ל-24
           onClick={goToHome}
         >
           <img
-            src={logo}
+            src={logoUrl}
             alt="CommUnity Logo"
-            className="h-[90%] max-h-full object-contain"
+            className="h-full max-h-full object-contain object-center py-1" // הוספת padding קטן ו-object-center
           />
         </div>
 
