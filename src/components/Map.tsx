@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Plot from "react-plotly.js";
 
 interface Community {
@@ -24,7 +24,41 @@ const Map: React.FC<MapProps> = ({
 
   const [center, setCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(defaultZoom);
+  const [isMapReady, setIsMapReady] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    width: "100%",
+    height: "100%",
+  });
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // טעינה ראשונית של המפה והגדרת מימדים
+  useEffect(() => {
+    // הגדר שהמפה מוכנה לאחר רנדור ראשוני
+    setIsMapReady(true);
+
+    // מדידת מימדי המכולה ועדכון state
+    const updateDimensions = () => {
+      if (containerRef.current) {
+        const { width, height } = containerRef.current.getBoundingClientRect();
+        setDimensions({
+          width: `${width}px`,
+          height: `${height}px`,
+        });
+      }
+    };
+
+    // הרץ פעם ראשונה
+    updateDimensions();
+
+    // והגדר גם כאשר גודל החלון משתנה
+    window.addEventListener("resize", updateDimensions);
+
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
+
+  // עדכון המיקום כאשר קהילה פעילה משתנה
   useEffect(() => {
     if (activeCommunity) {
       const community = communities.find((c) => c.name === activeCommunity);
@@ -41,8 +75,24 @@ const Map: React.FC<MapProps> = ({
     setZoom(defaultZoom);
   };
 
+  // עיכוב מזערי בהצגת המפה כדי שהכל יהיה מוכן
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (containerRef.current) {
+        const { width, height } = containerRef.current.getBoundingClientRect();
+        setDimensions({
+          width: `${width}px`,
+          height: `${height}px`,
+        });
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [isMapReady]);
+
   return (
     <div
+      ref={containerRef}
       className="relative w-full h-[550px] bg-white rounded-b-xl overflow-hidden"
       dir="rtl"
     >
@@ -105,72 +155,85 @@ const Map: React.FC<MapProps> = ({
         </div>
       </div>
 
-      <Plot
-        data={[
-          {
-            type: "scattermapbox",
-            lat: communities.map((c) => c.lat),
-            lon: communities.map((c) => c.lon),
-            text: communities.map((c) => c.name),
-            mode: "markers+text" as any,
-            marker: {
-              size: communities.map((c) =>
-                c.name === activeCommunity ? 18 : 14
-              ),
-              color: communities.map((c) => c.color),
-              opacity: communities.map((c) =>
-                c.name === activeCommunity ? 1 : 0.8
-              ),
+      {isMapReady && (
+        <Plot
+          data={[
+            {
+              type: "scattermapbox",
+              lat: communities.map((c) => c.lat),
+              lon: communities.map((c) => c.lon),
+              text: communities.map((c) => c.name),
+              mode: "markers+text" as any,
+              marker: {
+                size: communities.map((c) =>
+                  c.name === activeCommunity ? 18 : 14
+                ),
+                color: communities.map((c) => c.color),
+                opacity: communities.map((c) =>
+                  c.name === activeCommunity ? 1 : 0.8
+                ),
+              },
+              textposition: "top center",
+              hoverinfo: "text",
+              hoverlabel: {
+                bgcolor: "#4f46e5",
+                bordercolor: "#4f46e5",
+                font: { color: "white", size: 14 },
+              },
             },
-            textposition: "top center",
-            hoverinfo: "text",
-            hoverlabel: {
-              bgcolor: "#4f46e5",
-              bordercolor: "#4f46e5",
-              font: { color: "white", size: 14 },
+          ]}
+          layout={{
+            mapbox: {
+              style: "open-street-map",
+              center: center,
+              zoom: zoom,
             },
-          },
-        ]}
-        layout={{
-          mapbox: {
-            style: "open-street-map",
-            center: center,
-            zoom: zoom,
-          },
-          margin: { t: 0, r: 0, l: 0, b: 0 },
-          autosize: true,
-          paper_bgcolor: "transparent",
-        }}
-        config={{
-          mapboxAccessToken: "YOUR_MAPBOX_ACCESS_TOKEN", // Replace if needed
-          displaylogo: false,
-          modeBarButtonsToRemove: ["lasso2d", "select2d", "toggleHover"],
-          displayModeBar: false,
-        }}
-        style={{ width: "100%", height: "100%" }}
-        useResizeHandler
-        onRelayout={(event: Partial<Record<string, unknown>>) => {
-          if (event["mapbox.center"]) {
-            const mapboxCenter = event["mapbox.center"] as {
-              lat: number;
-              lon: number;
-            };
-            setCenter(mapboxCenter);
-          }
-          if (event["mapbox.zoom"] !== undefined) {
-            const mapboxZoom = event["mapbox.zoom"] as number;
-            setZoom(mapboxZoom);
-          }
-        }}
-        onClick={(data) => {
-          if (data.points && data.points[0]) {
-            const pointIndex = data.points[0].pointIndex;
-            if (typeof pointIndex === "number" && communities[pointIndex]) {
-              setActiveCommunity(communities[pointIndex].name);
+            margin: { t: 0, r: 0, l: 0, b: 0 },
+            autosize: true,
+            paper_bgcolor: "transparent",
+          }}
+          config={{
+            mapboxAccessToken: "YOUR_MAPBOX_ACCESS_TOKEN", // Replace if needed
+            displaylogo: false,
+            modeBarButtonsToRemove: ["lasso2d", "select2d", "toggleHover"],
+            displayModeBar: false,
+            responsive: true,
+          }}
+          style={dimensions}
+          useResizeHandler
+          onRelayout={(event: Partial<Record<string, unknown>>) => {
+            if (event["mapbox.center"]) {
+              const mapboxCenter = event["mapbox.center"] as {
+                lat: number;
+                lon: number;
+              };
+              setCenter(mapboxCenter);
             }
-          }
-        }}
-      />
+            if (event["mapbox.zoom"] !== undefined) {
+              const mapboxZoom = event["mapbox.zoom"] as number;
+              setZoom(mapboxZoom);
+            }
+          }}
+          onClick={(data) => {
+            if (data.points && data.points[0]) {
+              const pointIndex = data.points[0].pointIndex;
+              if (typeof pointIndex === "number" && communities[pointIndex]) {
+                setActiveCommunity(communities[pointIndex].name);
+              }
+            }
+          }}
+        />
+      )}
+
+      {/* בזמן טעינה, הצגת אינדיקטור טעינה */}
+      {!isMapReady && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+          <div className="flex flex-col items-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-2"></div>
+            <p className="text-indigo-800 font-medium">טוען מפה...</p>
+          </div>
+        </div>
+      )}
 
       {/* Zoom controls - Alternative to modebar */}
       <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">

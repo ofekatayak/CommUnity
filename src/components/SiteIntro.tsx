@@ -9,7 +9,7 @@ const SiteIntro: React.FC = () => {
             ברוכים הבאים לCommUnity
           </h1>
           <p className="text-xl text-gray-700 mb-8">
-            הפלטפורמה המחברת בין קהילות ומשאבים ברחבי הארץ
+            מערכת לסיווג ומיפוי קהילות לפינוי מותאם בשעת חירום
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-right">
@@ -37,11 +37,11 @@ const SiteIntro: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-indigo-900 mb-2">
-                מפת קהילות
+                זיהוי קהילות
               </h3>
               <p className="text-gray-600">
-                צפו במפה אינטראקטיבית המציגה קהילות פעילות ברחבי הארץ, וגלו
-                משאבים בקרבתכם.
+                מיפוי קהילות לפי מכנים משותפים כגון צרכים מיוחדים, שפה, תרבות
+                ודת, המאפשר התאמה מדויקת בעת פינוי חירום.
               </p>
             </div>
 
@@ -63,11 +63,11 @@ const SiteIntro: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-indigo-900 mb-2">
-                חיבור לקהילות
+                תכנון פינוי מותאם
               </h3>
               <p className="text-gray-600">
-                התחברו לקהילות מקומיות, השתתפו באירועים ופעילויות, ותרמו למאמצים
-                משותפים בסביבתכם.
+                כלי למנהלי חירום לתכנון מראש של יעדי פינוי מתאימים לכל קהילה
+                בהתבסס על הצרכים הייחודיים שלה.
               </p>
             </div>
 
@@ -89,19 +89,13 @@ const SiteIntro: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-lg font-semibold text-indigo-900 mb-2">
-                גילוי משאבים
+                ניהול משאבים חכם
               </h3>
               <p className="text-gray-600">
-                אתרו משאבים, שירותים ופעילויות הקיימים בקהילות השונות ושתפו את
-                הידע והניסיון שלכם.
+                התאמת משאבים ייעודיים במקומות הקליטה בהתאם לצרכי הקהילות
+                המפונות, המבטיח רציפות תפקודית במצבי חירום.
               </p>
             </div>
-          </div>
-
-          <div className="mt-12">
-            <button className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-lg font-medium shadow-md transition-all">
-              התחילו עכשיו
-            </button>
           </div>
         </div>
       </div>

@@ -1,34 +1,102 @@
+// Login.tsx - קומפוננטה מתוקנת
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../DB/firebase/firebase-config";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import {
+  getEmailValidationError,
+  getPasswordValidationError,
+} from "../../utilities/ValidationUtils";
+
+interface ValidationErrors {
+  email?: string;
+  password?: string;
+}
 
 const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
-  // Handle input changes
+  // ולידציה של שדה
+  const validateField = (name: string, value: string): string => {
+    switch (name) {
+      case "email":
+        return getEmailValidationError(value);
+      case "password":
+        return getPasswordValidationError(value);
+      default:
+        return "";
+    }
+  };
+
+  // ולידציה של כל הטופס
+  const validateForm = (): boolean => {
+    const newErrors: ValidationErrors = {};
+    let isValid = true;
+
+    // בדיקת כל שדה בטופס
+    Object.entries(formData).forEach(([name, value]) => {
+      const error = validateField(name, value);
+      if (error) {
+        newErrors[name as keyof ValidationErrors] = error;
+        isValid = false;
+      }
+    });
+
+    setErrors(newErrors);
+    return isValid;
+  };
+
+  // טיפול בשינוי - רק עדכון הערך ללא ולידציה בזמן אמת
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    // אין ולידציה בזמן הקלדה - זה מונע את הבעיות
+  };
+
+  // טיפול באירוע של יציאה מהשדה - ולידציה רק בעת יציאה מהשדה
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const { name } = e.target;
+
+    // סימון שנגעו בשדה
+    setTouched((prev) => ({ ...prev, [name]: true }));
+
+    // ולידציה של השדה
+    const error = validateField(name, formData[name as keyof typeof formData]);
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   // Handle login form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage("");
+    setServerError("");
+
+    // סימון שנגעו בכל השדות
+    const allTouched = Object.keys(formData).reduce((acc, key) => {
+      acc[key] = true;
+      return acc;
+    }, {} as { [key: string]: boolean });
+
+    setTouched(allTouched);
+
+    // ולידציה של כל הטופס לפני שליחה
+    if (!validateForm()) {
+      return; // אם יש שגיאות, לא להמשיך
+    }
+
+    setIsLoading(true);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        formData.email,
-        formData.password
-      );
-      const user = userCredential.user;
+      // התחברות באמצעות Firebase Auth
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
 
       // Check Firestore user status
       const usersCollection = collection(db, "users");
@@ -36,14 +104,14 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        setErrorMessage("המשתמש לא נמצא במסד הנתונים.");
+        setServerError("המשתמש לא נמצא במסד הנתונים.");
         return;
       }
 
       const userData = snapshot.docs[0].data();
 
       if (userData.status !== "approved") {
-        setErrorMessage("החשבון שלך עדיין לא אושר על ידי מנהל.");
+        setServerError("החשבון שלך עדיין לא אושר על ידי מנהל.");
         return;
       }
 
@@ -53,8 +121,27 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       onClose();
     } catch (error: any) {
       console.error("Login error:", error);
-      setErrorMessage("אימייל או סיסמה שגויים.");
+      // טיפול בשגיאות ספציפיות מ-Firebase
+      if (
+        error.code === "auth/user-not-found" ||
+        error.code === "auth/wrong-password"
+      ) {
+        setServerError("אימייל או סיסמה שגויים.");
+      } else if (error.code === "auth/too-many-requests") {
+        setServerError("יותר מדי ניסיונות כניסה. נסה שוב מאוחר יותר.");
+      } else {
+        setServerError("אירעה שגיאה. נסה שוב מאוחר יותר.");
+      }
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  // טיפול באירוע של לחיצה על "שכחת סיסמה"
+  const handleForgotPassword = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // כאן תוכל להוסיף את הלוגיקה לשחזור סיסמה
+    console.log("פונקציונליות שכחת סיסמה");
   };
 
   return (
@@ -62,13 +149,14 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
       dir="rtl"
       onSubmit={handleSubmit}
       className="mx-auto bg-white rounded-xl space-y-6"
+      noValidate // ביטול ולידציה נטיבית של הדפדפן
     >
-      {errorMessage && (
+      {serverError && (
         <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
           <div className="flex items-center gap-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 flex-shrink-0"
               viewBox="0 0 20 20"
               fill="currentColor"
             >
@@ -78,7 +166,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
                 clipRule="evenodd"
               />
             </svg>
-            <span className="font-medium">{errorMessage}</span>
+            <span className="font-medium">{serverError}</span>
           </div>
         </div>
       )}
@@ -88,7 +176,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           htmlFor="email"
           className="block text-right text-gray-700 font-medium mb-2"
         >
-          אימייל
+          אימייל <span className="text-red-500">*</span>
         </label>
         <div className="relative">
           <input
@@ -97,9 +185,17 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             id="email"
             value={formData.email}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="הכנס כתובת אימייל"
-            required
-            className="w-full border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-right pr-10"
+            className={`w-full border ${
+              errors.email && touched.email
+                ? "border-red-300"
+                : "border-gray-200"
+            } rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 ${
+              errors.email && touched.email
+                ? "focus:ring-red-400 focus:border-red-400"
+                : "focus:ring-indigo-500 focus:border-indigo-500"
+            } shadow-sm text-right pr-10`}
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <svg
@@ -113,6 +209,12 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             </svg>
           </div>
         </div>
+        {/* שומר מקום עבור הודעת שגיאה - תמיד בגובה אחיד */}
+        <div className="min-h-[20px] mt-1">
+          {errors.email && touched.email && (
+            <p className="text-sm text-red-600">{errors.email}</p>
+          )}
+        </div>
       </div>
 
       <div>
@@ -120,7 +222,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           htmlFor="password"
           className="block text-right text-gray-700 font-medium mb-2"
         >
-          סיסמה
+          סיסמה <span className="text-red-500">*</span>
         </label>
         <div className="relative">
           <input
@@ -129,9 +231,17 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             id="password"
             value={formData.password}
             onChange={handleChange}
+            onBlur={handleBlur}
             placeholder="הכנס סיסמה"
-            required
-            className="w-full border border-gray-200 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-right pr-10"
+            className={`w-full border ${
+              errors.password && touched.password
+                ? "border-red-300"
+                : "border-gray-200"
+            } rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 ${
+              errors.password && touched.password
+                ? "focus:ring-red-400 focus:border-red-400"
+                : "focus:ring-indigo-500 focus:border-indigo-500"
+            } shadow-sm text-right pr-10`}
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <svg
@@ -148,19 +258,60 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             </svg>
           </div>
         </div>
+        {/* שומר מקום עבור הודעת שגיאה - תמיד בגובה אחיד */}
+        <div className="min-h-[20px] mt-1">
+          {errors.password && touched.password && (
+            <p className="text-sm text-red-600">{errors.password}</p>
+          )}
+        </div>
         <div className="text-left mt-1">
-          <a href="#" className="text-sm text-indigo-600 hover:text-indigo-800">
+          <button
+            type="button"
+            onClick={handleForgotPassword}
+            className="text-sm text-indigo-600 hover:text-indigo-800 bg-transparent"
+          >
             שכחת סיסמה?
-          </a>
+          </button>
         </div>
       </div>
 
       <div className="pt-2">
         <button
           type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg font-medium shadow-md transition-colors"
+          disabled={isLoading}
+          className={`w-full ${
+            isLoading
+              ? "bg-indigo-400 cursor-not-allowed"
+              : "bg-indigo-600 hover:bg-indigo-700"
+          } text-white px-6 py-2.5 rounded-lg font-medium shadow-md transition-colors flex justify-center items-center`}
         >
-          התחברות
+          {isLoading ? (
+            <>
+              <svg
+                className="animate-spin -mr-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                ></path>
+              </svg>
+              מתחבר...
+            </>
+          ) : (
+            "התחברות"
+          )}
         </button>
       </div>
     </form>
