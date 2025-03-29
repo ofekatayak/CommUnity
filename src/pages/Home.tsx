@@ -58,7 +58,6 @@ const Home: React.FC = () => {
     }
   };
 
-  // פונקציה להסתרת טופס צור קשר אחרי הגשה
   const handleContactSubmit = () => {
     setShowContact(false);
   };
