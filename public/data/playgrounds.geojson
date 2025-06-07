@@ -1,0 +1,965 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77602744187093,
+          31.254034909956648
+        ]
+      },
+      "properties": {
+        "name": "גדולי ישראל",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "3-מתקן טיפוס פרחים, פרפר שיווי משקל, מתקן דמוי אומגה.\n\nהק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.782076491894834,
+          31.249352755132403
+        ]
+      },
+      "properties": {
+        "name": "חוגלה",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "*נדנדה- קן לציפור."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76371954434828,
+          31.24407882300613
+        ]
+      },
+      "properties": {
+        "name": "שמחה הולצברג",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "משולב בעל 6 מגדלים."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76397218116327,
+          31.251165291385025
+        ]
+      },
+      "properties": {
+        "name": "אלחריזי",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1-מתקן כושר/אקסטרים.\n\nמשולב בעל 4 מגדלים."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78195886025499,
+          31.23696775948397
+        ]
+      },
+      "properties": {
+        "name": "גדודים - שבטים",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "מדובר בנדנדת סירה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76934459551383,
+          31.22776247015115
+        ]
+      },
+      "properties": {
+        "name": "דרור 29",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1- מתקן אקסטרים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76960453694782,
+          31.22909383622608
+        ]
+      },
+      "properties": {
+        "name": "דרור 17",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1-מתקן אקסטרים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.825024567666134,
+          31.272668472041417
+        ]
+      },
+      "properties": {
+        "name": "יוחנן בדר",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "5\n3-כפיפות בטן\n3-שיווי משקל\n2-מתקן טיפוס\n2-חצובת כושר\n1-סולם"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.800354841403845,
+          31.279690464534543
+        ]
+      },
+      "properties": {
+        "name": "משה פריבס",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1-איקס מיקס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79665229693191,
+          31.28100468873635
+        ]
+      },
+      "properties": {
+        "name": "טיילת עמיצור",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "3\nאומגה\nפטריה\nסביבון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80474744570839,
+          31.285957472395665
+        ]
+      },
+      "properties": {
+        "name": "קלמן פורט",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1\nאיקס אפס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81361043580375,
+          31.270369692140108
+        ]
+      },
+      "properties": {
+        "name": "שלמה בן יוסף",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1\nצבעים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81913884085715,
+          31.276174603494823
+        ]
+      },
+      "properties": {
+        "name": "יעקב חזן מייוחד",
+        "surface": "חצץ סומסום",
+        "shadowing": "אי",
+        "other": "1-מיוחד בעל 6 מגדלים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82284710683953,
+          31.27680720497225
+        ]
+      },
+      "properties": {
+        "name": "אברהם אמיר מול מעון ילדים",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\nמתח\nגל רץ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82359263630308,
+          31.274157056767635
+        ]
+      },
+      "properties": {
+        "name": "דוד ילין מור",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\nהגה כוח \nגל רץ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78275699344312,
+          31.244305492571907
+        ]
+      },
+      "properties": {
+        "name": "רמב\"ם פלמח עצמאות",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "מיוחד- 6 מגדלים\n4 שונות \nהגה\nמתקן סל\nהליקופטר\nקרוסלה סביב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77532104674827,
+          31.238420400978423
+        ]
+      },
+      "properties": {
+        "name": "שופמן גרשום",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1\nאיקס עיגול"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76721975998699,
+          31.227693684544278
+        ]
+      },
+      "properties": {
+        "name": "חסידה 35",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\nסקייט החלקה \nמשטח דריכה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.763893782875805,
+          31.237177067688208
+        ]
+      },
+      "properties": {
+        "name": "אורות ישראל 6",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "5\nכפיפות\n2*מתח\nמקבילית \nטבעות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.764097965035155,
+          31.237763602028807
+        ]
+      },
+      "properties": {
+        "name": "פארק מי מרום",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1-נדנדת סירה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770523201594614,
+          31.239420771223138
+        ]
+      },
+      "properties": {
+        "name": "פארק אביסרור\nדב רונאל 39",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1\nסביבון\n\n*יש גם חלק עם חול!"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.805190489638925,
+          31.28592560395126
+        ]
+      },
+      "properties": {
+        "name": "גדעון האוזנר",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "3\n3- פטריות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82255922629026,
+          31.27597249132954
+        ]
+      },
+      "properties": {
+        "name": "אברהם אמיר 4",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\nגל רץ\nהגה כח"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76728470932688,
+          31.239963068325743
+        ]
+      },
+      "properties": {
+        "name": "טיומקין",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\n* כדור פלסטיק עם צד פתוח cozy cocoon\n* מתקן טיפוס אתגרי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7946455869247,
+          31.23084747035288
+        ]
+      },
+      "properties": {
+        "name": "אביבית -צבר",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "1 קיר טיפוס + צינור טיפוס+ 3 פיטריות+4 חיות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8103559558458,
+          31.27461040300122
+        ]
+      },
+      "properties": {
+        "name": "הר בוקר עליון",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "2\nמתקן הליקופטר\nסביבון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81037288402039,
+          31.274882491153143
+        ]
+      },
+      "properties": {
+        "name": "הר בוקר תחתון",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "2 \nמתקן פרמידה\nמתקן טיפוס מתכת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81354999993204,
+          31.27250917533885
+        ]
+      },
+      "properties": {
+        "name": "אליהו חכים",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2\nמתקן הליקופטר\nמתקן הגה כוח"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76885173336106,
+          31.244331629467805
+        ]
+      },
+      "properties": {
+        "name": "ממשית",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "יש חלק עם משטח חול"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76963279713316,
+          31.24537965570775
+        ]
+      },
+      "properties": {
+        "name": "שיבטה",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1 -איקס עיגול"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77089440740496,
+          31.245902716226265
+        ]
+      },
+      "properties": {
+        "name": "שער הגיא ב\"הס יובלים",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "2 -איקס עיגול וחשבוניה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77676868990741,
+          31.24705468902581
+        ]
+      },
+      "properties": {
+        "name": "גן שלושה חדש",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "קרוסלה ריבו\n8 שונות - אקסטרים וקיר טיפוס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.777096639076625,
+          31.247009246560346
+        ]
+      },
+      "properties": {
+        "name": "גן שלושה",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "קן לציפור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.776350997386444,
+          31.222886967378717
+        ]
+      },
+      "properties": {
+        "name": "משה חובב 55 מקלט",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77414552138609,
+          31.22220196778271
+        ]
+      },
+      "properties": {
+        "name": "גן פרטוש- חיים בן חיים",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2- פטריה וקיר טיפוס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.769960525137094,
+          31.26989720418488
+        ]
+      },
+      "properties": {
+        "name": "רובינא מרכז מסחרי",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1- מתקן טיפוס פרמידת חבלים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76244924491812,
+          31.268758831763243
+        ]
+      },
+      "properties": {
+        "name": "אחינועם חווה רבקה קטן חדש",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2 - קן לציפור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76281617027364,
+          31.269011845934607
+        ]
+      },
+      "properties": {
+        "name": "אחינועם חווה רבקה גדול",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1 - סקייט"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75814117627401,
+          31.26670340141553
+        ]
+      },
+      "properties": {
+        "name": "שאול ואליהו לוזון חדש",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "7 - מתקן חצובה עם משטח שטוח\nמתקן מסילה\nתליה\nבית בובות\nפטר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.783639693409114,
+          31.264986733778432
+        ]
+      },
+      "properties": {
+        "name": "מבצע ארז מעבר ציבורי",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1 - מתקן סל"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.778808953079924,
+          31.26225341001517
+        ]
+      },
+      "properties": {
+        "name": "גדעון השופט",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1 - גלגל רץ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78110701359553,
+          31.25924349419684
+        ]
+      },
+      "properties": {
+        "name": "גן חביב",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "נדנדה אחת היא קן לציפור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77125708247589,
+          31.26545953376988
+        ]
+      },
+      "properties": {
+        "name": "שטיין 5",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1 - דמות מכונית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.787147421463864,
+          31.26299269899284
+        ]
+      },
+      "properties": {
+        "name": "גן נדב",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "1 - קיר טיפוס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76573702014625,
+          31.26068419004529
+        ]
+      },
+      "properties": {
+        "name": "פארק יא 3",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1 - מתקן פרמידה כבלים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773324324264195,
+          31.26004084062834
+        ]
+      },
+      "properties": {
+        "name": "פארק אוסטרלי",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "4- מתקן רב ערסלים\nומתקן מיוחד פרמידה כבלים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77334924645657,
+          31.259446738333708
+        ]
+      },
+      "properties": {
+        "name": "פארק אוסטרלי מתחם קטן",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80603847454092,
+          31.23434810362944
+        ]
+      },
+      "properties": {
+        "name": "פארק נחל באר שבע  - קטן",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "משולב 1 -  מתקן דמוי דחפור \nנדנדה קן לציפור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.798688826799086,
+          31.266666346313137
+        ]
+      },
+      "properties": {
+        "name": "גן סיאטל",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "3 - מסלול פטריות 3*3\nואחד מיוחד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.791989005530354,
+          31.268592232554937
+        ]
+      },
+      "properties": {
+        "name": "אייסים 12",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "1 - סביבון ישיבה משטח עץ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79018298176002,
+          31.270542961536805
+        ]
+      },
+      "properties": {
+        "name": "גן לימון",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "נתדנדת סירה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79567515199475,
+          31.273785702893296
+        ]
+      },
+      "properties": {
+        "name": "פארק הדסה",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "1 - קורת שיווי משקל"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78741744372052,
+          31.26724515280664
+        ]
+      },
+      "properties": {
+        "name": "אילן רמון",
+        "surface": "משטח חול",
+        "shadowing": "אי",
+        "other": "5\nואחד מיוחד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79417943654991,
+          31.26188572568317
+        ]
+      },
+      "properties": {
+        "name": "כיכר האבות",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "1 - קוזי קוקון מפלסטיק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81078801067818,
+          31.25965064282065
+        ]
+      },
+      "properties": {
+        "name": "פארק מרמלדה",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7910408779984,
+          31.248627994550564
+        ]
+      },
+      "properties": {
+        "name": "קפלן מד\"א",
+        "surface": "משטח גומי",
+        "shadowing": "אי",
+        "other": "2 - כפיפות בטן ואופניים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77950553446628,
+          31.24301820629798
+        ]
+      },
+      "properties": {
+        "name": "גן ברוך",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "נדנדה קן לציפור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75968729569436,
+          31.259740905713556
+        ]
+      },
+      "properties": {
+        "name": "זריצקי נווה טל אקסטרים 3",
+        "surface": "משטח גומי",
+        "shadowing": "יש",
+        "other": "פירמידה ,סקי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77340596020118,
+          31.24390277949924
+        ]
+      },
+      "properties": {
+        "name": "מגידו",
+        "surface": "דשא סינטטי",
+        "shadowing": "יש",
+        "other": "אופניים + ספסל כריש"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773922448738084,
+          31.24386155657897
+        ]
+      },
+      "properties": {
+        "name": "שצ\"פ מגידו",
+        "surface": "דשא סינטטי",
+        "shadowing": "יש",
+        "other": "ספסל כריש."
+      }
+    }
+  ]
+}

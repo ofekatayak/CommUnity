@@ -1,0 +1,245 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79160084681817,
+          31.26478369765686
+        ]
+      },
+      "properties": {
+        "id": 1,
+        "name": "מתנ\"ס לוי",
+        "address": "אליהו הנ",
+        "neighborhood": "ד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79047696597327,
+          31.26877620456212
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "מתנ\"ס ניר",
+        "address": "רש\"י",
+        "neighborhood": "ד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79684640870857,
+          31.26420641973917
+        ]
+      },
+      "properties": {
+        "id": 3,
+        "name": "מתנ\"ס נעו",
+        "address": "אלכסנדר",
+        "neighborhood": "ד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.798715878157964,
+          31.268068054204203
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "מתנ\"ס פאנ",
+        "address": "נרבוני-ק",
+        "neighborhood": "ד"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806129060002874,
+          31.257721998223744
+        ]
+      },
+      "properties": {
+        "id": 5,
+        "name": "מתנ\"ס טאו",
+        "address": "ארלוזורו",
+        "neighborhood": "ג"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76616416155831,
+          31.2606669614786
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "מתנ\"ס - י'",
+        "address": "מרדכי נמ",
+        "neighborhood": "י'א"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78733284824614,
+          31.23862338773098
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "name": "מרכז הצע",
+        "address": "הרצל",
+        "neighborhood": "עיר עתיק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79987388305781,
+          31.2806026417852
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "name": "מתנ\"ס רמו",
+        "address": "הערים הת",
+        "neighborhood": "רמות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770935387337865,
+          31.240760707347377
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "name": "מתנ\"ס נוו",
+        "address": "שמאלי אל",
+        "neighborhood": "נווה זאב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78317848534086,
+          31.22904677750644
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "name": "מתנ\"ס נוו",
+        "address": "פלפלון",
+        "neighborhood": "נווה נוי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76986437444089,
+          31.235022390527767
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "מתנ\"ס פלח",
+        "address": "פינסקר",
+        "neighborhood": "נווה זאב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77919290443656,
+          31.26907498312987
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "name": "מתנ\"ס חרד",
+        "address": "אבוחצירה",
+        "neighborhood": "ו"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75419985693729,
+          31.271198896570496
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "name": "מתנ\"ס כלנ",
+        "address": "מארי קיר",
+        "neighborhood": "כלניות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82108583860157,
+          31.232869652201096
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "name": "מתנ\"ס הפא",
+        "address": "נחל יהל",
+        "neighborhood": "הפארק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.774471889319344,
+          31.22234850070128
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "name": "מתנ\"ס נחל",
+        "address": "עדן פרטו",
+        "neighborhood": "נחל בקע"
+      }
+    }
+  ]
+}

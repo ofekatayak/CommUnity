@@ -1,0 +1,3398 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80814596733892,
+          31.258954943504424
+        ]
+      },
+      "properties": {
+        "name": "ג/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.807822997108005,
+          31.259731265716376
+        ]
+      },
+      "properties": {
+        "name": "ג/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809299856502896,
+          31.25918555096877
+        ]
+      },
+      "properties": {
+        "name": "ג/25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80929491232652,
+          31.2572411072763
+        ]
+      },
+      "properties": {
+        "name": "ג/33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.810906849011886,
+          31.25741593009776
+        ]
+      },
+      "properties": {
+        "name": "ג/36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81026598326415,
+          31.2583602621999
+        ]
+      },
+      "properties": {
+        "name": "ג/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80555380811611,
+          31.25418248168993
+        ]
+      },
+      "properties": {
+        "name": "ג/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.802624960506954,
+          31.255109244730605
+        ]
+      },
+      "properties": {
+        "name": "ג/23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80440519843626,
+          31.255581831321127
+        ]
+      },
+      "properties": {
+        "name": "ג/22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80945651510584,
+          31.253602393637586
+        ]
+      },
+      "properties": {
+        "name": "ג/39"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80748349809214,
+          31.253669216236936
+        ]
+      },
+      "properties": {
+        "name": "ג/26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80848660565795,
+          31.25691746520659
+        ]
+      },
+      "properties": {
+        "name": "ג/31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.765052161366555,
+          31.25701143829865
+        ]
+      },
+      "properties": {
+        "name": "מ/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76358017241585,
+          31.257544228048538
+        ]
+      },
+      "properties": {
+        "name": "מ/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76277700354852,
+          31.257482466669234
+        ]
+      },
+      "properties": {
+        "name": "מ/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7786060211776,
+          31.270021730658268
+        ]
+      },
+      "properties": {
+        "name": "ו/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77763891885095,
+          31.27022666657206
+        ]
+      },
+      "properties": {
+        "name": "ו/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.776159233455324,
+          31.2694373878284
+        ]
+      },
+      "properties": {
+        "name": "ו/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770070383204505,
+          31.265784476902983
+        ]
+      },
+      "properties": {
+        "name": "ו/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78686001415872,
+          31.259661616892
+        ]
+      },
+      "properties": {
+        "name": "מ/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79502115262165,
+          31.26466712787963
+        ]
+      },
+      "properties": {
+        "name": "ד/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79970402848355,
+          31.266857495502727
+        ]
+      },
+      "properties": {
+        "name": "ד/37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.794012465265006,
+          31.260368226970424
+        ]
+      },
+      "properties": {
+        "name": "ד/40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79155235547009,
+          31.25954205563352
+        ]
+      },
+      "properties": {
+        "name": "ד/30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79061053535216,
+          31.262699045109763
+        ]
+      },
+      "properties": {
+        "name": "ד/44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79062105704303,
+          31.263725222355
+        ]
+      },
+      "properties": {
+        "name": "ד/21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79266807011008,
+          31.26187911170808
+        ]
+      },
+      "properties": {
+        "name": "ד/38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79224606204581,
+          31.26374638175433
+        ]
+      },
+      "properties": {
+        "name": "ד/29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7926807084604,
+          31.263200645886396
+        ]
+      },
+      "properties": {
+        "name": "ד/45"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79267539967517,
+          31.263440618636736
+        ]
+      },
+      "properties": {
+        "name": "ד/39"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79045498782504,
+          31.262368791752788
+        ]
+      },
+      "properties": {
+        "name": "ד/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78827488091602,
+          31.27079417824664
+        ]
+      },
+      "properties": {
+        "name": "ד/35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78669540145534,
+          31.27113581640865
+        ]
+      },
+      "properties": {
+        "name": "ד/55"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.785534468845995,
+          31.270661807025885
+        ]
+      },
+      "properties": {
+        "name": "ד/52"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78513711120484,
+          31.271210890819464
+        ]
+      },
+      "properties": {
+        "name": "ד/54"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78700178889702,
+          31.27179918777249
+        ]
+      },
+      "properties": {
+        "name": "ד/56"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78752030859281,
+          31.272021690253546
+        ]
+      },
+      "properties": {
+        "name": "ד/58"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79384309372695,
+          31.272548831908725
+        ]
+      },
+      "properties": {
+        "name": "ד/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.794039545931575,
+          31.270341349705443
+        ]
+      },
+      "properties": {
+        "name": "ד/46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.801381525725645,
+          31.26667293569399
+        ]
+      },
+      "properties": {
+        "name": "ד/49"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79209324398811,
+          31.262748092599494
+        ]
+      },
+      "properties": {
+        "name": "ד/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79557396371419,
+          31.24552893165642
+        ]
+      },
+      "properties": {
+        "name": "א/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79702863157027,
+          31.24893035581195
+        ]
+      },
+      "properties": {
+        "name": "א/18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.796969134816045,
+          31.25012494907149
+        ]
+      },
+      "properties": {
+        "name": "א/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79359359978899,
+          31.245855443930196
+        ]
+      },
+      "properties": {
+        "name": "א/17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79142642850955,
+          31.246704792441125
+        ]
+      },
+      "properties": {
+        "name": "א/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78482222900413,
+          31.247928594883405
+        ]
+      },
+      "properties": {
+        "name": "א/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7875150887024,
+          31.24777750108642
+        ]
+      },
+      "properties": {
+        "name": "א/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78728687184653,
+          31.2492999931471
+        ]
+      },
+      "properties": {
+        "name": "א/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78564621502955,
+          31.250111980042867
+        ]
+      },
+      "properties": {
+        "name": "א/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77935382569157,
+          31.24866176175717
+        ]
+      },
+      "properties": {
+        "name": "ה/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77955082244453,
+          31.24854711850376
+        ]
+      },
+      "properties": {
+        "name": "ה/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.784057972730835,
+          31.2517825672264
+        ]
+      },
+      "properties": {
+        "name": "ה/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.782794412141065,
+          31.251809815542565
+        ]
+      },
+      "properties": {
+        "name": "ה/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.777859766202255,
+          31.2508822775768
+        ]
+      },
+      "properties": {
+        "name": "ה/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78253628932912,
+          31.25344215101632
+        ]
+      },
+      "properties": {
+        "name": "ה/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78318530001487,
+          31.257820295637885
+        ]
+      },
+      "properties": {
+        "name": "בא/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79001653256847,
+          31.2539631980779
+        ]
+      },
+      "properties": {
+        "name": "ב/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.796301310332986,
+          31.255848077291063
+        ]
+      },
+      "properties": {
+        "name": "ב/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806169574269084,
+          31.270951840778626
+        ]
+      },
+      "properties": {
+        "name": "ר/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80885244992665,
+          31.27114164468595
+        ]
+      },
+      "properties": {
+        "name": "ר/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80951667695705,
+          31.27029287208654
+        ]
+      },
+      "properties": {
+        "name": "רמות/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808535057107065,
+          31.269918992776017
+        ]
+      },
+      "properties": {
+        "name": "ר/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80928870451606,
+          31.269758863132942
+        ]
+      },
+      "properties": {
+        "name": "רמות/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809057477386546,
+          31.26924036132936
+        ]
+      },
+      "properties": {
+        "name": "רמות/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8067054464197,
+          31.26992626753341
+        ]
+      },
+      "properties": {
+        "name": "ר/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80884069794948,
+          31.268716259918232
+        ]
+      },
+      "properties": {
+        "name": "רמות/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80861202595644,
+          31.26818890801583
+        ]
+      },
+      "properties": {
+        "name": "רמות/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80784435656855,
+          31.268281300223578
+        ]
+      },
+      "properties": {
+        "name": "ר/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80425467076597,
+          31.27063131013379
+        ]
+      },
+      "properties": {
+        "name": "ר/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8003714171728,
+          31.27316761774804
+        ]
+      },
+      "properties": {
+        "name": "ר/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808798169385604,
+          31.273270463269903
+        ]
+      },
+      "properties": {
+        "name": "רמות/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80843815494994,
+          31.27372842355546
+        ]
+      },
+      "properties": {
+        "name": "רמות/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80917589615931,
+          31.272810251978026
+        ]
+      },
+      "properties": {
+        "name": "רמות/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808066907745854,
+          31.274185734133894
+        ]
+      },
+      "properties": {
+        "name": "רמות/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80772229974731,
+          31.27459340213094
+        ]
+      },
+      "properties": {
+        "name": "רמות/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809553001052336,
+          31.272330319788548
+        ]
+      },
+      "properties": {
+        "name": "רמות/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806862237626035,
+          31.273879383162623
+        ]
+      },
+      "properties": {
+        "name": "ר/22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80643401337243,
+          31.274412149962
+        ]
+      },
+      "properties": {
+        "name": "ר/20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.803656958360364,
+          31.271640706435548
+        ]
+      },
+      "properties": {
+        "name": "ר/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.802708261930285,
+          31.27289996971457
+        ]
+      },
+      "properties": {
+        "name": "ר/19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80266402652423,
+          31.275651784230792
+        ]
+      },
+      "properties": {
+        "name": "ר/25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80237796358524,
+          31.274063986200428
+        ]
+      },
+      "properties": {
+        "name": "ר/18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.802498346444544,
+          31.274568578701725
+        ]
+      },
+      "properties": {
+        "name": "ר/24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80405680722207,
+          31.274533044571967
+        ]
+      },
+      "properties": {
+        "name": "ר/21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.802296423025695,
+          31.27143028790218
+        ]
+      },
+      "properties": {
+        "name": "ר/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.805449567179124,
+          31.271781909014223
+        ]
+      },
+      "properties": {
+        "name": "ר/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80737034790832,
+          31.27507721827056
+        ]
+      },
+      "properties": {
+        "name": "רמות/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8069464329179,
+          31.275525563152407
+        ]
+      },
+      "properties": {
+        "name": "רמות/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80642249007879,
+          31.27586588252132
+        ]
+      },
+      "properties": {
+        "name": "רמות/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76036106523766,
+          31.26486650804885
+        ]
+      },
+      "properties": {
+        "name": "נע/22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76384326449595,
+          31.270040117740635
+        ]
+      },
+      "properties": {
+        "name": "נע/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76555264681748,
+          31.26587717181038
+        ]
+      },
+      "properties": {
+        "name": "נע/17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76635230245855,
+          31.26692491848716
+        ]
+      },
+      "properties": {
+        "name": "נע/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76082707871192,
+          31.26971950710819
+        ]
+      },
+      "properties": {
+        "name": "נע/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.763004769360094,
+          31.27036771777996
+        ]
+      },
+      "properties": {
+        "name": "נע/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.759776649069906,
+          31.266511658249392
+        ]
+      },
+      "properties": {
+        "name": "נע/23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76103837638248,
+          31.266067930389447
+        ]
+      },
+      "properties": {
+        "name": "נע/21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77547176484048,
+          31.22143708482194
+        ]
+      },
+      "properties": {
+        "name": "בקע/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.778832113865285,
+          31.2241004642211
+        ]
+      },
+      "properties": {
+        "name": "בקע/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77734179577491,
+          31.223523500545184
+        ]
+      },
+      "properties": {
+        "name": "בקע/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77853175902876,
+          31.22576996063341
+        ]
+      },
+      "properties": {
+        "name": "בקע/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77259812502504,
+          31.221961079326903
+        ]
+      },
+      "properties": {
+        "name": "בקע/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773655691145244,
+          31.219693331761405
+        ]
+      },
+      "properties": {
+        "name": "בקע/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.771747023054864,
+          31.221172199194427
+        ]
+      },
+      "properties": {
+        "name": "בקע/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77560053717677,
+          31.2248492630622
+        ]
+      },
+      "properties": {
+        "name": "בקע/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78016688026572,
+          31.223936856352505
+        ]
+      },
+      "properties": {
+        "name": "בקע/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.780201066822194,
+          31.226117289523565
+        ]
+      },
+      "properties": {
+        "name": "בקע/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77626293876893,
+          31.22295800855833
+        ]
+      },
+      "properties": {
+        "name": "בקע/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77524020976292,
+          31.223742873045936
+        ]
+      },
+      "properties": {
+        "name": "בקע/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77428980681423,
+          31.22091325778976
+        ]
+      },
+      "properties": {
+        "name": "בקע/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77354749650106,
+          31.22291374648444
+        ]
+      },
+      "properties": {
+        "name": "בקע/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79230634663218,
+          31.232114870565344
+        ]
+      },
+      "properties": {
+        "name": "נ/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78027101460092,
+          31.23237318464164
+        ]
+      },
+      "properties": {
+        "name": "נ/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77967027572315,
+          31.24305914890524
+        ]
+      },
+      "properties": {
+        "name": "רסקו/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.784312239309656,
+          31.235852857729014
+        ]
+      },
+      "properties": {
+        "name": "ע/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78465730101302,
+          31.238743026705222
+        ]
+      },
+      "properties": {
+        "name": "ע/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.781686723796405,
+          31.237001367441405
+        ]
+      },
+      "properties": {
+        "name": "ע/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79242996468884,
+          31.248195276397578
+        ]
+      },
+      "properties": {
+        "name": "א/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7867441339918,
+          31.25142811352014
+        ]
+      },
+      "properties": {
+        "name": "א/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78991536324696,
+          31.250375442891148
+        ]
+      },
+      "properties": {
+        "name": "א/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7890602971219,
+          31.250429511878355
+        ]
+      },
+      "properties": {
+        "name": "א/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78788480812084,
+          31.25174451912902
+        ]
+      },
+      "properties": {
+        "name": "א/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79414509479243,
+          31.246089589756934
+        ]
+      },
+      "properties": {
+        "name": "א/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7944847518868,
+          31.25056694133537
+        ]
+      },
+      "properties": {
+        "name": "א/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7902861515033,
+          31.255572343238025
+        ]
+      },
+      "properties": {
+        "name": "ב/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7959203382916,
+          31.25663270492316
+        ]
+      },
+      "properties": {
+        "name": "ב/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.794104008820575,
+          31.25489339783415
+        ]
+      },
+      "properties": {
+        "name": "ב/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.795334903174776,
+          31.25722628613479
+        ]
+      },
+      "properties": {
+        "name": "ב/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78907583640685,
+          31.254537636112023
+        ]
+      },
+      "properties": {
+        "name": "ב/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793838635209326,
+          31.25650412167552
+        ]
+      },
+      "properties": {
+        "name": "ב/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79643565349042,
+          31.254967491817
+        ]
+      },
+      "properties": {
+        "name": "ב/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78922627413921,
+          31.2574535762845
+        ]
+      },
+      "properties": {
+        "name": "ב/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.781479366236994,
+          31.25786072601652
+        ]
+      },
+      "properties": {
+        "name": "בא/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78358761430414,
+          31.25784184054849
+        ]
+      },
+      "properties": {
+        "name": "בא/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.775089566069646,
+          31.22259284310178
+        ]
+      },
+      "properties": {
+        "name": "בקע/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78084942476036,
+          31.224500613364423
+        ]
+      },
+      "properties": {
+        "name": "בקע/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78175379952096,
+          31.2426206225904
+        ]
+      },
+      "properties": {
+        "name": "רסקו/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.781549319355896,
+          31.24018424162632
+        ]
+      },
+      "properties": {
+        "name": "ע/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78327581633234,
+          31.239897241044343
+        ]
+      },
+      "properties": {
+        "name": "ע/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.762282701178435,
+          31.26788139718267
+        ]
+      },
+      "properties": {
+        "name": "נע/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.762574488767164,
+          31.26376604713141
+        ]
+      },
+      "properties": {
+        "name": "נע/20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.771717486749644,
+          31.270172764873017
+        ]
+      },
+      "properties": {
+        "name": "נע/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77088925932732,
+          31.26981151821831
+        ]
+      },
+      "properties": {
+        "name": "נע/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76354695085983,
+          31.26508100128957
+        ]
+      },
+      "properties": {
+        "name": "נע/19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76184088194757,
+          31.269001010957915
+        ]
+      },
+      "properties": {
+        "name": "נע/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76439489462015,
+          31.268106155860075
+        ]
+      },
+      "properties": {
+        "name": "נע/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.764804403852985,
+          31.26931325989981
+        ]
+      },
+      "properties": {
+        "name": "נע/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.757712791248515,
+          31.26564950299201
+        ]
+      },
+      "properties": {
+        "name": "נע/24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77091089826681,
+          31.27088920407714
+        ]
+      },
+      "properties": {
+        "name": "נע/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76560466019723,
+          31.272140240390232
+        ]
+      },
+      "properties": {
+        "name": "נע/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76431149142142,
+          31.264439561471427
+        ]
+      },
+      "properties": {
+        "name": "נע/18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76747902907778,
+          31.271164539217796
+        ]
+      },
+      "properties": {
+        "name": "נע/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76946136208014,
+          31.271517268203347
+        ]
+      },
+      "properties": {
+        "name": "נע/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77323719565557,
+          31.256634124103304
+        ]
+      },
+      "properties": {
+        "name": "מ/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773346890779834,
+          31.257037360256547
+        ]
+      },
+      "properties": {
+        "name": "מ/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80522516150177,
+          31.26960237917557
+        ]
+      },
+      "properties": {
+        "name": "ר/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.805199027630856,
+          31.275217379618223
+        ]
+      },
+      "properties": {
+        "name": "ר/23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80082247095611,
+          31.27417722409725
+        ]
+      },
+      "properties": {
+        "name": "ר/17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808238415431525,
+          31.2690452522125
+        ]
+      },
+      "properties": {
+        "name": "ר/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80665251070071,
+          31.27234189918344
+        ]
+      },
+      "properties": {
+        "name": "ר/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808783254615705,
+          31.25974481344567
+        ]
+      },
+      "properties": {
+        "name": "ג/43"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80191617084978,
+          31.250643525708515
+        ]
+      },
+      "properties": {
+        "name": "ג/46"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806505818058945,
+          31.251614306474327
+        ]
+      },
+      "properties": {
+        "name": "ג/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809945282902135,
+          31.252468298843
+        ]
+      },
+      "properties": {
+        "name": "ג/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80805782364616,
+          31.248597523109854
+        ]
+      },
+      "properties": {
+        "name": "ג/29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77796623670393,
+          31.255387269458
+        ]
+      },
+      "properties": {
+        "name": "ה/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.782551725422934,
+          31.24895569676496
+        ]
+      },
+      "properties": {
+        "name": "ה/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770717378912344,
+          31.26694497683024
+        ]
+      },
+      "properties": {
+        "name": "ו/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.772250608386315,
+          31.26822500935223
+        ]
+      },
+      "properties": {
+        "name": "ו/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77482594962675,
+          31.26924567303019
+        ]
+      },
+      "properties": {
+        "name": "ו/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77911326194498,
+          31.250737626822627
+        ]
+      },
+      "properties": {
+        "name": "ה/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79480131734758,
+          31.268033429980875
+        ]
+      },
+      "properties": {
+        "name": "ד/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.797022241406474,
+          31.267903446348623
+        ]
+      },
+      "properties": {
+        "name": "ד/47"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79493875995355,
+          31.267106168983027
+        ]
+      },
+      "properties": {
+        "name": "ד/42"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7969565660553,
+          31.260953311973672
+        ]
+      },
+      "properties": {
+        "name": "ד/17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79651867661202,
+          31.260423334434066
+        ]
+      },
+      "properties": {
+        "name": "ד/32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79527007597147,
+          31.261107583268437
+        ]
+      },
+      "properties": {
+        "name": "ד/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793475794023024,
+          31.260222877878373
+        ]
+      },
+      "properties": {
+        "name": "ד/18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.792850775974415,
+          31.260792642948623
+        ]
+      },
+      "properties": {
+        "name": "ד/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79286686415917,
+          31.258893192115664
+        ]
+      },
+      "properties": {
+        "name": "ד/41"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79389127276886,
+          31.266845050449604
+        ]
+      },
+      "properties": {
+        "name": "ד/31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79517926228848,
+          31.264248565612775
+        ]
+      },
+      "properties": {
+        "name": "ד/33"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79700467579373,
+          31.264361239661525
+        ]
+      },
+      "properties": {
+        "name": "ד/23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79439590532804,
+          31.262611677668936
+        ]
+      },
+      "properties": {
+        "name": "ד/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79735804547128,
+          31.262564557691917
+        ]
+      },
+      "properties": {
+        "name": "ד/22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.792929113913594,
+          31.26629027546776
+        ]
+      },
+      "properties": {
+        "name": "ד/20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78542349511,
+          31.23780566361049
+        ]
+      },
+      "properties": {
+        "name": "ע/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78892953798081,
+          31.237132417661947
+        ]
+      },
+      "properties": {
+        "name": "ע/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80487731961562,
+          31.252233810581508
+        ]
+      },
+      "properties": {
+        "name": "ג/19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81002763178602,
+          31.255063806794126
+        ]
+      },
+      "properties": {
+        "name": "ג/37"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80864752894545,
+          31.2554728562171
+        ]
+      },
+      "properties": {
+        "name": "ג/38"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78332778238885,
+          31.27094539983524
+        ]
+      },
+      "properties": {
+        "name": "ד/60"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78497143141693,
+          31.269722090276485
+        ]
+      },
+      "properties": {
+        "name": "ד/59"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.795930425473166,
+          31.24883500828989
+        ]
+      },
+      "properties": {
+        "name": "א/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80507086053052,
+          31.250130980465823
+        ]
+      },
+      "properties": {
+        "name": "ג/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8027733875017,
+          31.2500497924352
+        ]
+      },
+      "properties": {
+        "name": "ג/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80608485930513,
+          31.248640156417448
+        ]
+      },
+      "properties": {
+        "name": "ג/16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804276132865866,
+          31.24819579487896
+        ]
+      },
+      "properties": {
+        "name": "ג/17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.807195468910194,
+          31.247579396837352
+        ]
+      },
+      "properties": {
+        "name": "ג/18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8113942977003,
+          31.252850145013905
+        ]
+      },
+      "properties": {
+        "name": "ג/20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80611661425109,
+          31.256180084384035
+        ]
+      },
+      "properties": {
+        "name": "ג/21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80649901776152,
+          31.25022130334215
+        ]
+      },
+      "properties": {
+        "name": "ג/24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81030799355514,
+          31.25609626343478
+        ]
+      },
+      "properties": {
+        "name": "ג/27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.803626909239576,
+          31.25097788225762
+        ]
+      },
+      "properties": {
+        "name": "ג/28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80853011752891,
+          31.2496493752321
+        ]
+      },
+      "properties": {
+        "name": "ג/13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81116523681996,
+          31.258086527810462
+        ]
+      },
+      "properties": {
+        "name": "ג/42"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80977442990532,
+          31.258952091622756
+        ]
+      },
+      "properties": {
+        "name": "ג/35"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809374985699314,
+          31.25805593759703
+        ]
+      },
+      "properties": {
+        "name": "ג/34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80794871125675,
+          31.255522673542465
+        ]
+      },
+      "properties": {
+        "name": "ג/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8102656490852,
+          31.25709147621541
+        ]
+      },
+      "properties": {
+        "name": "ג/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80702212781103,
+          31.254854278230805
+        ]
+      },
+      "properties": {
+        "name": "ג/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80345093500438,
+          31.254468218594702
+        ]
+      },
+      "properties": {
+        "name": "ג/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80853693799881,
+          31.246508823537148
+        ]
+      },
+      "properties": {
+        "name": "ג/45"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80279256940815,
+          31.25200873714033
+        ]
+      },
+      "properties": {
+        "name": "ג/30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79367930925649,
+          31.26153593161557
+        ]
+      },
+      "properties": {
+        "name": "ד/12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79555014404317,
+          31.27210249964205
+        ]
+      },
+      "properties": {
+        "name": "ד/28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7935176147662,
+          31.27090776737217
+        ]
+      },
+      "properties": {
+        "name": "ד/4"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79185031444699,
+          31.261594285619232
+        ]
+      },
+      "properties": {
+        "name": "ד/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79986082048914,
+          31.26490954375816
+        ]
+      },
+      "properties": {
+        "name": "ד/24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80111943525959,
+          31.26578527681251
+        ]
+      },
+      "properties": {
+        "name": "ד/25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80117893069414,
+          31.2688248356779
+        ]
+      },
+      "properties": {
+        "name": "ד/36"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79227674227794,
+          31.268240260003854
+        ]
+      },
+      "properties": {
+        "name": "ד/27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79689385046849,
+          31.27064868616142
+        ]
+      },
+      "properties": {
+        "name": "ד/34"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79469822725987,
+          31.271364443430727
+        ]
+      },
+      "properties": {
+        "name": "ד/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8086048132729,
+          31.254705253267467
+        ]
+      },
+      "properties": {
+        "name": "ג/9"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80680159487553,
+          31.25700684430704
+        ]
+      },
+      "properties": {
+        "name": "ג/44"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77651919133939,
+          31.246528329410303
+        ]
+      },
+      "properties": {
+        "name": "ט/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.792872544303506,
+          31.26914209970854
+        ]
+      },
+      "properties": {
+        "name": "ד/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.791001560736184,
+          31.24432778257237
+        ]
+      },
+      "properties": {
+        "name": "ע/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79348970300557,
+          31.231366662667696
+        ]
+      },
+      "properties": {
+        "name": "נ/3"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79539495481618,
+          31.26914431692241
+        ]
+      },
+      "properties": {
+        "name": "ד/48"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79478466600861,
+          31.269299231805768
+        ]
+      },
+      "properties": {
+        "name": "ד/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78675420938031,
+          31.270244739154407
+        ]
+      },
+      "properties": {
+        "name": "ד/53"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78566353490418,
+          31.259510513956727
+        ]
+      },
+      "properties": {
+        "name": "מ/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79558446975501,
+          31.269996903706367
+        ]
+      },
+      "properties": {
+        "name": "ד/43"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79132730744046,
+          31.25642374853132
+        ]
+      },
+      "properties": {
+        "name": "ב/2"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77958758165576,
+          31.24785183601384
+        ]
+      },
+      "properties": {
+        "name": "ה/14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78093967254585,
+          31.248090956078887
+        ]
+      },
+      "properties": {
+        "name": "ה/15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77891234551176,
+          31.25474915565251
+        ]
+      },
+      "properties": {
+        "name": "ה/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.794804488412794,
+          31.266502667860493
+        ]
+      },
+      "properties": {
+        "name": "ד/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78050142476603,
+          31.250399718447053
+        ]
+      },
+      "properties": {
+        "name": "ה/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80230914172369,
+          31.254118567368295
+        ]
+      },
+      "properties": {
+        "name": "ג/41"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7967418962774,
+          31.268315286854826
+        ]
+      },
+      "properties": {
+        "name": "ד/19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78347270347336,
+          31.271243705806004
+        ]
+      },
+      "properties": {
+        "name": "ד/51"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78914358867414,
+          31.248231374675427
+        ]
+      },
+      "properties": {
+        "name": "א/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80696977485556,
+          31.27368690124035
+        ]
+      },
+      "properties": {
+        "name": "ר/6"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80795071238646,
+          31.2725269346604
+        ]
+      },
+      "properties": {
+        "name": "ר/5"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80848100092653,
+          31.25697658071235
+        ]
+      },
+      "properties": {
+        "name": "ג/32"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.802485727754885,
+          31.25173346527747
+        ]
+      },
+      "properties": {
+        "name": "ג/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76977843934383,
+          31.26627777956694
+        ]
+      },
+      "properties": {
+        "name": "ו/1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8072042393053,
+          31.27092399892242
+        ]
+      },
+      "properties": {
+        "name": "ר/8"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80079444786955,
+          31.265965497343203
+        ]
+      },
+      "properties": {
+        "name": "ד/26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81157706411941,
+          31.25401911544696
+        ]
+      },
+      "properties": {
+        "name": "ג/48"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78422190826486,
+          31.27007281207078
+        ]
+      },
+      "properties": {
+        "name": "ד/57"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79496942708627,
+          31.240147621143297
+        ]
+      },
+      "properties": {
+        "name": "ע/11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79605552206617,
+          31.264592947853885
+        ]
+      },
+      "properties": {
+        "name": "ד/50"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808266404823925,
+          31.24626664314896
+        ]
+      },
+      "properties": {
+        "name": "ג/50"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78248186896301,
+          31.234715081191027
+        ]
+      },
+      "properties": {
+        "name": "ע/10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80808057098863,
+          31.25236447339549
+        ]
+      },
+      "properties": {
+        "name": "ג/40"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78834416683207,
+          31.25414665932292
+        ]
+      },
+      "properties": {
+        "name": "ב/12"
+      }
+    }
+  ]
+}

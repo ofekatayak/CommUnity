@@ -7,20 +7,41 @@ import SiteIntro from "../components/SiteIntro";
 import CommunityPopup from "../components/popups/CommunityPopup";
 import ContactForm from "../components/ContactForm";
 import About from "../components/About";
+import { clusteredCommunities } from "../data/ClusterIntegration";
+import LayersPanel from "../components/LayersPanel";
+
 
 const Home: React.FC = () => {
   const [activeCommunity, setActiveCommunity] = useState<string | null>(null);
+  const [visibleCommunities, setVisibleCommunities] = useState<typeof communities>([]);
+  const [selectedLayers, setSelectedLayers] = useState<string[]>([]);
   const [showCommunityPopup, setShowCommunityPopup] = useState(false);
   const [showContact, setShowContact] = useState(false);
+  const [layerDataMap, setLayerDataMap] = useState<Record<string, any>>({});
   const contactFormRef = useRef<HTMLDivElement>(null);
   const aboutSectionRef = useRef<HTMLDivElement>(null);
+  const communities = clusteredCommunities;
+  
+  
 
-  const communities = [
-    { name: "קהילה 1", lat: 32.0853, lon: 34.7818, color: "#5E72E4" },
-    { name: "קהילה 2", lat: 31.7683, lon: 35.2137, color: "#3498DB" },
-    { name: "קהילה 3", lat: 29.5577, lon: 34.9519, color: "#4CAF50" },
-    { name: "קהילה 4", lat: 30.1234, lon: 34.9876, color: "#FF9800" },
-    { name: "קהילה 5", lat: 30.6789, lon: 35.1234, color: "#8E44AD" },
+  const toggleLayer = (layer: string) => {
+  setSelectedLayers((prev) =>
+    prev.includes(layer)
+      ? prev.filter((l) => l !== layer)
+      : [...prev, layer]
+  );
+  };
+  const availableLayers = [
+    "bicycle_tracks",
+    "business_centers",
+    "community_centers",
+    "dog_gardens",
+    "education",
+    "elderly_social_clubs",
+    "health_clinics",
+    "playgrounds",
+    "shelters",
+    "synagogues",
   ];
 
   // פונקציה למציאת קהילה פעילה
@@ -62,6 +83,26 @@ const Home: React.FC = () => {
     setShowContact(false);
   };
 
+  const toggleCommunityVisibility = (communityName: string) => {
+    const matches = clusteredCommunities.filter((c) => c.name === communityName);
+    const alreadyVisible = visibleCommunities.some((c) => c.name === communityName);
+
+    if (alreadyVisible) {
+      setVisibleCommunities((prev) => prev.filter((c) => c.name !== communityName));
+    } else {
+      setVisibleCommunities((prev) => [...prev, ...matches]);
+    }
+
+    setActiveCommunity(communityName);
+  };
+
+  const seen = new Set<string>();
+  const uniqueCommunityTypes = clusteredCommunities.filter((c) => {
+  if (seen.has(c.name)) return false;
+  seen.add(c.name);
+  return true;
+}).map(c => ({ name: c.name, color: c.color }));
+
   return (
     <div
       dir="rtl"
@@ -84,22 +125,36 @@ const Home: React.FC = () => {
               </h2>
             </div>
             <Map
-              communities={communities}
+              communities={visibleCommunities}
               activeCommunity={activeCommunity}
               setActiveCommunity={setActiveCommunity}
+              selectedLayers={selectedLayers}
+              setLayerDataMap={setLayerDataMap}
             />
           </div>
-
           {/* Legend Sidebar - בצד ימין */}
-          <div className="lg:w-1/4 bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 h-[600px]">
+          <div className="lg:w-1/4 bg-white rounded-xl shadow-lg border border-gray-100 max-h-[600px] flex flex-col">
             <div className="bg-indigo-50 py-3 px-4 border-b border-gray-100">
               <h2 className="font-semibold text-indigo-900">רשימת קהילות</h2>
             </div>
-            <div className="p-4 h-full">
+            <div className="p-4 overflow-y-auto flex-grow">
               <Legend
-                communities={communities}
-                setActiveCommunity={setActiveCommunity}
+                 communities={uniqueCommunityTypes}
+                  onToggleCommunity={toggleCommunityVisibility}
               />
+            </div>
+          </div>
+          <div className="lg:w-1/6 bg-white rounded-xl shadow-lg border border-gray-100 max-h-[600px] flex flex-col">
+            <div className="bg-indigo-50 py-3 px-4 border-b border-gray-100">
+              <h2 className="font-semibold text-indigo-900">שכבות מידע</h2>
+            </div>
+            <div className="p-4 overflow-y-auto flex-grow">
+              <LayersPanel
+              availableLayers={availableLayers}
+              selectedLayers={selectedLayers}
+              onToggleLayer={toggleLayer}
+              layerDataMap={layerDataMap}
+            />
             </div>
           </div>
         </div>

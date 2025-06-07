@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Plot from "react-plotly.js";
+import { Data } from "plotly.js";
 
 interface Community {
   name: string;
@@ -12,16 +13,20 @@ interface MapProps {
   communities: Community[];
   activeCommunity: string | null;
   setActiveCommunity: React.Dispatch<React.SetStateAction<string | null>>;
+  selectedLayers: string[];
+  setLayerDataMap: React.Dispatch<React.SetStateAction<Record<string, any>>>;
 }
 
 const Map: React.FC<MapProps> = ({
   communities,
   activeCommunity,
   setActiveCommunity,
+  selectedLayers,
+  setLayerDataMap,
 }) => {
-  const defaultCenter = { lat: 31.7683, lon: 34.7818 }; // Default map center (Israel)
-  const defaultZoom = 7;
-
+  const defaultCenter = { lat: 31.252973, lon: 34.791462 }; 
+  const defaultZoom = 12;
+  const [extraTraces, setExtraTraces] = useState<Partial<Data>[]>([]);
   const [center, setCenter] = useState(defaultCenter);
   const [zoom, setZoom] = useState(defaultZoom);
   const [isMapReady, setIsMapReady] = useState(false);
@@ -30,6 +35,31 @@ const Map: React.FC<MapProps> = ({
     height: "100%",
   });
   const containerRef = useRef<HTMLDivElement>(null);
+  const layerNameMap: Record<string, string> = {
+    bicycle_tracks: "מסלולי אופניים",
+    business_centers: "מרכזי עסקים",
+    community_centers: "מתנ״סים",
+    dog_gardens: "גינות כלבים",
+    education: "מוסדות חינוך",
+    elderly_social_clubs: "מועדוני קשישים",
+    health_clinics: "מרפאות",
+    playgrounds: "גני שעשועים",
+    shelters: "מקלטים",
+    synagogues: "בתי כנסת"
+  };
+  const layerColors: Record<string, string> = {
+  bicycle_tracks: "#3b82f6",
+  business_centers: "#ef4444",
+  community_centers: "#10b981",
+  dog_gardens: "#8b5cf6",
+  education: "#f59e0b",
+  elderly_social_clubs: "#6366f1",
+  health_clinics: "#ec4899",
+  playgrounds: "#22c55e",
+  shelters: "#14b8a6",
+  synagogues: "#f97316"
+};
+
 
   // טעינה ראשונית של המפה והגדרת מימדים
   useEffect(() => {
@@ -58,16 +88,68 @@ const Map: React.FC<MapProps> = ({
     };
   }, []);
 
-  // עדכון המיקום כאשר קהילה פעילה משתנה
+
   useEffect(() => {
-    if (activeCommunity) {
-      const community = communities.find((c) => c.name === activeCommunity);
-      if (community) {
-        setCenter({ lat: community.lat, lon: community.lon });
-        setZoom(15);
+  const loadLayers = async () => {
+    const traces: Partial<Data>[] = [];
+    const updatedLayerDataMap: Record<string, any> = {};
+
+    for (const layerName of selectedLayers) {
+      try {
+        const response = await fetch(`/data/${layerName}.geojson`);
+        const geojson = await response.json();
+
+        updatedLayerDataMap[layerName] = geojson;
+
+        const lat = geojson.features.map((f: any) => f.geometry.coordinates[1]);
+        const lon = geojson.features.map((f: any) => f.geometry.coordinates[0]);
+        
+        traces.push({
+          type: "scattermapbox",
+          mode: "markers",
+          name: layerNameMap[layerName] || layerName,
+          lat,
+          lon,
+          marker: {
+            size: 8,
+            symbol: "circle",
+            color: layerColors[layerName] || "#4b5563"
+          },
+          text: geojson.features.map(() => `🔺 ${layerNameMap[layerName] || layerName}`),
+          hoverinfo: "text",
+          hoverlabel: {
+            bgcolor: "#4f46e5",
+            bordercolor: "#4f46e5",
+            font: { color: "white", size: 13 }
+          }
+        });
+      
+      } catch (error) {
+        console.error(`❌ שגיאה בטעינת השכבה ${layerName}`, error);
       }
     }
-  }, [activeCommunity, communities]);
+    setLayerDataMap(updatedLayerDataMap);
+    setExtraTraces(traces);
+  };
+
+  if (selectedLayers.length > 0) {
+    loadLayers();
+  } else {
+    setExtraTraces([]);
+  }
+}, [selectedLayers]);
+
+
+  useEffect(() => {
+  if (activeCommunity) {
+    const points = communities.filter((c) => c.name === activeCommunity);
+    if (points.length > 0) {
+      const avgLat = points.reduce((sum, c) => sum + c.lat, 0) / points.length;
+      const avgLon = points.reduce((sum, c) => sum + c.lon, 0) / points.length;
+      setCenter({ lat: avgLat, lon: avgLon });
+    }
+  }
+}, [activeCommunity, communities]);
 
   const resetMapView = () => {
     setActiveCommunity(null);
@@ -149,39 +231,38 @@ const Map: React.FC<MapProps> = ({
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-sm font-medium text-gray-800">
-            לחץ על נקודה כדי לצפות בפרטי הקהילה
-          </span>
         </div>
       </div>
 
       {isMapReady && (
         <Plot
           data={[
-            {
-              type: "scattermapbox",
-              lat: communities.map((c) => c.lat),
-              lon: communities.map((c) => c.lon),
-              text: communities.map((c) => c.name),
-              mode: "markers+text" as any,
-              marker: {
-                size: communities.map((c) =>
-                  c.name === activeCommunity ? 18 : 14
-                ),
-                color: communities.map((c) => c.color),
-                opacity: communities.map((c) =>
-                  c.name === activeCommunity ? 1 : 0.8
-                ),
-              },
-              textposition: "top center",
-              hoverinfo: "text",
-              hoverlabel: {
-                bgcolor: "#4f46e5",
-                bordercolor: "#4f46e5",
-                font: { color: "white", size: 14 },
-              },
-            },
-          ]}
+                {
+                  type: "scattermapbox",
+                  lat: communities.map((c) => c.lat),
+                  lon: communities.map((c) => c.lon),
+                  text: communities.map((c) => c.name),
+                  mode: "markers+text" as any,
+                  marker: {
+                    size: communities.map((c) =>
+                      c.name === activeCommunity ? 18 : 14
+                    ),
+                    color: communities.map((c) => c.color),
+                    opacity: communities.map((c) =>
+                      c.name === activeCommunity ? 1 : 0.8
+                    ),
+                  },
+                  textposition: "top center",
+                  hoverinfo: "text",
+                  hoverlabel: {
+                    bgcolor: "#4f46e5",
+                    bordercolor: "#4f46e5",
+                    font: { color: "white", size: 14 },
+                  },
+                },
+                ...extraTraces // ← השכבות שאתה מוסיף מהממשק
+              ]}
+
           layout={{
             mapbox: {
               style: "open-street-map",
@@ -198,6 +279,7 @@ const Map: React.FC<MapProps> = ({
             modeBarButtonsToRemove: ["lasso2d", "select2d", "toggleHover"],
             displayModeBar: false,
             responsive: true,
+            scrollZoom: true,
           }}
           style={dimensions}
           useResizeHandler
@@ -224,6 +306,7 @@ const Map: React.FC<MapProps> = ({
           }}
         />
       )}
+
 
       {/* בזמן טעינה, הצגת אינדיקטור טעינה */}
       {!isMapReady && (

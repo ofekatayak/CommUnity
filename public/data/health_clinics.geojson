@@ -1,0 +1,1637 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7907892544368,
+          31.2540165064844
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "בן יאיר",
+        "address": "ביאליק",
+        "neighborhood": "ב",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7922136527957,
+          31.2644117883804
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "name": "יסקי",
+        "address": "דוד המלך",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7995278732813,
+          31.2671049247705
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "name": "+תעסוקתי",
+        "address": "קלאוזנר",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8008696571768,
+          31.2665459692445
+        ]
+      },
+      "properties": {
+        "id": 34,
+        "name": "טיפת חלב",
+        "address": "רינגלבלו",
+        "neighborhood": "ד",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7910032214594,
+          31.2489732436893
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "name": "קפלן",
+        "address": "כיכר קפל",
+        "neighborhood": "א",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7792945602832,
+          31.2592963312219
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "name": "מרפאת מצ",
+        "address": "מבצע עוב",
+        "neighborhood": "ו",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7694825669637,
+          31.2571486107414
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "name": "מרפאת - י",
+        "address": "רחבת השי",
+        "neighborhood": "יא",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7770138833039,
+          31.2457679237245
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "name": "מרפאת - ט",
+        "address": "שד' ירושל",
+        "neighborhood": "ט",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7769396842581,
+          31.2454168204888
+        ]
+      },
+      "properties": {
+        "id": 42,
+        "name": "טיפת חלב",
+        "address": "שד' ירושל",
+        "neighborhood": "ט",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7833332995624,
+          31.2402563818031
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "name": "מרפאת שת",
+        "address": "סמילנסקי",
+        "neighborhood": "ע\"ע",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7940207244825,
+          31.2402784911653
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "מעבדה לב",
+        "address": "שלושת בנ",
+        "neighborhood": "ע\"ע",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8094386794854,
+          31.2570324171222
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "name": "מרפאת וי",
+        "address": "חנה סנש",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8001168680703,
+          31.2588011304014
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "name": "מרכז רפו",
+        "address": "שד' רגר",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8022061383171,
+          31.2478659602315
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "name": "מרפאה מח",
+        "address": "הנרייטה",
+        "neighborhood": "מרכז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8069169566676,
+          31.2512785334609
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "name": "מרפאה",
+        "address": "המעפילים",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773266888083,
+          31.2377474163845
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "name": "מרפאת נו",
+        "address": "יוהנה ז'ב",
+        "neighborhood": "נווה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7908652339435,
+          31.2310344279347
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "name": "מרפאת נו",
+        "address": "השיטה",
+        "neighborhood": "נוונ",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7663286098489,
+          31.2669047813639
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "name": "מרפאת נו",
+        "address": "אמנון",
+        "neighborhood": "נווה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7818379235162,
+          31.250976782974
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "name": "מרפאת שכ'",
+        "address": "רח' עלייה",
+        "neighborhood": "ה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8002638486205,
+          31.2553437112657
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "name": "מרפאת וי",
+        "address": "וינגייט",
+        "neighborhood": "ג",
+        "provider": "מאוחדת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8143870240752,
+          31.2748491128132
+        ]
+      },
+      "properties": {
+        "id": 44,
+        "name": "מרפאת רמ",
+        "address": "הר כנען",
+        "neighborhood": "רמות",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7904031863755,
+          31.2537340564229
+        ]
+      },
+      "properties": {
+        "id": 32,
+        "name": "טיפת חלב",
+        "address": "הוברמן - 9",
+        "neighborhood": "ב",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7878610484445,
+          31.2688058889434
+        ]
+      },
+      "properties": {
+        "id": 36,
+        "name": "טיפת חלב",
+        "address": "סנהדרין",
+        "neighborhood": "ד",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7739852780022,
+          31.2547397776199
+        ]
+      },
+      "properties": {
+        "id": 38,
+        "name": "טיפת חלב",
+        "address": "טבנקין",
+        "neighborhood": "ה",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7711541170101,
+          31.2571278891252
+        ]
+      },
+      "properties": {
+        "id": 39,
+        "name": "טיפת חלב",
+        "address": "הרב קוק",
+        "neighborhood": "יא",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7968030889884,
+          31.2598755193193
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "היחידה ל",
+        "address": "שלמה המל",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7775983892115,
+          31.2601438992425
+        ]
+      },
+      "properties": {
+        "id": 40,
+        "name": "טיפת חלב",
+        "address": "מבצע עוב",
+        "neighborhood": "ו",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7739314177128,
+          31.2445768304455
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "קופ\"ח מכב",
+        "address": "בית - אל  3",
+        "neighborhood": "ט",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8050662888418,
+          31.2707462471456
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "name": "מרפאת רמ",
+        "address": "שלום גרש",
+        "neighborhood": "רמות",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7942576946646,
+          31.2437401638827
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "name": "קניון הנ",
+        "address": "רגר",
+        "neighborhood": "מ. אז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7942345989786,
+          31.2438565574201
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "name": "לאומית ק",
+        "address": "רגר",
+        "neighborhood": "מ.אז",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8044449987199,
+          31.2741810067361
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "name": "מרפאת רמ",
+        "address": "הדעת - 102",
+        "neighborhood": "רמות",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7934421402692,
+          31.2639538152543
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "name": "מרפאת - ד",
+        "address": "א.אבינו",
+        "neighborhood": "ד",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7679871379169,
+          31.2576878058092
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "name": "מרפאת - י",
+        "address": "שאול המל",
+        "neighborhood": "יא",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8091614566938,
+          31.2570489912071
+        ]
+      },
+      "properties": {
+        "id": 45,
+        "name": "תחנה ג'",
+        "address": "וינגייט -",
+        "neighborhood": "ג",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7773199420162,
+          31.2235293018544
+        ]
+      },
+      "properties": {
+        "id": 46,
+        "name": "טיפת חלב",
+        "address": "חנוך גבת",
+        "neighborhood": "נחל",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8088232787186,
+          31.2711579575806
+        ]
+      },
+      "properties": {
+        "id": 47,
+        "name": "טיםת חלב",
+        "address": "ורטהיימר",
+        "neighborhood": "רמות",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7653241029184,
+          31.2457956490555
+        ]
+      },
+      "properties": {
+        "id": 48,
+        "name": "כללית - ל",
+        "address": "שומרון - 6",
+        "neighborhood": "לון",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7760195488957,
+          31.2400326473012
+        ]
+      },
+      "properties": {
+        "id": 49,
+        "name": "מכבי נוו",
+        "address": "יוהנה 7",
+        "neighborhood": "נווה",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7695563608693,
+          31.2702140293505
+        ]
+      },
+      "properties": {
+        "id": 51,
+        "name": "מרפאת נו",
+        "address": "חנה רובי",
+        "neighborhood": "נווה",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8033170668627,
+          31.2626372553006
+        ]
+      },
+      "properties": {
+        "id": 52,
+        "name": "מרפאת או",
+        "address": "בן גוריו",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7992201185497,
+          31.2430378703692
+        ]
+      },
+      "properties": {
+        "id": 53,
+        "name": "מרפאת מג",
+        "address": "יצחק בן צ",
+        "neighborhood": "מ.אז",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7757138396281,
+          31.2397672440592
+        ]
+      },
+      "properties": {
+        "id": 54,
+        "name": "לאומית נ",
+        "address": "אשר ברש -",
+        "neighborhood": "נ.זא",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.790631060217,
+          31.2435010308872
+        ]
+      },
+      "properties": {
+        "id": 55,
+        "name": "מרפאת בי",
+        "address": "הרצל-רמב",
+        "neighborhood": "ע\"ע",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7993802037233,
+          31.2451316128543
+        ]
+      },
+      "properties": {
+        "id": 57,
+        "name": "מכבי מחו",
+        "address": "התקווה - 4",
+        "neighborhood": "מ.אז",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7998044942016,
+          31.2448049342165
+        ]
+      },
+      "properties": {
+        "id": 58,
+        "name": "מרפאה",
+        "address": "התקווה - 4",
+        "neighborhood": "מ.אז",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8069665014505,
+          31.2599409981351
+        ]
+      },
+      "properties": {
+        "id": 59,
+        "name": "קופ\"ח כלל",
+        "address": "בן גוריו",
+        "neighborhood": "מ.אז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8028464628415,
+          31.2474871653141
+        ]
+      },
+      "properties": {
+        "id": 60,
+        "name": "קופ\"ח כלל",
+        "address": "הנרייטה",
+        "neighborhood": "מ.אז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7907892544368,
+          31.2540165064844
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "בן יאיר",
+        "address": "ביאליק",
+        "neighborhood": "ב",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7922136527957,
+          31.2644117883804
+        ]
+      },
+      "properties": {
+        "id": 15,
+        "name": "יסקי",
+        "address": "דוד המלך",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7995278732813,
+          31.2671049247705
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "name": "+תעסוקתי",
+        "address": "קלאוזנר",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8008696571768,
+          31.2665459692445
+        ]
+      },
+      "properties": {
+        "id": 34,
+        "name": "טיפת חלב",
+        "address": "רינגלבלו",
+        "neighborhood": "ד",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7910032214594,
+          31.2489732436893
+        ]
+      },
+      "properties": {
+        "id": 10,
+        "name": "קפלן",
+        "address": "כיכר קפל",
+        "neighborhood": "א",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7792945602832,
+          31.2592963312219
+        ]
+      },
+      "properties": {
+        "id": 16,
+        "name": "מרפאת מצ",
+        "address": "מבצע עוב",
+        "neighborhood": "ו",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7694825669637,
+          31.2571486107414
+        ]
+      },
+      "properties": {
+        "id": 24,
+        "name": "מרפאת - י",
+        "address": "רחבת השי",
+        "neighborhood": "יא",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7770138833039,
+          31.2457679237245
+        ]
+      },
+      "properties": {
+        "id": 23,
+        "name": "מרפאת - ט",
+        "address": "שד' ירושל",
+        "neighborhood": "ט",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7769396842581,
+          31.2454168204888
+        ]
+      },
+      "properties": {
+        "id": 42,
+        "name": "טיפת חלב",
+        "address": "שד' ירושל",
+        "neighborhood": "ט",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7833332995624,
+          31.2402563818031
+        ]
+      },
+      "properties": {
+        "id": 25,
+        "name": "מרפאת שת",
+        "address": "סמילנסקי",
+        "neighborhood": "ע\"ע",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7940207244825,
+          31.2402784911653
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "מעבדה לב",
+        "address": "שלושת בנ",
+        "neighborhood": "ע\"ע",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8094386794854,
+          31.2570324171222
+        ]
+      },
+      "properties": {
+        "id": 14,
+        "name": "מרפאת וי",
+        "address": "חנה סנש",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8001168680703,
+          31.2588011304014
+        ]
+      },
+      "properties": {
+        "id": 8,
+        "name": "מרכז רפו",
+        "address": "שד' רגר",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8022061383171,
+          31.2478659602315
+        ]
+      },
+      "properties": {
+        "id": 7,
+        "name": "מרפאה מח",
+        "address": "הנרייטה",
+        "neighborhood": "מרכז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8069169566676,
+          31.2512785334609
+        ]
+      },
+      "properties": {
+        "id": 9,
+        "name": "מרפאה",
+        "address": "המעפילים",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773266888083,
+          31.2377474163845
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "name": "מרפאת נו",
+        "address": "יוהנה ז'ב",
+        "neighborhood": "נווה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7908652339435,
+          31.2310344279347
+        ]
+      },
+      "properties": {
+        "id": 18,
+        "name": "מרפאת נו",
+        "address": "השיטה",
+        "neighborhood": "נוונ",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7663286098489,
+          31.2669047813639
+        ]
+      },
+      "properties": {
+        "id": 19,
+        "name": "מרפאת נו",
+        "address": "אמנון",
+        "neighborhood": "נווה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7818379235162,
+          31.250976782974
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "name": "מרפאת שכ'",
+        "address": "רח' עלייה",
+        "neighborhood": "ה",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8002638486205,
+          31.2553437112657
+        ]
+      },
+      "properties": {
+        "id": 30,
+        "name": "מרפאת וי",
+        "address": "וינגייט",
+        "neighborhood": "ג",
+        "provider": "מאוחדת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8143870240752,
+          31.2748491128132
+        ]
+      },
+      "properties": {
+        "id": 44,
+        "name": "מרפאת רמ",
+        "address": "הר כנען",
+        "neighborhood": "רמות",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7904031863755,
+          31.2537340564229
+        ]
+      },
+      "properties": {
+        "id": 32,
+        "name": "טיפת חלב",
+        "address": "הוברמן - 9",
+        "neighborhood": "ב",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7878610484445,
+          31.2688058889434
+        ]
+      },
+      "properties": {
+        "id": 36,
+        "name": "טיפת חלב",
+        "address": "סנהדרין",
+        "neighborhood": "ד",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7739852780022,
+          31.2547397776199
+        ]
+      },
+      "properties": {
+        "id": 38,
+        "name": "טיפת חלב",
+        "address": "טבנקין",
+        "neighborhood": "ה",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7711541170101,
+          31.2571278891252
+        ]
+      },
+      "properties": {
+        "id": 39,
+        "name": "טיפת חלב",
+        "address": "הרב קוק",
+        "neighborhood": "יא",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7968030889884,
+          31.2598755193193
+        ]
+      },
+      "properties": {
+        "id": 2,
+        "name": "היחידה ל",
+        "address": "שלמה המל",
+        "neighborhood": "ד",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7775983892115,
+          31.2601438992425
+        ]
+      },
+      "properties": {
+        "id": 40,
+        "name": "טיפת חלב",
+        "address": "מבצע עוב",
+        "neighborhood": "ו",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7739314177128,
+          31.2445768304455
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "קופ\"ח מכב",
+        "address": "בית - אל  3",
+        "neighborhood": "ט",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8050662888418,
+          31.2707462471456
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "name": "מרפאת רמ",
+        "address": "שלום גרש",
+        "neighborhood": "רמות",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7942576946646,
+          31.2437401638827
+        ]
+      },
+      "properties": {
+        "id": 26,
+        "name": "קניון הנ",
+        "address": "רגר",
+        "neighborhood": "מ. אז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7942345989786,
+          31.2438565574201
+        ]
+      },
+      "properties": {
+        "id": 28,
+        "name": "לאומית ק",
+        "address": "רגר",
+        "neighborhood": "מ.אז",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8044449987199,
+          31.2741810067361
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "name": "מרפאת רמ",
+        "address": "הדעת - 102",
+        "neighborhood": "רמות",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7934421402692,
+          31.2639538152543
+        ]
+      },
+      "properties": {
+        "id": 27,
+        "name": "מרפאת - ד",
+        "address": "א.אבינו",
+        "neighborhood": "ד",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7679871379169,
+          31.2576878058092
+        ]
+      },
+      "properties": {
+        "id": 29,
+        "name": "מרפאת - י",
+        "address": "שאול המל",
+        "neighborhood": "יא",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8091614566938,
+          31.2570489912071
+        ]
+      },
+      "properties": {
+        "id": 45,
+        "name": "תחנה ג'",
+        "address": "וינגייט -",
+        "neighborhood": "ג",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7773199420162,
+          31.2235293018544
+        ]
+      },
+      "properties": {
+        "id": 46,
+        "name": "טיפת חלב",
+        "address": "חנוך גבת",
+        "neighborhood": "נחל",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8088232787186,
+          31.2711579575806
+        ]
+      },
+      "properties": {
+        "id": 47,
+        "name": "טיםת חלב",
+        "address": "ורטהיימר",
+        "neighborhood": "רמות",
+        "provider": "משרד הבריאות"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7653241029184,
+          31.2457956490555
+        ]
+      },
+      "properties": {
+        "id": 48,
+        "name": "כללית - ל",
+        "address": "שומרון - 6",
+        "neighborhood": "לון",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7760195488957,
+          31.2400326473012
+        ]
+      },
+      "properties": {
+        "id": 49,
+        "name": "מכבי נוו",
+        "address": "יוהנה 7",
+        "neighborhood": "נווה",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7695563608693,
+          31.2702140293505
+        ]
+      },
+      "properties": {
+        "id": 51,
+        "name": "מרפאת נו",
+        "address": "חנה רובי",
+        "neighborhood": "נווה",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8033170668627,
+          31.2626372553006
+        ]
+      },
+      "properties": {
+        "id": 52,
+        "name": "מרפאת או",
+        "address": "בן גוריו",
+        "neighborhood": "ג",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7992201185497,
+          31.2430378703692
+        ]
+      },
+      "properties": {
+        "id": 53,
+        "name": "מרפאת מג",
+        "address": "יצחק בן צ",
+        "neighborhood": "מ.אז",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7757138396281,
+          31.2397672440592
+        ]
+      },
+      "properties": {
+        "id": 54,
+        "name": "לאומית נ",
+        "address": "אשר ברש -",
+        "neighborhood": "נ.זא",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.790631060217,
+          31.2435010308872
+        ]
+      },
+      "properties": {
+        "id": 55,
+        "name": "מרפאת בי",
+        "address": "הרצל-רמב",
+        "neighborhood": "ע\"ע",
+        "provider": "לאומית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7993802037233,
+          31.2451316128543
+        ]
+      },
+      "properties": {
+        "id": 57,
+        "name": "מכבי מחו",
+        "address": "התקווה - 4",
+        "neighborhood": "מ.אז",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7998044942016,
+          31.2448049342165
+        ]
+      },
+      "properties": {
+        "id": 58,
+        "name": "מרפאה",
+        "address": "התקווה - 4",
+        "neighborhood": "מ.אז",
+        "provider": "מכבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8069665014505,
+          31.2599409981351
+        ]
+      },
+      "properties": {
+        "id": 59,
+        "name": "קופ\"ח כלל",
+        "address": "בן גוריו",
+        "neighborhood": "מ.אז",
+        "provider": "כללית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8028464628415,
+          31.2474871653141
+        ]
+      },
+      "properties": {
+        "id": 60,
+        "name": "קופ\"ח כלל",
+        "address": "הנרייטה",
+        "neighborhood": "מ.אז",
+        "provider": "כללית"
+      }
+    }
+  ]
+}

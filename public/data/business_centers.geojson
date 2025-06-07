@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.789287084595706,
+          31.239928543038392
+        ]
+      },
+      "properties": {
+        "name": "העיר העתיקה",
+        "description": "בשנים האחרונות  מובילה עירי",
+        "remarks": "עיר עתיקה",
+        "shape_length": 3515.22415305,
+        "shape_area": 638638.834624
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.797770625434204,
+          31.25396616204401
+        ]
+      },
+      "properties": {
+        "name": "מסחר מלווה רחוב",
+        "description": "יעקב כהן - רגר",
+        "remarks": "מסחר מלווה רחוב",
+        "shape_length": 986.287728266,
+        "shape_area": 59157.2577981
+      }
+    }
+  ]
+}

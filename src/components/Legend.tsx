@@ -8,18 +8,18 @@ interface Community {
 
 interface LegendProps {
   communities: Community[];
-  setActiveCommunity: React.Dispatch<React.SetStateAction<string | null>>;
+  onToggleCommunity: (communityName: string) => void;
 }
 
-const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
-  const [activeCommunity] = useState<string | null>(null);
+const Legend: React.FC<LegendProps> = ({ communities, onToggleCommunity }) => {
+  const [activeCommunity, setLocalActiveCommunity] = useState<string | null>(null);
 
   const handleOpenPopup = (community: string) => {
-    setActiveCommunity(community);
+    setLocalActiveCommunity(community); // ניהול מקומי לפופאפ
   };
 
   const handleClosePopup = () => {
-    setActiveCommunity(null);
+    setLocalActiveCommunity(null);
   };
 
   return (
@@ -34,7 +34,7 @@ const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
           <div
             key={index}
             className="flex items-center justify-between p-3 cursor-pointer hover:bg-indigo-50 rounded-xl transition duration-200 border border-transparent hover:border-indigo-100"
-            onClick={() => handleOpenPopup(community.name)}
+            onClick={() => onToggleCommunity(community.name)}
           >
             <div className="flex items-center gap-3">
               <span className="text-gray-700 font-medium">
@@ -87,42 +87,42 @@ const Legend: React.FC<LegendProps> = ({ communities, setActiveCommunity }) => {
       )}
 
       {activeCommunity && (
-        <Popup
-          title={activeCommunity}
-          isOpen={!!activeCommunity}
-          onClose={handleClosePopup}
-        >
-          <div className="p-4">
-            <div className="flex justify-center mb-4">
-              <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center">
-                <div
-                  className="w-12 h-12 rounded-full"
-                  style={{
-                    backgroundColor: communities.find(
-                      (c) => c.name === activeCommunity
-                    )?.color,
-                  }}
-                ></div>
+          <Popup
+            title={activeCommunity}
+            isOpen={!!activeCommunity}
+            onClose={handleClosePopup}
+          >
+            <div className="p-4">
+              <div className="flex justify-center mb-4">
+                <div className="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center">
+                  <div
+                    className="w-12 h-12 rounded-full"
+                    style={{
+                      backgroundColor: communities.find(
+                        (c) => c.name === activeCommunity
+                      )?.color,
+                    }}
+                  ></div>
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-center mb-4">
+                {activeCommunity}
+              </h3>
+              <p className="text-gray-600 text-right">
+                מידע מפורט על קהילת {activeCommunity}. כאן ניתן להציג פרטים נוספים,
+                סטטיסטיקות, או מידע רלוונטי אחר אודות הקהילה.
+              </p>
+              <div className="mt-6 flex justify-end">
+                <button
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200"
+                  onClick={handleClosePopup}
+                >
+                  סגור
+                </button>
               </div>
             </div>
-            <h3 className="text-xl font-semibold text-center mb-4">
-              {activeCommunity}
-            </h3>
-            <p className="text-gray-600 text-right">
-              מידע מפורט על קהילת {activeCommunity}. כאן ניתן להציג פרטים
-              נוספים, סטטיסטיקות, או מידע רלוונטי אחר אודות הקהילה.
-            </p>
-            <div className="mt-6 flex justify-end">
-              <button
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200"
-                onClick={handleClosePopup}
-              >
-                סגור
-              </button>
-            </div>
-          </div>
-        </Popup>
-      )}
+          </Popup>
+        )}
     </div>
   );
 };

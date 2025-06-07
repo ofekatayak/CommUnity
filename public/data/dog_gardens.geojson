@@ -1,0 +1,410 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.790465948801895,
+          31.248674796483943
+        ]
+      },
+      "properties": {
+        "name": "פארק קפלן",
+        "shape_length": 106.222630325,
+        "shape_area": 615.876714817
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7707355749301,
+          31.245397192764905
+        ]
+      },
+      "properties": {
+        "name": "פארק אופירה - שכ' ט",
+        "shape_length": 132.71612594,
+        "shape_area": 1149.77496854
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.769122037622,
+          31.255848626608287
+        ]
+      },
+      "properties": {
+        "name": "חת\"ם הסופר -שכ' יא'",
+        "shape_length": 109.3044573,
+        "shape_area": 686.480619072
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.776794224317825,
+          31.25149714852983
+        ]
+      },
+      "properties": {
+        "name": "פארק ה' גדולי ישראל",
+        "shape_length": 143.360137041,
+        "shape_area": 1284.89411691
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78819291441375,
+          31.267112267323704
+        ]
+      },
+      "properties": {
+        "name": "פארק ד' שני אליהו",
+        "shape_length": 156.84451944,
+        "shape_area": 1373.29439455
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.784983064805054,
+          31.237050047164782
+        ]
+      },
+      "properties": {
+        "name": "מרגליות-1",
+        "shape_length": 149.420934238,
+        "shape_area": 738.758889753
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.778661861378964,
+          31.22331139568061
+        ]
+      },
+      "properties": {
+        "name": "הצנחנים",
+        "shape_length": 96.846616686,
+        "shape_area": 464.005742043
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79685119957767,
+          31.287334601376195
+        ]
+      },
+      "properties": {
+        "name": "טיילת צה\"ל ערים תאומות",
+        "shape_length": 143.561813961,
+        "shape_area": 899.350774128
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79838739660032,
+          31.26663412367437
+        ]
+      },
+      "properties": {
+        "name": "גינת כלבים סיאטל",
+        "shape_length": 112.057956227,
+        "shape_area": 706.382626437
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81241600301542,
+          31.25595020353285
+        ]
+      },
+      "properties": {
+        "name": "מתחם הספורט גינת בן גוריון",
+        "shape_length": 117.257317533,
+        "shape_area": 828.287222377
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7960254334758,
+          31.24716095285684
+        ]
+      },
+      "properties": {
+        "name": "הראשונים",
+        "shape_length": 89.7202192314,
+        "shape_area": 492.603192292
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82221942354863,
+          31.279607679542394
+        ]
+      },
+      "properties": {
+        "name": "מסוף האוטובוסים",
+        "shape_length": 132.45972065,
+        "shape_area": 1007.89838655
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75578773662105,
+          31.257093310614675
+        ]
+      },
+      "properties": {
+        "name": "מרווה-סיגליות",
+        "shape_length": 84.4397858951,
+        "shape_area": 321.426608492
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79149617707022,
+          31.26592737192789
+        ]
+      },
+      "properties": {
+        "name": "אליהו הנביא פארק ד",
+        "shape_length": 141.682997975,
+        "shape_area": 1024.30368278
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75357775329082,
+          31.263165670883208
+        ]
+      },
+      "properties": {
+        "name": "פארק תנועות הנוער",
+        "shape_length": 210.770189302,
+        "shape_area": 1343.94836052
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79754322324728,
+          31.26430240228919
+        ]
+      },
+      "properties": {
+        "name": "עושים רחוב באלכסנדר ינאי",
+        "shape_length": 51.5032125845,
+        "shape_area": 148.943214895
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80367410020124,
+          31.258353908636412
+        ]
+      },
+      "properties": {
+        "name": "פארק וינגייט סורוקה",
+        "shape_length": 77.3459765296,
+        "shape_area": 355.877125153
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78787091904553,
+          31.255744174410395
+        ]
+      },
+      "properties": {
+        "name": "פארק הסופרים",
+        "shape_length": 103.923825391,
+        "shape_area": 464.734028626
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77070381553289,
+          31.234549758841773
+        ]
+      },
+      "properties": {
+        "name": "פארק האגדות",
+        "shape_length": 82.3765259872,
+        "shape_area": 375.181428307
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.82274678440115,
+          31.237763473954768
+        ]
+      },
+      "properties": {
+        "name": "פארק נחל באר שבע מתחם האגם",
+        "shape_length": 154.515783476,
+        "shape_area": 1594.51026131
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.775836655607044,
+          31.26123959885074
+        ]
+      },
+      "properties": {
+        "name": "רחבת החיל",
+        "shape_length": 80.7399362893,
+        "shape_area": 279.913229925
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.821566388003454,
+          31.272478027016927
+        ]
+      },
+      "properties": {
+        "name": "האנדרטה",
+        "shape_length": 99.2368950426,
+        "shape_area": 582.368183744
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76576421624302,
+          31.24686031039885
+        ]
+      },
+      "properties": {
+        "name": "שומרון",
+        "shape_length": 125.268376285,
+        "shape_area": 723.162871272
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.752868822809695,
+          31.2729923965014
+        ]
+      },
+      "properties": {
+        "name": "גינת פארק כלניות",
+        "shape_length": 129.431601062,
+        "shape_area": 868.967597702
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80862000330055,
+          31.26388948123788
+        ]
+      },
+      "properties": {
+        "name": "גינת הייטק גב-ים",
+        "shape_length": 127.392083102,
+        "shape_area": 768.861029467
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78860153975107,
+          31.261215329398677
+        ]
+      },
+      "properties": {
+        "name": "המכתש",
+        "shape_length": 90.4943020165,
+        "shape_area": 334.82876566
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.762853176841126,
+          31.22913440900713
+        ]
+      },
+      "properties": {
+        "name": "פשוש-ינשוף פלח 8",
+        "shape_length": 173.86208179,
+        "shape_area": 1793.7882933
+      }
+    }
+  ]
+}
