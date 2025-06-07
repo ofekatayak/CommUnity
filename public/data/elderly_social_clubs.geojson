@@ -1,0 +1,260 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81078327696957,
+          31.255866651606496
+        ]
+      },
+      "properties": {
+        "name": "רעות",
+        "address": "השלום 90",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.796041748298215,
+          31.246410912838755
+        ]
+      },
+      "properties": {
+        "name": "גימלאים פיס לקשיש",
+        "address": "ויצמן 1",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79476547926979,
+          31.253647959923168
+        ]
+      },
+      "properties": {
+        "name": "שכונה תומכת פיס לקשיש",
+        "address": "לאה גולדברג 25",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76082707868356,
+          31.26971950750401
+        ]
+      },
+      "properties": {
+        "name": "גיל הזהב",
+        "address": "בת שבע 13",
+        "type": "מועדון במקלט עילי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79592819037821,
+          31.260695322535792
+        ]
+      },
+      "properties": {
+        "name": "הניצחון",
+        "address": "כיכר הקינזי 17",
+        "type": "מועדון בדירת עמידר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77192100793119,
+          31.2213384078193
+        ]
+      },
+      "properties": {
+        "name": "שושנים",
+        "address": "פאול בן חיים 5",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77621596329337,
+          31.250932953948663
+        ]
+      },
+      "properties": {
+        "name": "מעיין מקסים",
+        "address": "בורלא 5",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80670544626452,
+          31.269926267725957
+        ]
+      },
+      "properties": {
+        "name": "גיל הזהב",
+        "address": "גלעד קרוק 13",
+        "type": "מועדון במקלט עילי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.766458534237984,
+          31.26061510613401
+        ]
+      },
+      "properties": {
+        "name": "מתנ\"ס יא",
+        "address": "מרדכי נמיר 14",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78328686237087,
+          31.23716466685276
+        ]
+      },
+      "properties": {
+        "name": "מרגליות",
+        "address": "ההגנה 1",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76796926637046,
+          31.25456312992691
+        ]
+      },
+      "properties": {
+        "name": "מועדון שכונה תומכת ט",
+        "address": "החיד\"א",
+        "type": "מועדון שכונה תומכת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79159365074295,
+          31.26482703351178
+        ]
+      },
+      "properties": {
+        "name": "מתנס לוין",
+        "address": "אליהו הנביא 4",
+        "type": "מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76845545596586,
+          31.255430481782312
+        ]
+      },
+      "properties": {
+        "name": "בית סמואל",
+        "address": "חת\"ם סופר",
+        "type": "עולי אתיופיה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.771953067279334,
+          31.247729274810656
+        ]
+      },
+      "properties": {
+        "name": "מרכז יום ט",
+        "address": "עין גדי 2",
+        "type": "מרכז יום/ מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80244711131895,
+          31.252632589658937
+        ]
+      },
+      "properties": {
+        "name": "מרכז יום השלום",
+        "address": "השלום 15",
+        "type": "מרכז יום/ מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.792478696845954,
+          31.270613163360675
+        ]
+      },
+      "properties": {
+        "name": "בית סקנדינביה",
+        "address": "שפרינצק 11",
+        "type": "מרכז יום/ מועדון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7723386130592,
+          31.25608076934884
+        ]
+      },
+      "properties": {
+        "name": "מרכז יום יא",
+        "address": "רדק 45",
+        "type": "מרכז יום יא"
+      }
+    }
+  ]
+}

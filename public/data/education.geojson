@@ -1,0 +1,949 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.772220002406065,
+          31.25696298794723
+        ]
+      },
+      "properties": {
+        "name": "מאדים",
+        "type": "גן ילדים",
+        "address": "רד\"ק שכ יא",
+        "old_name": "רד\"ק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.776404863519936,
+          31.24715650019221
+        ]
+      },
+      "properties": {
+        "name": "אדמה",
+        "type": "גן ילדים",
+        "address": "רח טבריה שכ ט",
+        "old_name": "השלושה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79311284069217,
+          31.24893441930801
+        ]
+      },
+      "properties": {
+        "name": "חלילית",
+        "type": "גן ילדים",
+        "address": "ברנר שכ א",
+        "old_name": "ברנר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78244599218988,
+          31.26542495799427
+        ]
+      },
+      "properties": {
+        "name": "חרצית",
+        "type": "גן ילדים",
+        "address": "מבצע ארז שכ ו",
+        "old_name": "רקפת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.803587925062835,
+          31.25607794071292
+        ]
+      },
+      "properties": {
+        "name": "איילה",
+        "type": "גן ילדים",
+        "address": "וינגיט שכ ג",
+        "old_name": "מיתרים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.767664587939166,
+          31.236758509910537
+        ]
+      },
+      "properties": {
+        "name": "אורן",
+        "type": "גן ילדים",
+        "address": "גרוסמן נ.זאב",
+        "old_name": "תאנה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77211144078468,
+          31.256878100195703
+        ]
+      },
+      "properties": {
+        "name": "פלוטו",
+        "type": "גן ילדים",
+        "address": "רד\"ק שכ יא",
+        "old_name": "רד\"ק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.781123541954535,
+          31.264617349417016
+        ]
+      },
+      "properties": {
+        "name": "ישראל",
+        "type": "גן ילדים",
+        "address": "מבצע קילשון",
+        "old_name": "ציון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.780681370542304,
+          31.265177911779528
+        ]
+      },
+      "properties": {
+        "name": "עינב",
+        "type": "גן ילדים",
+        "address": "מבצע יקב שכ ן",
+        "old_name": "גפן"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78990758699489,
+          31.27035120955084
+        ]
+      },
+      "properties": {
+        "name": "לימונית",
+        "type": "גן ילדים",
+        "address": "סנהדרין שכ ד",
+        "old_name": "לימון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77068175601941,
+          31.25510618180921
+        ]
+      },
+      "properties": {
+        "name": "שביל החלב",
+        "type": "גן ילדים",
+        "address": "עוזיאל שכ יא",
+        "old_name": "עוזיאל"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.768050514118755,
+          31.260318863994645
+        ]
+      },
+      "properties": {
+        "name": "נהר",
+        "type": "גן ילדים",
+        "address": "כיכר מרקדו",
+        "old_name": "אפיק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76971907386093,
+          31.25961252446362
+        ]
+      },
+      "properties": {
+        "name": "תאיר",
+        "type": "גן ילדים",
+        "address": "משה שרת שכ יא",
+        "old_name": "מאיר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.765171925815054,
+          31.231635382720235
+        ]
+      },
+      "properties": {
+        "name": "צוף",
+        "type": "גן ילדים",
+        "address": "לרון",
+        "old_name": "צופית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77531209188401,
+          31.24832508144572
+        ]
+      },
+      "properties": {
+        "name": "מורשת",
+        "type": "גן ילדים",
+        "address": "טבריה שכ ט",
+        "old_name": "מולדת"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.785472150896446,
+          31.24640882313451
+        ]
+      },
+      "properties": {
+        "name": "לביא",
+        "type": "גן ילדים",
+        "address": "מוריה שכ א",
+        "old_name": "מוריה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78652185415102,
+          31.259709388212062
+        ]
+      },
+      "properties": {
+        "name": "לב הדקל",
+        "type": "גן ילדים",
+        "address": "מבצע נחשון שכ ו",
+        "old_name": "לולב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79584234808307,
+          31.27158101541743
+        ]
+      },
+      "properties": {
+        "name": "סברס",
+        "type": "גן ילדים",
+        "address": "הכנסת שכ ד",
+        "old_name": "צבר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.8087164265172,
+          31.257054928540256
+        ]
+      },
+      "properties": {
+        "name": "חושן",
+        "type": "גן ילדים",
+        "address": "חביבה רייך שכ ג",
+        "old_name": "חנה סנש"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81147960608973,
+          31.25285056645803
+        ]
+      },
+      "properties": {
+        "name": "אדיב",
+        "type": "גן ילדים",
+        "address": "הנדיב שכ ג",
+        "old_name": "נדיב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.773961095519674,
+          31.22202392386799
+        ]
+      },
+      "properties": {
+        "name": "זמיר",
+        "type": "גן ילדים",
+        "address": "עדן פרטוש 27",
+        "old_name": "דרור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79723249122136,
+          31.284087110182828
+        ]
+      },
+      "properties": {
+        "name": "מרווה",
+        "type": "גן ילדים",
+        "address": "טדסקי גד",
+        "old_name": "הדס"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.778379617268875,
+          31.245339591152984
+        ]
+      },
+      "properties": {
+        "name": "יריחו",
+        "type": "גן ילדים",
+        "address": "שכם שכ ט",
+        "old_name": "שכם"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80755767374458,
+          31.283158158069337
+        ]
+      },
+      "properties": {
+        "name": "אנקור",
+        "type": "גן ילדים",
+        "address": "חלילי 3",
+        "old_name": "עטלף"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.808549641339106,
+          31.257083050507
+        ]
+      },
+      "properties": {
+        "name": "שוהם",
+        "type": "גן ילדים",
+        "address": "חביבה רייך שכ ג",
+        "old_name": "חנה סנש"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80635190145857,
+          31.248924596473085
+        ]
+      },
+      "properties": {
+        "name": "החלוצים",
+        "type": "גן ילדים",
+        "address": "המעפילים שכ ג",
+        "old_name": "המעפילים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79729884014447,
+          31.27236635726106
+        ]
+      },
+      "properties": {
+        "name": "חלמונית",
+        "type": "גן ילדים",
+        "address": "הכנסת שכ ד",
+        "old_name": "שושן"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78320097965677,
+          31.249730761472648
+        ]
+      },
+      "properties": {
+        "name": "טווס",
+        "type": "גן ילדים",
+        "address": "מרבד הקסמים שכ",
+        "old_name": "חוגלה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77343554509605,
+          31.251877138459182
+        ]
+      },
+      "properties": {
+        "name": "ראם",
+        "type": "גן ילדים",
+        "address": "הצבי שכ ה",
+        "old_name": "הצבי"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.772110661372096,
+          31.25293648235713
+        ]
+      },
+      "properties": {
+        "name": "ברקן",
+        "type": "גן ילדים",
+        "address": "רחבת הגלבוע",
+        "old_name": "גלבוע"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770316217792136,
+          31.248527447781967
+        ]
+      },
+      "properties": {
+        "name": "אלה",
+        "type": "גן ילדים",
+        "address": "עין גדי שכ' ט",
+        "old_name": "דותן"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76283550585069,
+          31.2582916668612
+        ]
+      },
+      "properties": {
+        "name": "שיטה",
+        "type": "גן ילדים",
+        "address": "נאיר יערי שכ יא",
+        "old_name": "צאלה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80184029461622,
+          31.28531471125416
+        ]
+      },
+      "properties": {
+        "name": "אלמוגית",
+        "type": "גן ילדים",
+        "address": "משה קהירי 3",
+        "old_name": "מפרשית חנ\"מ"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80143932733887,
+          31.284860059998262
+        ]
+      },
+      "properties": {
+        "name": "שושנון",
+        "type": "גן ילדים",
+        "address": "משה קהירי 3",
+        "old_name": "סנפיר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77174606274081,
+          31.256348318081056
+        ]
+      },
+      "properties": {
+        "name": "שלמה",
+        "type": "גן ילדים",
+        "address": "רדק 44",
+        "old_name": "כוכב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.788071978821584,
+          31.26889020462461
+        ]
+      },
+      "properties": {
+        "name": "אלומה",
+        "type": "גן ילדים",
+        "address": "רש\"י 7",
+        "old_name": "לימון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7879336282599,
+          31.263245001956665
+        ]
+      },
+      "properties": {
+        "name": "תלתן",
+        "type": "גן ילדים",
+        "address": "מבצע נחשון",
+        "old_name": "דבורנית"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79884709255568,
+          31.281755010372883
+        ]
+      },
+      "properties": {
+        "name": "עיטם",
+        "type": "גן ילדים",
+        "address": "עמיצור 4",
+        "old_name": "דיה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79853194491587,
+          31.28182023821477
+        ]
+      },
+      "properties": {
+        "name": "ציפור",
+        "type": "גן ילדים",
+        "address": "עמיצור 4",
+        "old_name": "נשר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76167535166646,
+          31.26934851823289
+        ]
+      },
+      "properties": {
+        "name": "סתיו",
+        "type": "גן ילדים",
+        "address": "בת שבע שכ נ.מנחם",
+        "old_name": "אביב"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77853571919867,
+          31.25351757125987
+        ]
+      },
+      "properties": {
+        "name": "קוקוס",
+        "type": "גן ילדים",
+        "address": "קפריסין שכ ה",
+        "old_name": "אגוז"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77488898772301,
+          31.25549737567249
+        ]
+      },
+      "properties": {
+        "name": "קורל",
+        "type": "גן ילדים",
+        "address": "טבנקין שכ ה",
+        "old_name": "אלמוג"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.775662682028745,
+          31.244004136066422
+        ]
+      },
+      "properties": {
+        "name": "כרם",
+        "type": "גן ילדים",
+        "address": "מגידו שכ ט",
+        "old_name": "אשכול"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793819185108894,
+          31.254880559711008
+        ]
+      },
+      "properties": {
+        "name": "רחל",
+        "type": "גן ילדים",
+        "address": "ביאליק שכ ב",
+        "old_name": "ביאליק"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793252598635384,
+          31.24886439058125
+        ]
+      },
+      "properties": {
+        "name": "מפוחית",
+        "type": "גן ילדים",
+        "address": "ברנר שכ א",
+        "old_name": "ברנר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77510953327541,
+          31.238636306527457
+        ]
+      },
+      "properties": {
+        "name": "שיל\"ת",
+        "type": "גן ילדים",
+        "address": "שופמן נ.זאב",
+        "old_name": "דביר"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77626003163414,
+          31.247060182526347
+        ]
+      },
+      "properties": {
+        "name": "רוח",
+        "type": "גן ילדים",
+        "address": "רח טבריה שכ ט",
+        "old_name": "השלושה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77641794630966,
+          31.24698387687932
+        ]
+      },
+      "properties": {
+        "name": "אש",
+        "type": "גן ילדים",
+        "address": "רח טבריה שכ ט",
+        "old_name": "השלושה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77983138183704,
+          31.231609379642347
+        ]
+      },
+      "properties": {
+        "name": "כוורת",
+        "type": "גן ילדים",
+        "address": "צבעוני נווה נוי",
+        "old_name": "יערה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80075661321435,
+          31.279022035097935
+        ]
+      },
+      "properties": {
+        "name": "זוויתן",
+        "type": "גן ילדים",
+        "address": "פריבס רמות",
+        "old_name": "ירדן"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.785553806574086,
+          31.246493660791923
+        ]
+      },
+      "properties": {
+        "name": "אריה",
+        "type": "גן ילדים",
+        "address": "מוריה שכ א",
+        "old_name": "מוריה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76412505295505,
+          31.238598680059365
+        ]
+      },
+      "properties": {
+        "name": "מי מרום",
+        "type": "גן ילדים",
+        "address": "מי מרום נווה זאב",
+        "old_name": "מי מרום"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806693641219184,
+          31.27083437766821
+        ]
+      },
+      "properties": {
+        "name": "נבו",
+        "type": "גן ילדים",
+        "address": "גרשם שלום רמות",
+        "old_name": "מירון"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.803694841050934,
+          31.256014845800717
+        ]
+      },
+      "properties": {
+        "name": "יעל",
+        "type": "גן ילדים",
+        "address": "וינגיט שכ ג",
+        "old_name": "מיתרים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.792426096144005,
+          31.246929837178705
+        ]
+      },
+      "properties": {
+        "name": "אוריה",
+        "type": "גן ילדים",
+        "address": "בי\"ס מוריה שכ א",
+        "old_name": "נריה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81004862275683,
+          31.266326952575117
+        ]
+      },
+      "properties": {
+        "name": "נווה",
+        "type": "גן ילדים",
+        "address": "המר 3",
+        "old_name": "גור אריה"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809768873015365,
+          31.26651383590329
+        ]
+      },
+      "properties": {
+        "name": "ארבל",
+        "type": "גן ילדים",
+        "address": "מודעי",
+        "old_name": "תבור"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.803860189945674,
+          31.25475201019693
+        ]
+      },
+      "properties": {
+        "name": "שמים",
+        "type": "גן ילדים",
+        "address": "וינגיט שכ ג",
+        "old_name": "מיתרים"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.804140247626385,
+          31.25446991532371
+        ]
+      },
+      "properties": {
+        "name": "תכלת",
+        "type": "גן ילדים",
+        "address": "וינגיט שכ ג",
+        "old_name": "מיתרים"
+      }
+    }
+  ]
+}

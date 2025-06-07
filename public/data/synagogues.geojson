@@ -1,0 +1,1193 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.807419992110674,
+          31.27717105551016
+        ]
+      },
+      "properties": {
+        "id": 4,
+        "name": "בית כנסת רמות אור- בנוי",
+        "other_name": "רמות אור",
+        "neighborhood": "רמות",
+        "street": "הר רמון",
+        "house_number": 74.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80080719773752,
+          31.275243149746338
+        ]
+      },
+      "properties": {
+        "id": 103,
+        "name": "בית כנסת רינת מרים- שכ' רמות",
+        "other_name": "רינת מרים",
+        "neighborhood": "רמות",
+        "street": "אביגד",
+        "house_number": 5.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806432814224465,
+          31.2744116952396
+        ]
+      },
+      "properties": {
+        "id": 104,
+        "name": "מקלט",
+        "other_name": "אפיקי תימן",
+        "neighborhood": "רמות",
+        "street": "גינצבורג",
+        "house_number": 15.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.807328454373504,
+          31.273112248094325
+        ]
+      },
+      "properties": {
+        "id": 105,
+        "name": "בית כנסת תפילת חנה",
+        "other_name": "תפילת חנה",
+        "neighborhood": "רמות",
+        "street": "דה שליט",
+        "house_number": 40.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80011517677802,
+          31.27929646020298
+        ]
+      },
+      "properties": {
+        "id": 106,
+        "name": "בית כנסת \"מרום אל\"",
+        "other_name": "מרום אל",
+        "neighborhood": "רמות הרכס",
+        "street": "פריבס",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80036710058455,
+          31.279457671028823
+        ]
+      },
+      "properties": {
+        "id": 107,
+        "name": "בית כנסת \"רמות שלמה\"",
+        "other_name": "רמות שלמה",
+        "neighborhood": "רמות הרכס",
+        "street": "פריבס",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81627691632983,
+          31.272704479418653
+        ]
+      },
+      "properties": {
+        "id": 249,
+        "name": "בית כנסת שערי אדגר",
+        "other_name": "רמות בנימין י",
+        "neighborhood": "רמות",
+        "street": "זמיר",
+        "house_number": 74.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.81023007023973,
+          31.267300313790763
+        ]
+      },
+      "properties": {
+        "id": 253,
+        "name": "בית כנסת רמות שלום",
+        "other_name": "רמות השלום",
+        "neighborhood": "רמות",
+        "street": "מרש",
+        "house_number": 18.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79458601090169,
+          31.249285635577543
+        ]
+      },
+      "properties": {
+        "id": 63,
+        "name": "בית חב\"ד",
+        "other_name": "בית חב\"ד המרכז",
+        "neighborhood": "א",
+        "street": "שפירא",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79702957758919,
+          31.24834944879583
+        ]
+      },
+      "properties": {
+        "id": 69,
+        "name": "ישיבת נתיב השבים- שכ' א'",
+        "other_name": "נתיב השבים",
+        "neighborhood": "א",
+        "street": "שבזי",
+        "house_number": 17.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79613196327662,
+          31.24841038060022
+        ]
+      },
+      "properties": {
+        "id": 70,
+        "name": "בית כנסת עולי לוב",
+        "other_name": "עולי לוב",
+        "neighborhood": "א",
+        "street": "שבזי",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7928053275784,
+          31.24719092675057
+        ]
+      },
+      "properties": {
+        "id": 93,
+        "name": "בית כנסת \"בית ישראל\"",
+        "other_name": "בית ישראל",
+        "neighborhood": "א",
+        "street": "מנדלי מוכ",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78751622008917,
+          31.24777853050769
+        ]
+      },
+      "properties": {
+        "id": 225,
+        "name": "מקלט",
+        "other_name": "שערי בנימין",
+        "neighborhood": "א",
+        "street": "הכותל המע",
+        "house_number": 10.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.765095672174176,
+          31.246589480281106
+        ]
+      },
+      "properties": {
+        "id": 110,
+        "name": "בית שלמה- בנוי",
+        "other_name": "בית שלמה",
+        "neighborhood": "ט",
+        "street": "שומרון",
+        "house_number": 58.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76740838422866,
+          31.25172190244273
+        ]
+      },
+      "properties": {
+        "id": 112,
+        "name": "בית כנסת תפארת וקדושה",
+        "other_name": "בית יאיר מזוז",
+        "neighborhood": "ט",
+        "street": "עכו",
+        "house_number": 63.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77636125511081,
+          31.244705438787783
+        ]
+      },
+      "properties": {
+        "id": 183,
+        "name": "בית כנסת אריאל",
+        "other_name": "אריאל",
+        "neighborhood": "ט",
+        "street": "ירושלים",
+        "house_number": 37.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77805630449065,
+          31.249609320368364
+        ]
+      },
+      "properties": {
+        "id": 39,
+        "name": "בית כנסת על עדתי",
+        "other_name": "על עדתי הכיפה",
+        "neighborhood": "ה",
+        "street": "חרדון",
+        "house_number": 19.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77415308598634,
+          31.25431499646238
+        ]
+      },
+      "properties": {
+        "id": 49,
+        "name": "בית כנסת מעיין",
+        "other_name": "נחלת יוסף ומר",
+        "neighborhood": "ה",
+        "street": "טבנקין",
+        "house_number": 13.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7781410940963,
+          31.253739667535665
+        ]
+      },
+      "properties": {
+        "id": 194,
+        "name": "בית כנסת מגן חסידים",
+        "other_name": "מגן חסידים",
+        "neighborhood": "ה",
+        "street": "סטרומה",
+        "house_number": 23.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.781267063144206,
+          31.25346523497583
+        ]
+      },
+      "properties": {
+        "id": 196,
+        "name": "בי\"כ לעדה האשכנזית",
+        "other_name": "יגל יעקב ישמח",
+        "neighborhood": "ה",
+        "street": "קפריסין",
+        "house_number": 3.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78393285396068,
+          31.26249123923213
+        ]
+      },
+      "properties": {
+        "id": 172,
+        "name": "בית כנסת  נתיבות שלום- שכ 'ו'",
+        "other_name": "נתיבות השלום",
+        "neighborhood": "ו",
+        "street": "יהואש",
+        "house_number": 28.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77772432612677,
+          31.26036042514664
+        ]
+      },
+      "properties": {
+        "id": 173,
+        "name": "בית כנסת שלום הגליל",
+        "other_name": "קווקזי",
+        "neighborhood": "ו",
+        "street": "אבנר",
+        "house_number": 6.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.777502531587096,
+          31.26037998421893
+        ]
+      },
+      "properties": {
+        "id": 174,
+        "name": "בית כנסת לעדה הקווקזית",
+        "other_name": "עולי גרוזיה",
+        "neighborhood": "ו",
+        "street": "אבנר",
+        "house_number": 6.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77679341157898,
+          31.266778141313296
+        ]
+      },
+      "properties": {
+        "id": 176,
+        "name": "שערי ניסים",
+        "other_name": "שערי ניסים",
+        "neighborhood": "ו",
+        "street": "ח\"ן",
+        "house_number": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78370569100489,
+          31.266342167693253
+        ]
+      },
+      "properties": {
+        "id": 179,
+        "name": "בית כנסת תפארת ישראל",
+        "other_name": "תפארת ישראל",
+        "neighborhood": "ו",
+        "street": "מבצע ברוש",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78139299028229,
+          31.26742882703066
+        ]
+      },
+      "properties": {
+        "id": 182,
+        "name": "בית כנסת איש תם-שכ' ו'",
+        "other_name": "תפילת אבות",
+        "neighborhood": "ו",
+        "street": "הרב פרנק",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76845729650052,
+          31.253632370774977
+        ]
+      },
+      "properties": {
+        "id": 48,
+        "name": "בית כנסת שבט אחים",
+        "other_name": "שבת אחים",
+        "neighborhood": "יא",
+        "street": "החיד\"א",
+        "house_number": 55.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77069731826898,
+          31.258541269182604
+        ]
+      },
+      "properties": {
+        "id": 134,
+        "name": "בית כנסת  חסד ליעקב",
+        "other_name": "חסד ליעקב",
+        "neighborhood": "יא",
+        "street": "רמ\"א",
+        "house_number": 133.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76721734262528,
+          31.260392877617285
+        ]
+      },
+      "properties": {
+        "id": 144,
+        "name": "בית כנסת אורח חיים",
+        "other_name": "אורח חיים",
+        "neighborhood": "יא",
+        "street": "הרצוג",
+        "house_number": 38.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76078411942706,
+          31.256278756439727
+        ]
+      },
+      "properties": {
+        "id": 147,
+        "name": "בית כנסת כסא מצליח",
+        "other_name": "כסא מצליח",
+        "neighborhood": "יא",
+        "street": "שיטרית",
+        "house_number": 63.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78152899792571,
+          31.257392939949614
+        ]
+      },
+      "properties": {
+        "id": 17,
+        "name": "בית כנסת בית בנימין",
+        "other_name": "בית בנימין",
+        "neighborhood": "ב",
+        "street": "בני אור",
+        "house_number": 43.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.790134602651854,
+          31.254147275765835
+        ]
+      },
+      "properties": {
+        "id": 125,
+        "name": "בית כנסת תורה וחיים",
+        "other_name": "תורה וחיים",
+        "neighborhood": "ב",
+        "street": "הוברמן",
+        "house_number": 24.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.785487123054665,
+          31.25805719875475
+        ]
+      },
+      "properties": {
+        "id": 201,
+        "name": "ביה\"כ היכל קדושי ישראל",
+        "other_name": "היכל קדושי יש",
+        "neighborhood": "ב",
+        "street": "בני אור",
+        "house_number": 19.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.788181098530686,
+          31.25800578863407
+        ]
+      },
+      "properties": {
+        "id": 202,
+        "name": "יסודות",
+        "other_name": "יסודות מאיר",
+        "neighborhood": "ב",
+        "street": "בני אור",
+        "house_number": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.793417695249886,
+          31.2561210001245
+        ]
+      },
+      "properties": {
+        "id": 212,
+        "name": "בית כנסת בית אל",
+        "other_name": "בית אל",
+        "neighborhood": "ב",
+        "street": "אסף הרופא",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80993906157255,
+          31.25241353207471
+        ]
+      },
+      "properties": {
+        "id": 56,
+        "name": "בית כנסת אהבת ישראל",
+        "other_name": "אהבת ישראל",
+        "neighborhood": "ג",
+        "street": "חיבת ציון",
+        "house_number": 14.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.811584288433195,
+          31.253996531478585
+        ]
+      },
+      "properties": {
+        "id": 57,
+        "name": "בית שמואל",
+        "other_name": "בית שמואל",
+        "neighborhood": "ג",
+        "street": "הנדיב",
+        "house_number": 13.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.811429930779504,
+          31.25305929858664
+        ]
+      },
+      "properties": {
+        "id": 58,
+        "name": "בית כנסת שבת אחים",
+        "other_name": "שבת אחים",
+        "neighborhood": "ג",
+        "street": "חיבת ציון",
+        "house_number": 38.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.807952669600255,
+          31.255505981099738
+        ]
+      },
+      "properties": {
+        "id": 74,
+        "name": "מקלט",
+        "other_name": "הגשר לגם",
+        "neighborhood": "ג",
+        "street": "גוש עציון",
+        "house_number": 22.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.809456514988355,
+          31.25360239398321
+        ]
+      },
+      "properties": {
+        "id": 76,
+        "name": "מקלט - בית כנסת אהבת חסד",
+        "other_name": "אהבת חסד",
+        "neighborhood": "ג",
+        "street": "השלום",
+        "house_number": 83.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.806574829814245,
+          31.256264004275124
+        ]
+      },
+      "properties": {
+        "id": 79,
+        "name": "בית כנסת",
+        "other_name": "שער שמיים",
+        "neighborhood": "ג",
+        "street": "וינגייט",
+        "house_number": 34.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80322180687451,
+          31.250382532339348
+        ]
+      },
+      "properties": {
+        "id": 84,
+        "name": "בית כנסת \"בית אל\"",
+        "other_name": "בית אל",
+        "neighborhood": "ג",
+        "street": "הכ\"ג",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.810501486233015,
+          31.25777542010907
+        ]
+      },
+      "properties": {
+        "id": 152,
+        "name": "בית כנסת \"אור שלום\"",
+        "other_name": "אור שלום",
+        "neighborhood": "ג",
+        "street": "רזיאל",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76480440341321,
+          31.269313259882463
+        ]
+      },
+      "properties": {
+        "id": 41,
+        "name": "מקלט",
+        "other_name": "רינת רחל",
+        "neighborhood": "נווה מנחם",
+        "street": "נעמי",
+        "house_number": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.761818398438706,
+          31.266367410729224
+        ]
+      },
+      "properties": {
+        "id": 108,
+        "name": "בית כנסת בית אל לעולי הודו",
+        "other_name": "בית אל עולי הו",
+        "neighborhood": "נווה מנחם",
+        "street": "אהרונסון",
+        "house_number": 10.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.761818398438706,
+          31.266367410729224
+        ]
+      },
+      "properties": {
+        "id": 108,
+        "name": "מקווה- פנוי",
+        "other_name": "בית אל עולי הו",
+        "neighborhood": "נווה מנחם",
+        "street": "אהרונסון",
+        "house_number": 10.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.764311491589325,
+          31.264439561491564
+        ]
+      },
+      "properties": {
+        "id": 109,
+        "name": "מקלט",
+        "other_name": "יוסף חיים",
+        "neighborhood": "נווה מנחם",
+        "street": "אלרואי",
+        "house_number": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.75906664525626,
+          31.260683100016777
+        ]
+      },
+      "properties": {
+        "id": 131,
+        "name": "בית כנסת  חוני המעגל - בנוי",
+        "other_name": "חוני המעגל",
+        "neighborhood": "נווה מנחם",
+        "street": "שיבא",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770889259082125,
+          31.269811518513603
+        ]
+      },
+      "properties": {
+        "id": 167,
+        "name": "מקלט",
+        "other_name": "חסדי דוד ומשה",
+        "neighborhood": "נווה מנחם",
+        "street": "אבידוב",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78841395949156,
+          31.270215128835467
+        ]
+      },
+      "properties": {
+        "id": 6,
+        "name": "עמודים",
+        "other_name": "שערי רחמים",
+        "neighborhood": "ד",
+        "street": "סנהדרין",
+        "house_number": 130.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79574850460482,
+          31.271843059542768
+        ]
+      },
+      "properties": {
+        "id": 11,
+        "name": "בית כנסת ברית שלום",
+        "other_name": "ברית שלום",
+        "neighborhood": "ד",
+        "street": "גבאי",
+        "house_number": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79467543821888,
+          31.27153351116826
+        ]
+      },
+      "properties": {
+        "id": 12,
+        "name": "בית כנסת אהל משה",
+        "other_name": "אהל משה ומצלי",
+        "neighborhood": "ד",
+        "street": "גבאי",
+        "house_number": 15.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79675764451572,
+          31.268556065224963
+        ]
+      },
+      "properties": {
+        "id": 20,
+        "name": "בית כנסת \"מרדכי הצדיק\"",
+        "other_name": "מרדכי הצדיק",
+        "neighborhood": "ד",
+        "street": "כיכר רחבי",
+        "house_number": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79674189644236,
+          31.26831528671002
+        ]
+      },
+      "properties": {
+        "id": 21,
+        "name": "מקלט",
+        "other_name": "עזרא הסופר",
+        "neighborhood": "ד",
+        "street": "כיכר רחבי",
+        "house_number": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79462209520674,
+          31.26823154803775
+        ]
+      },
+      "properties": {
+        "id": 22,
+        "name": "דליה- גן ילדים לשעבר",
+        "other_name": "אור אבנר",
+        "neighborhood": "ד",
+        "street": "המכתשים",
+        "house_number": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79872791822369,
+          31.268102718952665
+        ]
+      },
+      "properties": {
+        "id": 38,
+        "name": "היכלי שלמה",
+        "other_name": "היכל שלמה",
+        "neighborhood": "ד",
+        "street": "רגר",
+        "house_number": 140.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79074402937253,
+          31.270989724577028
+        ]
+      },
+      "properties": {
+        "id": 42,
+        "name": "בית כנסת בית יצחק- שכונה ד'",
+        "other_name": "שערי שלום",
+        "neighborhood": "ד",
+        "street": "סנהדרין",
+        "house_number": 80.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79270024316784,
+          31.27070374149656
+        ]
+      },
+      "properties": {
+        "id": 43,
+        "name": "בית כנסת ד' צפון",
+        "other_name": "זכור לאברהם",
+        "neighborhood": "ד",
+        "street": "שפרינצק",
+        "house_number": 13.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79222177204962,
+          31.266540020697
+        ]
+      },
+      "properties": {
+        "id": 114,
+        "name": "בית כנסת רבי אליעזר- שכ' ד'",
+        "other_name": "רבי אלעזר",
+        "neighborhood": "ד",
+        "street": "אליהו הנב",
+        "house_number": 19.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79301807549717,
+          31.26083062659433
+        ]
+      },
+      "properties": {
+        "id": 119,
+        "name": "חרצית",
+        "other_name": "אלי כהן",
+        "neighborhood": "ד",
+        "street": "בר גיורא",
+        "house_number": 9.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.79442047019368,
+          31.262858629010424
+        ]
+      },
+      "properties": {
+        "id": 161,
+        "name": "בית כנסת אברהם אבינו- בנוי",
+        "other_name": "קדושי אושביץ",
+        "neighborhood": "ד",
+        "street": "אברהם אבי",
+        "house_number": 4.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.770261518636865,
+          31.23709773024089
+        ]
+      },
+      "properties": {
+        "id": 184,
+        "name": "בית כנסת ציון ויהודה",
+        "other_name": "מנחת יהודה",
+        "neighborhood": "נווה זאב",
+        "street": "ניב",
+        "house_number": 2.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.77990905560019,
+          31.238255332374024
+        ]
+      },
+      "properties": {
+        "id": 185,
+        "name": "בית כנסת בני שלמה",
+        "other_name": "בני שלמה",
+        "neighborhood": "נווה זאב",
+        "street": "קיפניס",
+        "house_number": 1.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.785800590612816,
+          31.22980409036488
+        ]
+      },
+      "properties": {
+        "id": 247,
+        "name": "בית כנסת שבת אחים- נווה נוי",
+        "other_name": "שבת אחים",
+        "neighborhood": "נווה נוי",
+        "street": "אטד",
+        "house_number": 56.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.78564420193791,
+          31.24027691656108
+        ]
+      },
+      "properties": {
+        "id": 240,
+        "name": "אורח חיים",
+        "other_name": "אורח חיים",
+        "neighborhood": "עיר עתיקה",
+        "street": "האבות",
+        "house_number": 67.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.765305784271675,
+          31.23151581330303
+        ]
+      },
+      "properties": {
+        "id": 0,
+        "name": "ממזרח שמש",
+        "other_name": "ממזרח שמש",
+        "neighborhood": "נווה זאב",
+        "street": "אפרים לרו",
+        "house_number": 116.0
+      }
+    }
+  ]
+}
