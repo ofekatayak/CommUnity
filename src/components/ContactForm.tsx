@@ -1,4 +1,4 @@
-// ContactForm.tsx - קומפוננטה מתוקנת בגישה פשוטה
+// ContactForm.tsx - Contact Form Component
 import React, { useState, useEffect } from "react";
 import emailjs from "emailjs-com";
 import {
@@ -7,11 +7,13 @@ import {
   getNameValidationError,
 } from "../utilities/ValidationUtils";
 
+// Interface for component props
 interface ContactFormProps {
   onSubmit?: () => void;
   isVisible: boolean;
 }
 
+// Interface for form validation errors
 interface ValidationErrors {
   name?: string;
   email?: string;
@@ -19,8 +21,17 @@ interface ValidationErrors {
   message?: string;
 }
 
+// Interface for form data
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
-  const [formData, setFormData] = useState({
+  // State management
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     phone: "",
@@ -33,7 +44,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // איפוס הטופס כשהוא מוצג מחדש
+  // Reset form when it becomes visible again after successful submission
   useEffect(() => {
     if (isVisible && submitted) {
       setSubmitted(false);
@@ -43,41 +54,37 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
         phone: "",
         message: "",
       });
-      // איפוס השגיאות והמצבים הנגיעה כשהטופס מופיע מחדש
+      // Reset errors and touched states when form is shown again
       setErrors({});
       setTouched({});
     }
   }, [isVisible, submitted]);
 
-  // ולידציה של שדה
+  // Field validation helper function
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "name":
         return getNameValidationError(value);
-
       case "email":
         return getEmailValidationError(value);
-
       case "phone":
         return getPhoneValidationError(value);
-
       case "message":
         if (!value.trim()) return "נא להזין הודעה";
         if (value.trim().length < 10)
           return "ההודעה חייבת להכיל לפחות 10 תווים";
         return "";
-
       default:
         return "";
     }
   };
 
-  // ולידציה של כל הטופס
+  // Form validation function
   const validateForm = (): boolean => {
     const newErrors: ValidationErrors = {};
     let isValid = true;
 
-    // בדיקת כל שדה בטופס
+    // Validate each form field
     Object.entries(formData).forEach(([name, value]) => {
       const error = validateField(name, value);
       if (error) {
@@ -90,33 +97,33 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
     return isValid;
   };
 
-  // טיפול בשינוי - רק עדכון ערך, בלי ולידציה
+  // Handle input change - updates value without real-time validation
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // הסרנו את הולידציה בזמן אמת
   };
 
-  // טיפול באירוע של יציאה מהשדה
+  // Handle input blur - validates field when user leaves the field
   const handleBlur = (
     e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name } = e.target;
 
-    // סימון שנגעו בשדה
+    // Mark field as touched
     setTouched((prev) => ({ ...prev, [name]: true }));
 
-    // ולידציה של השדה
-    const error = validateField(name, formData[name as keyof typeof formData]);
+    // Validate the specific field
+    const error = validateField(name, formData[name as keyof FormData]);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // סימון שנגעו בכל השדות
+    // Mark all fields as touched
     const allTouched = Object.keys(formData).reduce((acc, key) => {
       acc[key] = true;
       return acc;
@@ -124,16 +131,16 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
 
     setTouched(allTouched);
 
-    // ולידציה של כל הטופס לפני שליחה
+    // Validate entire form before submission
     if (!validateForm()) {
-      return; // אם יש שגיאות, לא להמשיך
+      return;
     }
 
     setIsLoading(true);
     setServerError(null);
 
     try {
-      // הכנת הפרמטרים לשליחה
+      // Prepare parameters for email sending
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -152,194 +159,179 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
 
       setSubmitted(true);
 
-      // קריאה לפונקציית ההגשה אם הועברה
+      // Call onSubmit callback if provided
       if (onSubmit) {
         setTimeout(() => {
           onSubmit();
-        }, 2000); // המתנה של 2 שניות לפני סגירת הטופס
+        }, 2000); // Wait 2 seconds before closing the form
       }
     } catch (err) {
-      console.error("שגיאה בשליחת הטופס:", err);
+      console.error("Error sending form:", err);
       setServerError("אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר.");
     } finally {
       setIsLoading(false);
     }
   };
 
+  // Get appropriate CSS class for input field based on validation state
+  const getInputClassName = (fieldName: string) => {
+    const hasError =
+      errors[fieldName as keyof ValidationErrors] && touched[fieldName];
+    return `w-full px-4 py-2.5 border ${
+      hasError ? "border-red-300" : "border-gray-200"
+    } rounded-lg shadow-sm focus:ring-2 ${
+      hasError
+        ? "focus:ring-red-400 focus:border-red-400"
+        : "focus:ring-indigo-500 focus:border-indigo-500"
+    }`;
+  };
+
+  // Render loading spinner
+  const renderLoadingSpinner = () => (
+    <svg
+      className="animate-spin -mr-1 mr-3 h-5 w-5 text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      />
+    </svg>
+  );
+
+  // Render success icon
+  const renderSuccessIcon = () => (
+    <svg
+      className="w-8 h-8 text-green-600"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+  );
+
+  // Render success message
+  const renderSuccessMessage = () => (
+    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center">
+      <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+        {renderSuccessIcon()}
+      </div>
+      <h3 className="text-lg font-semibold text-green-800 mb-2">
+        הטופס נשלח בהצלחה!
+      </h3>
+      <p className="text-green-700">תודה על פנייתך, ניצור איתך קשר בהקדם.</p>
+    </div>
+  );
+
+  // Render server error message
+  const renderServerError = () => (
+    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-center">
+      <p className="text-red-700">{serverError}</p>
+    </div>
+  );
+
+  // Render form field with validation
+  const renderFormField = (
+    type: string,
+    name: string,
+    label: string,
+    placeholder: string,
+    isTextarea: boolean = false
+  ) => (
+    <div>
+      <label
+        htmlFor={name}
+        className="block text-sm font-medium text-gray-700 mb-1"
+      >
+        {label} <span className="text-red-500">*</span>
+      </label>
+      {isTextarea ? (
+        <textarea
+          id={name}
+          name={name}
+          value={formData[name as keyof FormData]}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          rows={4}
+          placeholder={placeholder}
+          className={getInputClassName(name)}
+        />
+      ) : (
+        <input
+          type={type}
+          id={name}
+          name={name}
+          value={formData[name as keyof FormData]}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          placeholder={placeholder}
+          className={getInputClassName(name)}
+        />
+      )}
+      {/* Fixed space for error messages - maintains consistent height */}
+      <div className="min-h-[20px] mt-1">
+        {errors[name as keyof ValidationErrors] && touched[name] && (
+          <p className="text-sm text-red-600">
+            {errors[name as keyof ValidationErrors]}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+      {/* Form Header */}
       <h2 className="text-2xl font-bold text-indigo-900 mb-2">צור קשר</h2>
       <p className="text-gray-600 mb-6">
         יש לך שאלה או בקשה? מלא את הטופס ונחזור אליך בהקדם.
       </p>
 
+      {/* Success Message or Form */}
       {submitted ? (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center">
-          <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
-            <svg
-              className="w-8 h-8 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-          <h3 className="text-lg font-semibold text-green-800 mb-2">
-            הטופס נשלח בהצלחה!
-          </h3>
-          <p className="text-green-700">
-            תודה על פנייתך, ניצור איתך קשר בהקדם.
-          </p>
-        </div>
+        renderSuccessMessage()
       ) : (
         <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-          {serverError && (
-            <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-center">
-              <p className="text-red-700">{serverError}</p>
-            </div>
+          {/* Server Error Message */}
+          {serverError && renderServerError()}
+
+          {/* Name and Phone Fields Row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {renderFormField("text", "name", "שם מלא", "הכנס את שמך המלא")}
+            {renderFormField("tel", "phone", "טלפון", "הכנס מספר טלפון נייד")}
+          </div>
+
+          {/* Email Field */}
+          {renderFormField("email", "email", "אימייל", "הכנס כתובת אימייל")}
+
+          {/* Message Field */}
+          {renderFormField(
+            "text",
+            "message",
+            "הודעה",
+            "כתוב את הודעתך כאן...",
+            true
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                שם מלא <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="הכנס את שמך המלא"
-                className={`w-full px-4 py-2.5 border ${
-                  errors.name && touched.name
-                    ? "border-red-300"
-                    : "border-gray-200"
-                } rounded-lg shadow-sm focus:ring-2 ${
-                  errors.name && touched.name
-                    ? "focus:ring-red-400 focus:border-red-400"
-                    : "focus:ring-indigo-500 focus:border-indigo-500"
-                }`}
-              />
-              {/* מרווח קבוע להודעות שגיאה */}
-              <div className="min-h-[20px] mt-1">
-                {errors.name && touched.name && (
-                  <p className="text-sm text-red-600">{errors.name}</p>
-                )}
-              </div>
-            </div>
-
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                טלפון <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                placeholder="הכנס מספר טלפון נייד"
-                className={`w-full px-4 py-2.5 border ${
-                  errors.phone && touched.phone
-                    ? "border-red-300"
-                    : "border-gray-200"
-                } rounded-lg shadow-sm focus:ring-2 ${
-                  errors.phone && touched.phone
-                    ? "focus:ring-red-400 focus:border-red-400"
-                    : "focus:ring-indigo-500 focus:border-indigo-500"
-                }`}
-              />
-              {/* מרווח קבוע להודעות שגיאה */}
-              <div className="min-h-[20px] mt-1">
-                {errors.phone && touched.phone && (
-                  <p className="text-sm text-red-600">{errors.phone}</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              אימייל <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder="הכנס כתובת אימייל"
-              className={`w-full px-4 py-2.5 border ${
-                errors.email && touched.email
-                  ? "border-red-300"
-                  : "border-gray-200"
-              } rounded-lg shadow-sm focus:ring-2 ${
-                errors.email && touched.email
-                  ? "focus:ring-red-400 focus:border-red-400"
-                  : "focus:ring-indigo-500 focus:border-indigo-500"
-              }`}
-            />
-            {/* מרווח קבוע להודעות שגיאה */}
-            <div className="min-h-[20px] mt-1">
-              {errors.email && touched.email && (
-                <p className="text-sm text-red-600">{errors.email}</p>
-              )}
-            </div>
-          </div>
-
-          <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-gray-700 mb-1"
-            >
-              הודעה <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              rows={4}
-              placeholder="כתוב את הודעתך כאן..."
-              className={`w-full px-4 py-2.5 border ${
-                errors.message && touched.message
-                  ? "border-red-300"
-                  : "border-gray-200"
-              } rounded-lg shadow-sm focus:ring-2 ${
-                errors.message && touched.message
-                  ? "focus:ring-red-400 focus:border-red-400"
-                  : "focus:ring-indigo-500 focus:border-indigo-500"
-              }`}
-            ></textarea>
-            {/* מרווח קבוע להודעות שגיאה */}
-            <div className="min-h-[20px] mt-1">
-              {errors.message && touched.message && (
-                <p className="text-sm text-red-600">{errors.message}</p>
-              )}
-            </div>
-          </div>
-
+          {/* Submit Button */}
           <button
             type="submit"
             disabled={isLoading}
@@ -351,26 +343,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
           >
             {isLoading ? (
               <>
-                <svg
-                  className="animate-spin -mr-1 mr-3 h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
+                {renderLoadingSpinner()}
                 שולח...
               </>
             ) : (

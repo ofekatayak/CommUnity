@@ -7,9 +7,23 @@ interface AlertPopupProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm?: () => void;
-  confirmText?: string; // פרמטר חדש לטקסט הכפתור
+  confirmText?: string; // Custom text for confirm button
 }
 
+/**
+ * AlertPopup Component
+ *
+ * A reusable modal component for displaying alerts, confirmations, and success/error messages.
+ * Supports three types: success, error, and confirm dialogs with appropriate icons and styling.
+ *
+ * @param type - The type of alert: "success", "error", or "confirm"
+ * @param title - The title text displayed in the popup header
+ * @param message - The main message content
+ * @param isOpen - Controls the visibility of the popup
+ * @param onClose - Callback function when popup is closed
+ * @param onConfirm - Optional callback for confirm actions (used with type="confirm")
+ * @param confirmText - Custom text for the confirm button (defaults to "אישור")
+ */
 const AlertPopup: React.FC<AlertPopupProps> = ({
   type,
   title,
@@ -17,8 +31,9 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
   isOpen,
   onClose,
   onConfirm,
-  confirmText = "אישור", // ברירת מחדל "אישור"
+  confirmText = "אישור", // Default confirm text
 }) => {
+  // Early return if popup should not be displayed
   if (!isOpen) return null;
 
   return (
@@ -27,11 +42,14 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm"
       onClick={onClose}
     >
+      {/* Main popup container with click event prevention */}
       <div
         className="bg-white rounded-xl shadow-xl p-5 max-w-md w-full mx-4"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Header section with icon and title */}
         <div className="flex items-center gap-3 mb-4">
+          {/* Dynamic icon based on popup type */}
           {type === "success" ? (
             <div className="bg-green-100 p-2 rounded-full">
               <svg
@@ -67,6 +85,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
               </svg>
             </div>
           ) : (
+            /* Confirm/warning icon */
             <div className="bg-amber-100 p-2 rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -87,10 +106,13 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
           <h3 className="text-lg font-semibold">{title}</h3>
         </div>
 
+        {/* Message content */}
         <p className="text-gray-700 mb-4">{message}</p>
 
+        {/* Action buttons section */}
         <div className="flex justify-end gap-3">
           {type === "confirm" ? (
+            /* Confirm dialog with two buttons */
             <>
               <button
                 className="px-4 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
@@ -106,6 +128,7 @@ const AlertPopup: React.FC<AlertPopupProps> = ({
               </button>
             </>
           ) : (
+            /* Single close button for success/error */
             <button
               className={`px-4 py-2 ${
                 type === "success"

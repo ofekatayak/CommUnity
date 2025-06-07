@@ -1,4 +1,4 @@
-// Login.tsx - קומפוננטה מתוקנת
+// Login.tsx - Login Component
 import React, { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../DB/firebase/firebase-config";
@@ -10,22 +10,39 @@ import {
   getPasswordValidationError,
 } from "../../utilities/ValidationUtils";
 
+// Interface for form validation errors
 interface ValidationErrors {
   email?: string;
   password?: string;
 }
 
-const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
+// Interface for form data
+interface FormData {
+  email: string;
+  password: string;
+}
+
+// Interface for component props
+interface LoginProps {
+  onClose: () => void;
+}
+
+const Login: React.FC<LoginProps> = ({ onClose }) => {
+  // Hooks
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  // State management
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+  });
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  // ולידציה של שדה
+  // Field validation helper function
   const validateField = (name: string, value: string): string => {
     switch (name) {
       case "email":
@@ -37,12 +54,12 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     }
   };
 
-  // ולידציה של כל הטופס
+  // Form validation function
   const validateForm = (): boolean => {
     const newErrors: ValidationErrors = {};
     let isValid = true;
 
-    // בדיקת כל שדה בטופס
+    // Validate each form field
     Object.entries(formData).forEach(([name, value]) => {
       const error = validateField(name, value);
       if (error) {
@@ -55,31 +72,30 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     return isValid;
   };
 
-  // טיפול בשינוי - רק עדכון הערך ללא ולידציה בזמן אמת
+  // Handle input change - updates value without real-time validation
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // אין ולידציה בזמן הקלדה - זה מונע את הבעיות
   };
 
-  // טיפול באירוע של יציאה מהשדה - ולידציה רק בעת יציאה מהשדה
+  // Handle input blur - validates field only when user leaves the field
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name } = e.target;
 
-    // סימון שנגעו בשדה
+    // Mark field as touched
     setTouched((prev) => ({ ...prev, [name]: true }));
 
-    // ולידציה של השדה
-    const error = validateField(name, formData[name as keyof typeof formData]);
+    // Validate the specific field
+    const error = validateField(name, formData[name as keyof FormData]);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
-  // Handle login form submission
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setServerError("");
 
-    // סימון שנגעו בכל השדות
+    // Mark all fields as touched
     const allTouched = Object.keys(formData).reduce((acc, key) => {
       acc[key] = true;
       return acc;
@@ -87,18 +103,18 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
 
     setTouched(allTouched);
 
-    // ולידציה של כל הטופס לפני שליחה
+    // Validate entire form before submission
     if (!validateForm()) {
-      return; // אם יש שגיאות, לא להמשיך
+      return;
     }
 
     setIsLoading(true);
 
     try {
-      // התחברות באמצעות Firebase Auth
+      // Authenticate with Firebase Auth
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
 
-      // Check Firestore user status
+      // Check user status in Firestore
       const usersCollection = collection(db, "users");
       const q = query(usersCollection, where("email", "==", formData.email));
       const snapshot = await getDocs(q);
@@ -115,13 +131,14 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         return;
       }
 
-      // Successful login
+      // Successful login - redirect based on user role
       login(userData.isAdmin);
       navigate(userData.isAdmin ? "/admin" : "/");
       onClose();
     } catch (error: any) {
       console.error("Login error:", error);
-      // טיפול בשגיאות ספציפיות מ-Firebase
+
+      // Handle specific Firebase authentication errors
       if (
         error.code === "auth/user-not-found" ||
         error.code === "auth/wrong-password"
@@ -137,40 +154,100 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     }
   };
 
-  // טיפול באירוע של לחיצה על "שכחת סיסמה"
+  // Handle forgot password click
   const handleForgotPassword = (e: React.MouseEvent) => {
     e.preventDefault();
-    // כאן תוכל להוסיף את הלוגיקה לשחזור סיסמה
-    console.log("פונקציונליות שכחת סיסמה");
+    // TODO: Implement forgot password functionality
+    console.log("Forgot password functionality");
   };
+
+  // Render loading spinner
+  const renderLoadingSpinner = () => (
+    <svg
+      className="animate-spin -mr-1 mr-3 h-5 w-5 text-white"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+      />
+    </svg>
+  );
+
+  // Render error icon
+  const renderErrorIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 flex-shrink-0"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+
+  // Render email icon
+  const renderEmailIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 text-gray-400"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+    </svg>
+  );
+
+  // Render password icon
+  const renderPasswordIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 text-gray-400"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
 
   return (
     <form
       dir="rtl"
       onSubmit={handleSubmit}
       className="mx-auto bg-white rounded-xl space-y-6"
-      noValidate // ביטול ולידציה נטיבית של הדפדפן
+      noValidate // Disable native browser validation
     >
+      {/* Server Error Message */}
       {serverError && (
         <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm">
           <div className="flex items-center gap-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 flex-shrink-0"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            {renderErrorIcon()}
             <span className="font-medium">{serverError}</span>
           </div>
         </div>
       )}
 
+      {/* Email Field */}
       <div>
         <label
           htmlFor="email"
@@ -198,18 +275,10 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             } shadow-sm text-right pr-10`}
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-              <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-            </svg>
+            {renderEmailIcon()}
           </div>
         </div>
-        {/* שומר מקום עבור הודעת שגיאה - תמיד בגובה אחיד */}
+        {/* Error message container - maintains consistent height */}
         <div className="min-h-[20px] mt-1">
           {errors.email && touched.email && (
             <p className="text-sm text-red-600">{errors.email}</p>
@@ -217,6 +286,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </div>
       </div>
 
+      {/* Password Field */}
       <div>
         <label
           htmlFor="password"
@@ -244,26 +314,16 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
             } shadow-sm text-right pr-10`}
           />
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-400"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                clipRule="evenodd"
-              />
-            </svg>
+            {renderPasswordIcon()}
           </div>
         </div>
-        {/* שומר מקום עבור הודעת שגיאה - תמיד בגובה אחיד */}
+        {/* Error message container - maintains consistent height */}
         <div className="min-h-[20px] mt-1">
           {errors.password && touched.password && (
             <p className="text-sm text-red-600">{errors.password}</p>
           )}
         </div>
+        {/* Forgot Password Link */}
         <div className="text-left mt-1">
           <button
             type="button"
@@ -275,6 +335,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         </div>
       </div>
 
+      {/* Submit Button */}
       <div className="pt-2">
         <button
           type="submit"
@@ -287,26 +348,7 @@ const Login: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         >
           {isLoading ? (
             <>
-              <svg
-                className="animate-spin -mr-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
+              {renderLoadingSpinner()}
               מתחבר...
             </>
           ) : (
