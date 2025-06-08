@@ -1,10 +1,10 @@
-// ValidationUtils.ts - גרסה משופרת
-// קובץ עזרים לולידציה של שדות נפוצים בטפסים
+// ValidationUtils.ts - Enhanced validation utilities
+// Utility file for common form field validation
 
 /**
- * בדיקת תקינות של כתובת אימייל
- * @param email כתובת האימייל לבדיקה
- * @returns האם כתובת האימייל תקינה
+ * Email address validation
+ * @param email Email address to validate
+ * @returns Whether the email address is valid
  */
 export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -12,9 +12,9 @@ export const isValidEmail = (email: string): boolean => {
 };
 
 /**
- * בדיקת תקינות של מספר טלפון ישראלי
- * @param phone מספר הטלפון לבדיקה (מתחיל ב-05 ומכיל 10 ספרות)
- * @returns האם מספר הטלפון תקין
+ * Israeli phone number validation
+ * @param phone Phone number to validate (starts with 05 and contains 10 digits)
+ * @returns Whether the phone number is valid
  */
 export const isValidPhone = (phone: string): boolean => {
   const phoneRegex = /^05\d{8}$/;
@@ -22,53 +22,63 @@ export const isValidPhone = (phone: string): boolean => {
 };
 
 /**
- * בדיקת תקינות של מספר תעודת זהות ישראלית
- * כולל בדיקת ספרת ביקורת
- * @param id מספר תעודת הזהות לבדיקה (9 ספרות)
- * @returns האם מספר תעודת הזהות תקין
+ * Simple ID validation - exactly 9 digits only
+ * @param id ID number to validate (9 digits)
+ * @returns Whether the ID number is valid
+ */
+export const isValidSimpleID = (id: string): boolean => {
+  // Ensure input contains exactly 9 digits
+  return /^\d{9}$/.test(id);
+};
+
+/**
+ * Israeli ID validation with check digit
+ * Including check digit validation
+ * @param id ID number to validate (9 digits)
+ * @returns Whether the ID number is valid
  */
 export const isValidIsraeliID = (id: string): boolean => {
-  // וודא שהקלט מכיל 9 ספרות בדיוק
+  // Ensure input contains exactly 9 digits
   if (!/^\d{9}$/.test(id)) {
     return false;
   }
 
-  // המרת המחרוזת למערך של ספרות
+  // Convert string to array of digits
   const idArray = id.split("").map(Number);
 
-  // חישוב ספרת ביקורת
+  // Calculate check digit
   let sum = 0;
 
   for (let i = 0; i < 8; i++) {
     let digit = idArray[i];
-    // הכפלת כל ספרה שנייה ב-2
+    // Multiply every second digit by 2
     if (i % 2 === 0) {
       digit *= 1;
     } else {
       digit *= 2;
     }
-    // אם התוצאה היא דו-ספרתית, מחסירים 9
+    // If result is two digits, subtract 9
     if (digit > 9) {
       digit -= 9;
     }
-    // סכימת כל הספרות
+    // Sum all digits
     sum += digit;
   }
 
-  // חישוב הספרה שתשלים לעשרת הקרובה
+  // Calculate digit that completes to nearest ten
   const checkDigit = (10 - (sum % 10)) % 10;
 
-  // בדיקה האם ספרת הביקורת תואמת את הספרה האחרונה
+  // Check if check digit matches the last digit
   return checkDigit === idArray[8];
 };
 
-// פונקציות ולידציה מהירות - החזרת הודעת שגיאה או מחרוזת ריקה
-// פונקציות אלו לא מבצעות חישובים כבדים בכל קריאה להן
+// Quick validation functions - return error message or empty string
+// These functions don't perform heavy calculations on every call
 
 /**
- * קבלת הודעת שגיאה לתעודת זהות
- * @param id מספר תעודת הזהות
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Get ID validation error message
+ * @param id ID number
+ * @returns Error message or empty string if valid
  */
 export const getIDValidationError = (id: string): string => {
   if (!id || !id.trim()) {
@@ -83,17 +93,18 @@ export const getIDValidationError = (id: string): string => {
     return "תעודת זהות חייבת להכיל 9 ספרות בדיוק";
   }
 
-  if (!isValidIsraeliID(id)) {
-    return "מספר תעודת הזהות אינו תקין";
+  // Simple validation - just check 9 digits, no check digit validation
+  if (!isValidSimpleID(id)) {
+    return "תעודת זהות חייבת להכיל בדיוק 9 ספרות";
   }
 
   return "";
 };
 
 /**
- * קבלת הודעת שגיאה למספר טלפון
- * @param phone מספר הטלפון
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Get phone number validation error message
+ * @param phone Phone number
+ * @returns Error message or empty string if valid
  */
 export const getPhoneValidationError = (phone: string): string => {
   if (!phone || !phone.trim()) {
@@ -116,9 +127,9 @@ export const getPhoneValidationError = (phone: string): string => {
 };
 
 /**
- * קבלת הודעת שגיאה לאימייל
- * @param email כתובת האימייל
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Get email validation error message
+ * @param email Email address
+ * @returns Error message or empty string if valid
  */
 export const getEmailValidationError = (email: string): string => {
   if (!email || !email.trim()) {
@@ -133,9 +144,9 @@ export const getEmailValidationError = (email: string): string => {
 };
 
 /**
- * קבלת הודעת שגיאה לשדה של שם
- * @param name השם לבדיקה
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Get name field validation error message
+ * @param name Name to validate
+ * @returns Error message or empty string if valid
  */
 export const getNameValidationError = (name: string): string => {
   if (!name || !name.trim()) {
@@ -150,9 +161,9 @@ export const getNameValidationError = (name: string): string => {
 };
 
 /**
- * קבלת הודעת שגיאה לשדה של סיסמה
- * @param password הסיסמה לבדיקה
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Get password validation error message
+ * @param password Password to validate
+ * @returns Error message or empty string if valid
  */
 export const getPasswordValidationError = (password: string): string => {
   if (!password) {
@@ -167,10 +178,10 @@ export const getPasswordValidationError = (password: string): string => {
 };
 
 /**
- * בדיקה האם שתי סיסמאות תואמות
- * @param password הסיסמה הראשית
- * @param confirmPassword אישור הסיסמה
- * @returns הודעת שגיאה או מחרוזת ריקה אם תקין
+ * Check if two passwords match
+ * @param password Main password
+ * @param confirmPassword Password confirmation
+ * @returns Error message or empty string if valid
  */
 export const getPasswordMatchError = (
   password: string,

@@ -4,6 +4,7 @@ import { db, auth } from "../../DB/firebase/firebase-config";
 import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { User } from "../../models/User";
+import AlertPopup from "./AlertPopup";
 import {
   getIDValidationError,
   getNameValidationError,
@@ -28,6 +29,14 @@ interface ValidationErrors {
   confirmPassword?: string;
 }
 
+// Interface for alert state management
+interface AlertState {
+  type: "success" | "error";
+  title: string;
+  message: string;
+  isOpen: boolean;
+}
+
 const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
   // State management
   const [formData, setFormData] = useState<User>({
@@ -45,6 +54,39 @@ const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
   const [isLoading, setIsLoading] = useState(false);
+
+  // State for alert notifications
+  const [alert, setAlert] = useState<AlertState>({
+    type: "success",
+    title: "",
+    message: "",
+    isOpen: false,
+  });
+
+  // Show alert notification
+  const showAlert = (
+    type: "success" | "error",
+    title: string,
+    message: string
+  ) => {
+    setAlert({
+      type,
+      title,
+      message,
+      isOpen: true,
+    });
+  };
+
+  // Close alert
+  const closeAlert = () => {
+    setAlert((prev) => ({ ...prev, isOpen: false }));
+
+    // If it's a success alert, close the signup form and call onSuccess
+    if (alert.type === "success") {
+      onClose(); // Close the signup modal
+      // onSuccess(); // Trigger any additional success handling
+    }
+  };
 
   // Field validation helper function
   const validateField = (name: string, value: string): string => {
@@ -162,13 +204,33 @@ const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
 
     try {
       // Check if email already exists
-      const q = query(
+      const emailQuery = query(
         collection(db, "users"),
         where("email", "==", formData.email)
       );
-      const snapshot = await getDocs(q);
-      if (!snapshot.empty) {
-        setMessage("אימייל זה כבר רשום.");
+      const emailSnapshot = await getDocs(emailQuery);
+      if (!emailSnapshot.empty) {
+        showAlert(
+          "error",
+          "שגיאה בהרשמה",
+          "כתובת אימייל זו כבר רשומה במערכת. אנא השתמש בכתובת אימייל אחרת."
+        );
+        setIsLoading(false);
+        return;
+      }
+
+      // Check if ID already exists
+      const idQuery = query(
+        collection(db, "users"),
+        where("id", "==", formData.id)
+      );
+      const idSnapshot = await getDocs(idQuery);
+      if (!idSnapshot.empty) {
+        showAlert(
+          "error",
+          "שגיאה בהרשמה",
+          "תעודת זהות זו כבר רשומה במערכת. אם יש לך כבר חשבון, נסה להתחבר במקום להירשם."
+        );
         setIsLoading(false);
         return;
       }
@@ -191,7 +253,7 @@ const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
         isAdmin: false,
       });
 
-      // Reset form state
+      // Only clear form and show success if everything succeeded
       setFormData({
         id: "",
         fullName: "",
@@ -205,22 +267,53 @@ const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
       setErrors({});
       setTouched({});
 
-      // Close modal and trigger success callback
-      onClose();
-      onSuccess();
+      // Show success popup with the stored name
+      showAlert(
+        "success",
+        "נרשמת בהצלחה!",
+        `שלום ${formData.fullName}!
+
+הרשמתך התקבלה בהצלחה והועברה לבדיקת המנהלים.
+
+תקבל הודעה במייל ברגע שהחשבון שלך יאושר ותוכל להתחיל להשתמש במערכת.
+
+תודה על ההרשמה ל-CommUnity!`
+      );
     } catch (error: any) {
       console.error("Sign up error:", error);
+      console.error("Error details:", JSON.stringify(error, null, 2));
 
-      // Handle common Firebase authentication errors
-      if (error.code === "auth/email-already-in-use") {
-        setMessage("אימייל זה כבר רשום.");
-      } else if (error.code === "auth/weak-password") {
-        setMessage("הסיסמה חלשה מדי. נא להשתמש בסיסמה חזקה יותר.");
-      } else if (error.code === "auth/invalid-email") {
-        setMessage("כתובת האימייל אינה תקינה.");
-      } else {
-        setMessage(error.message || "אירעה שגיאה. נסה שוב.");
+      // Handle common Firebase authentication errors with popup
+      let errorTitle = "שגיאה בהרשמה";
+      let errorMessage = "";
+
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          errorMessage =
+            "כתובת אימייל זו כבר רשומה במערכת. אנא השתמש בכתובת אימייל אחרת או נסה להתחבר.";
+          break;
+        case "auth/weak-password":
+          errorMessage =
+            "הסיסמה חלשה מדי. אנא השתמש בסיסמה חזקה יותר (לפחות 6 תווים).";
+          break;
+        case "auth/invalid-email":
+          errorMessage = "כתובת האימייל אינה תקינה. אנא בדוק ונסה שוב.";
+          break;
+        case "auth/network-request-failed":
+          errorMessage = "בעיית רשת. אנא בדוק את החיבור לאינטרנט ונסה שוב.";
+          break;
+        case "auth/operation-not-allowed":
+          errorMessage =
+            "הרשמה באימייל וסיסמה אינה מופעלת במערכת. אנא צור קשר עם המנהל.";
+          break;
+        default:
+          errorMessage = `אירעה שגיאה בהרשמה. אנא נסה שוב מאוחר יותר.${
+            error.message ? ` (${error.message})` : ""
+          }`;
+          break;
       }
+
+      showAlert("error", errorTitle, errorMessage);
     } finally {
       setIsLoading(false);
     }
@@ -394,106 +487,119 @@ const SignUp: React.FC<SignUpProps> = ({ onClose, onSuccess }) => {
   );
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      dir="rtl"
-      className="mx-auto bg-white rounded-xl"
-      noValidate // Disable native browser validation
-    >
-      {/* Error Message Display */}
-      {message && (
-        <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4">
-          <div className="flex items-center gap-2">
-            {renderErrorIcon()}
-            <span className="font-medium">{message}</span>
+    <>
+      <form
+        onSubmit={handleSubmit}
+        dir="rtl"
+        className="mx-auto bg-white rounded-xl"
+        noValidate // Disable native browser validation
+      >
+        {/* Error Message Display (keeping for backward compatibility) */}
+        {message && (
+          <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-4">
+            <div className="flex items-center gap-2">
+              {renderErrorIcon()}
+              <span className="font-medium">{message}</span>
+            </div>
+          </div>
+        )}
+
+        {/* First Row - ID and Full Name */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+          <div>
+            {renderInputField(
+              "id",
+              "תעודת זהות",
+              renderIdIcon(),
+              "text",
+              formData.id
+            )}
+          </div>
+          <div>
+            {renderInputField(
+              "fullName",
+              "שם מלא",
+              renderUserIcon(),
+              "text",
+              formData.fullName
+            )}
           </div>
         </div>
+
+        {/* Community Role Field */}
+        {renderInputField(
+          "role",
+          "תפקיד בקהילה",
+          renderRoleIcon(),
+          "text",
+          formData.role
+        )}
+
+        {/* Email Field */}
+        {renderInputField(
+          "email",
+          "אימייל",
+          renderEmailIcon(),
+          "email",
+          formData.email
+        )}
+
+        {/* Password Fields Row */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
+          <div>
+            {renderInputField(
+              "password",
+              "סיסמה",
+              renderPasswordIcon(),
+              "password",
+              formData.password || ""
+            )}
+          </div>
+          <div>
+            {renderInputField(
+              "confirmPassword",
+              "אימות סיסמה",
+              renderPasswordIcon(),
+              "password",
+              confirmPassword
+            )}
+          </div>
+        </div>
+
+        {/* Submit Button */}
+        <div className="pt-2">
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`w-full ${
+              isLoading
+                ? "bg-indigo-400 cursor-not-allowed"
+                : "bg-indigo-600 hover:bg-indigo-700"
+            } text-white px-6 py-2.5 rounded-lg font-medium shadow-md transition-colors flex justify-center items-center`}
+          >
+            {isLoading ? (
+              <>
+                {renderLoadingSpinner()}
+                מבצע הרשמה...
+              </>
+            ) : (
+              "הרשמה"
+            )}
+          </button>
+        </div>
+      </form>
+
+      {/* Alert Popup - Only render when open */}
+      {alert.isOpen && (
+        <AlertPopup
+          type={alert.type}
+          title={alert.title}
+          message={alert.message}
+          isOpen={alert.isOpen}
+          onClose={closeAlert}
+        />
       )}
-
-      {/* First Row - ID and Full Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
-        <div>
-          {renderInputField(
-            "id",
-            "תעודת זהות",
-            renderIdIcon(),
-            "text",
-            formData.id
-          )}
-        </div>
-        <div>
-          {renderInputField(
-            "fullName",
-            "שם מלא",
-            renderUserIcon(),
-            "text",
-            formData.fullName
-          )}
-        </div>
-      </div>
-
-      {/* Community Role Field */}
-      {renderInputField(
-        "role",
-        "תפקיד בקהילה",
-        renderRoleIcon(),
-        "text",
-        formData.role
-      )}
-
-      {/* Email Field */}
-      {renderInputField(
-        "email",
-        "אימייל",
-        renderEmailIcon(),
-        "email",
-        formData.email
-      )}
-
-      {/* Password Fields Row */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
-        <div>
-          {renderInputField(
-            "password",
-            "סיסמה",
-            renderPasswordIcon(),
-            "password",
-            formData.password || ""
-          )}
-        </div>
-        <div>
-          {renderInputField(
-            "confirmPassword",
-            "אימות סיסמה",
-            renderPasswordIcon(),
-            "password",
-            confirmPassword
-          )}
-        </div>
-      </div>
-
-      {/* Submit Button */}
-      <div className="pt-2">
-        <button
-          type="submit"
-          disabled={isLoading}
-          className={`w-full ${
-            isLoading
-              ? "bg-indigo-400 cursor-not-allowed"
-              : "bg-indigo-600 hover:bg-indigo-700"
-          } text-white px-6 py-2.5 rounded-lg font-medium shadow-md transition-colors flex justify-center items-center`}
-        >
-          {isLoading ? (
-            <>
-              {renderLoadingSpinner()}
-              מבצע הרשמה...
-            </>
-          ) : (
-            "הרשמה"
-          )}
-        </button>
-      </div>
-    </form>
+    </>
   );
 };
 
