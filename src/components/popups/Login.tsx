@@ -129,13 +129,32 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
 
       const userData = snapshot.docs[0].data();
 
-      if (userData.status !== "approved") {
-        // User exists but not approved
-        await auth.signOut(); // Sign out the user
-        setServerError(
-          "החשבון שלך עדיין לא אושר על ידי מנהל. אנא המתן לאישור."
-        );
-        return;
+      // Check user status with specific messages for each status
+      switch (userData.status) {
+        case "approved":
+          // User is approved - continue with login
+          break;
+
+        case "blocked":
+          await auth.signOut();
+          setServerError(
+            "החשבון שלך נחסם. אנא פנה דרך מערכת צור קשר למנהלי האתר."
+          );
+          return;
+
+        case "pending":
+          await auth.signOut();
+          setServerError(
+            "החשבון שלך עדיין לא אושר על ידי מנהל. אנא המתן לאישור."
+          );
+          return;
+
+        default:
+          await auth.signOut();
+          setServerError(
+            "סטטוס החשבון שלך לא מאפשר התחברות. אנא צור קשר עם המנהל."
+          );
+          return;
       }
 
       // Successful login - redirect based on user role
