@@ -230,7 +230,7 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
         className="bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700"
         onClick={toggleExportMenu}
       >
-        Export Files 💾
+        ייצוא שכבות מידע💾
       </button>
       {showMenu && renderExportMenu()}
     </div>

@@ -289,7 +289,7 @@ const Legend: React.FC<LegendProps> = ({
           className="bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700"
           onClick={() => setShowExportMenu(!showExportMenu)}
         >
-          Export Communities 📊
+          ייצוא שכבות מידע📊
         </button>
         {showExportMenu && renderExportMenu()}
       </div>
