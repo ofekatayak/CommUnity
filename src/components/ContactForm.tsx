@@ -6,6 +6,7 @@ import {
   getPhoneValidationError,
   getNameValidationError,
 } from "../utilities/ValidationUtils";
+import AlertPopup from "./popups/AlertPopup";
 
 // Interface for component props
 interface ContactFormProps {
@@ -29,6 +30,14 @@ interface FormData {
   message: string;
 }
 
+// Interface for alert state management
+interface AlertState {
+  type: "success" | "error";
+  title: string;
+  message: string;
+  isOpen: boolean;
+}
+
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
   // State management
   const [formData, setFormData] = useState<FormData>({
@@ -44,6 +53,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
+  // State for alert notifications
+  const [alert, setAlert] = useState<AlertState>({
+    type: "success",
+    title: "",
+    message: "",
+    isOpen: false,
+  });
+
   // Reset form when it becomes visible again after successful submission
   useEffect(() => {
     if (isVisible && submitted) {
@@ -57,8 +74,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
       // Reset errors and touched states when form is shown again
       setErrors({});
       setTouched({});
+      setAlert({ type: "success", title: "", message: "", isOpen: false });
     }
   }, [isVisible, submitted]);
+
+  // Show alert notification
+  const showAlert = (
+    type: "success" | "error",
+    title: string,
+    message: string
+  ) => {
+    setAlert({
+      type,
+      title,
+      message,
+      isOpen: true,
+    });
+  };
+
+  // Close alert
+  const closeAlert = () => {
+    setAlert((prev) => ({ ...prev, isOpen: false }));
+
+    // If it's a success alert, call onSubmit immediately without showing success message
+    if (alert.type === "success") {
+      if (onSubmit) {
+        onSubmit(); // Close the form immediately without showing success state
+      }
+    }
+  };
 
   // Field validation helper function
   const validateField = (name: string, value: string): string => {
@@ -140,34 +184,54 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
     setServerError(null);
 
     try {
-      // Prepare parameters for email sending
+      // Prepare parameters for email sending to admin
       const templateParams = {
         from_name: formData.name,
-        from_email: formData.email,
+        from_email: "ofekat@ac.sce.ac.il", // Your email - where the message should be sent
+        to_email: "ofekat@ac.sce.ac.il", // Backup field for your email
         phone: formData.phone,
-        message: formData.message,
+        message: `פנייה חדשה מהאתר CommUnity:
+
+שם: ${formData.name}
+אימייל: ${formData.email}
+טלפון: ${formData.phone}
+
+הודעה:
+${formData.message}
+
+---
+הודעה זו נשלחה מטופס צור קשר באתר CommUnity`,
+        user_email: formData.email, // The user's email for reference
+        user_name: formData.name, // The user's name for reference
       };
+
+      console.log("Sending contact form to admin:", "ofekat@ac.sce.ac.il");
+      console.log("Template params:", templateParams);
 
       const result = await emailjs.send(
         "service_qbgq6it",
-        "template_ozj0x5x",
+        "template_ozj0x5x", // Using the original template
         templateParams,
         "tyAJr20tpxEI5o8yq"
       );
 
       console.log("EmailJS result:", result);
 
-      setSubmitted(true);
-
-      // Call onSubmit callback if provided
-      if (onSubmit) {
-        setTimeout(() => {
-          onSubmit();
-        }, 2000); // Wait 2 seconds before closing the form
-      }
+      // Show success popup instead of setting submitted directly
+      showAlert(
+        "success",
+        "הטופס נשלח בהצלחה!",
+        "תודה על פנייתך. ניצור איתך קשר בהקדם האפשרי."
+      );
     } catch (err) {
       console.error("Error sending form:", err);
-      setServerError("אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר.");
+
+      // Show error popup instead of setting serverError
+      showAlert(
+        "error",
+        "שגיאה בשליחת הטופס",
+        "אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -241,7 +305,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
     </div>
   );
 
-  // Render server error message
+  // Render server error message (keeping for backward compatibility)
   const renderServerError = () => (
     <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-center">
       <p className="text-red-700">{serverError}</p>
@@ -298,61 +362,74 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
   );
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-      {/* Form Header */}
-      <h2 className="text-2xl font-bold text-indigo-900 mb-2">צור קשר</h2>
-      <p className="text-gray-600 mb-6">
-        יש לך שאלה או בקשה? מלא את הטופס ונחזור אליך בהקדם.
-      </p>
+    <>
+      <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+        {/* Form Header */}
+        <h2 className="text-2xl font-bold text-indigo-900 mb-2">צור קשר</h2>
+        <p className="text-gray-600 mb-6">
+          יש לך שאלה או בקשה? מלא את הטופס ונחזור אליך בהקדם.
+        </p>
 
-      {/* Success Message or Form */}
-      {submitted ? (
-        renderSuccessMessage()
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-          {/* Server Error Message */}
-          {serverError && renderServerError()}
+        {/* Success Message or Form */}
+        {submitted ? (
+          renderSuccessMessage()
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+            {/* Server Error Message (keeping for backward compatibility) */}
+            {serverError && renderServerError()}
 
-          {/* Name and Phone Fields Row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {renderFormField("text", "name", "שם מלא", "הכנס את שמך המלא")}
-            {renderFormField("tel", "phone", "טלפון", "הכנס מספר טלפון נייד")}
-          </div>
+            {/* Name and Phone Fields Row */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {renderFormField("text", "name", "שם מלא", "הכנס את שמך המלא")}
+              {renderFormField("tel", "phone", "טלפון", "הכנס מספר טלפון נייד")}
+            </div>
 
-          {/* Email Field */}
-          {renderFormField("email", "email", "אימייל", "הכנס כתובת אימייל")}
+            {/* Email Field */}
+            {renderFormField("email", "email", "אימייל", "הכנס כתובת אימייל")}
 
-          {/* Message Field */}
-          {renderFormField(
-            "text",
-            "message",
-            "הודעה",
-            "כתוב את הודעתך כאן...",
-            true
-          )}
-
-          {/* Submit Button */}
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={`w-full py-3 ${
-              isLoading
-                ? "bg-indigo-400 cursor-not-allowed"
-                : "bg-indigo-600 hover:bg-indigo-700"
-            } text-white rounded-lg font-medium transition-colors shadow-md flex justify-center items-center`}
-          >
-            {isLoading ? (
-              <>
-                {renderLoadingSpinner()}
-                שולח...
-              </>
-            ) : (
-              "שליחה"
+            {/* Message Field */}
+            {renderFormField(
+              "text",
+              "message",
+              "הודעה",
+              "כתוב את הודעתך כאן...",
+              true
             )}
-          </button>
-        </form>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={`w-full py-3 ${
+                isLoading
+                  ? "bg-indigo-400 cursor-not-allowed"
+                  : "bg-indigo-600 hover:bg-indigo-700"
+              } text-white rounded-lg font-medium transition-colors shadow-md flex justify-center items-center`}
+            >
+              {isLoading ? (
+                <>
+                  {renderLoadingSpinner()}
+                  שולח...
+                </>
+              ) : (
+                "שליחה"
+              )}
+            </button>
+          </form>
+        )}
+      </div>
+
+      {/* Alert Popup - Only render when open */}
+      {alert.isOpen && (
+        <AlertPopup
+          type={alert.type}
+          title={alert.title}
+          message={alert.message}
+          isOpen={alert.isOpen}
+          onClose={closeAlert}
+        />
       )}
-    </div>
+    </>
   );
 };
 

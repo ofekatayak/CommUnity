@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { User } from "../models/User";
 import AlertPopup from "./popups/AlertPopup";
+import emailjs from "emailjs-com";
 
 // Interface for component props
 interface UserActionsProps {
@@ -74,6 +75,93 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
     }
   };
 
+  // Send approval email to user
+  const sendApprovalEmail = async (userEmail: string, userName: string) => {
+    try {
+      const templateParams = {
+        from_name: `צוות CommUnity`, // System name
+        from_email: userEmail, // This should route to user with proper EmailJS setup
+        to_email: userEmail, // Backup field
+        phone: "", // Empty for system emails
+        message: `שלום ${userName},
+
+אנחנו שמחים להודיע לך שהחשבון שלך במערכת CommUnity אושר בהצלחה!
+
+עכשיו אתה יכול להתחבר למערכת ולהשתמש בכל הפונקציות הזמינות:
+• צפייה במפה האינטראקטיבית
+• חיפוש קהילות ושכבות מידע
+• ייצוא נתונים ומידע
+
+להתחברות למערכת: ${window.location.origin}
+
+בברכה,
+צוות CommUnity`,
+      };
+
+      console.log("Sending approval email to:", userEmail);
+      console.log("Template params:", templateParams);
+
+      const result = await emailjs.send(
+        "service_qbgq6it",
+        "template_ozj0x5x", // Back to original template
+        templateParams,
+        "tyAJr20tpxEI5o8yq"
+      );
+
+      console.log("EmailJS Result:", result);
+      console.log("Approval email sent successfully");
+    } catch (error) {
+      console.error("Error sending approval email:", error);
+      console.error("Full error details:", JSON.stringify(error, null, 2));
+    }
+  };
+
+  // Send blocking email to user
+  const sendBlockingEmail = async (userEmail: string, userName: string) => {
+    try {
+      const templateParams = {
+        from_name: `צוות CommUnity`, // System name
+        from_email: userEmail, // This should route to user with proper EmailJS setup
+        to_email: userEmail, // Backup field
+        phone: "", // Empty for system emails
+        message: `שלום ${userName},
+
+אנו מתנצלים להודיע לך שהחשבון שלך במערכת CommUnity נחסם.
+
+סיבת החסימה:
+החשבון שלך נחסם עקב אי עמידה בתנאי השימוש או בכללי ההרשמה של המערכת.
+
+זה יכול לכלול:
+• מתן מידע לא מדויק בתהליך ההרשמה
+• הפרת כללי השימוש במערכת
+• שימוש לא מאושר או לא הולם במערכת
+
+אם אתה סבור שהחסימה בוצעה בטעות או שברצונך לערער על ההחלטה, אנא פנה אלינו דרך טופס צור הקשר באתר שלנו.
+
+אנו מתנצלים על אי הנוחות ומקווים להבהרת המצב.
+
+בברכה,
+צוות CommUnity`,
+      };
+
+      console.log("Sending blocking email to:", userEmail);
+      console.log("Template params:", templateParams);
+
+      const result = await emailjs.send(
+        "service_qbgq6it",
+        "template_ozj0x5x", // Back to original template
+        templateParams,
+        "tyAJr20tpxEI5o8yq"
+      );
+
+      console.log("EmailJS Result:", result);
+      console.log("Blocking email sent successfully");
+    } catch (error) {
+      console.error("Error sending blocking email:", error);
+      console.error("Full error details:", JSON.stringify(error, null, 2));
+    }
+  };
+
   // Update user status (approve or block)
   const updateUserStatus = async (status: UserStatus) => {
     // Prevent multiple clicks during processing
@@ -95,11 +183,21 @@ const UserActions: React.FC<UserActionsProps> = ({ user, refreshUsers }) => {
       const userDocRef = snapshot.docs[0].ref;
       await updateDoc(userDocRef, { status });
 
+      // Send appropriate email based on status
+      if (status === "approved") {
+        await sendApprovalEmail(user.email, user.fullName);
+      } else if (status === "blocked") {
+        await sendBlockingEmail(user.email, user.fullName);
+      }
+
       // Show success alert with refresh flag
+      const statusText = status === "approved" ? "מאושר" : "חסום";
+      const message = `סטטוס המשתמש עודכן ל-${statusText} ונשלח מייל הודעה למשתמש.`;
+
       showAlert(
         "success",
         "הפעולה בוצעה בהצלחה",
-        `סטטוס המשתמש עודכן ל-${status === "approved" ? "מאושר" : "חסום"}.`,
+        message,
         true // Needs refresh when closed
       );
     } catch (error) {
