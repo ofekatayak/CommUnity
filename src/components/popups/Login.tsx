@@ -114,20 +114,27 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
       // Authenticate with Firebase Auth
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
 
-      // Check user status in Firestore
+      // If we reach here, authentication was successful
+      // Now check user status in Firestore
       const usersCollection = collection(db, "users");
       const q = query(usersCollection, where("email", "==", formData.email));
       const snapshot = await getDocs(q);
 
       if (snapshot.empty) {
-        setServerError("המשתמש לא נמצא במסד הנתונים.");
+        // User exists in Firebase Auth but not in Firestore
+        await auth.signOut(); // Sign out the user
+        setServerError("המשתמש לא נמצא במסד הנתונים. אנא צור קשר עם המנהל.");
         return;
       }
 
       const userData = snapshot.docs[0].data();
 
       if (userData.status !== "approved") {
-        setServerError("החשבון שלך עדיין לא אושר על ידי מנהל.");
+        // User exists but not approved
+        await auth.signOut(); // Sign out the user
+        setServerError(
+          "החשבון שלך עדיין לא אושר על ידי מנהל. אנא המתן לאישור."
+        );
         return;
       }
 
@@ -139,15 +146,33 @@ const Login: React.FC<LoginProps> = ({ onClose }) => {
       console.error("Login error:", error);
 
       // Handle specific Firebase authentication errors
-      if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        setServerError("אימייל או סיסמה שגויים.");
-      } else if (error.code === "auth/too-many-requests") {
-        setServerError("יותר מדי ניסיונות כניסה. נסה שוב מאוחר יותר.");
-      } else {
-        setServerError("אירעה שגיאה. נסה שוב מאוחר יותר.");
+      switch (error.code) {
+        case "auth/user-not-found":
+          setServerError("לא נמצא משתמש עם כתובת אימייל זו.");
+          break;
+        case "auth/wrong-password":
+          setServerError("סיסמה שגויה. אנא בדוק את הסיסמה ונסה שוב.");
+          break;
+        case "auth/invalid-email":
+          setServerError("כתובת אימייל לא חוקית.");
+          break;
+        case "auth/user-disabled":
+          setServerError("החשבון נחסם. אנא צור קשר עם המנהל.");
+          break;
+        case "auth/too-many-requests":
+          setServerError(
+            "יותר מדי ניסיונות כניסה כושלים. אנא נסה שוב מאוחר יותר."
+          );
+          break;
+        case "auth/network-request-failed":
+          setServerError("בעיית רשת. אנא בדוק את החיבור לאינטרנט ונסה שוב.");
+          break;
+        case "auth/invalid-credential":
+          setServerError("פרטי התחברות שגויים. אנא בדוק את האימייל והסיסמה.");
+          break;
+        default:
+          setServerError("אירעה שגיאה בהתחברות. אנא נסה שוב מאוחר יותר.");
+          break;
       }
     } finally {
       setIsLoading(false);
