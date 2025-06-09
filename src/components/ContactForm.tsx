@@ -1,4 +1,4 @@
-// ContactForm.tsx - Contact Form Component with Repeating Scroll Animations
+// ContactForm.tsx - Contact Form Component with Hide on Scroll Up
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import {
@@ -12,6 +12,7 @@ import AlertPopup from "./popups/AlertPopup";
 interface ContactFormProps {
   onSubmit?: () => void;
   isVisible: boolean;
+  onHide?: () => void; // Add callback to hide the form
 }
 
 // Interface for form validation errors
@@ -38,16 +39,27 @@ interface AlertState {
   isOpen: boolean;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
+const ContactForm: React.FC<ContactFormProps> = ({
+  onSubmit,
+  isVisible,
+  onHide,
+}) => {
   // Refs for animation tracking
   const formRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const formContentRef = useRef<HTMLFormElement>(null);
 
-  // Animation states
+  // Animation states - start as false for initial animation
   const [formVisible, setFormVisible] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
+
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    form: false,
+    header: false,
+    content: false,
+  });
 
   // State management
   const [formData, setFormData] = useState<FormData>({
@@ -71,11 +83,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
     isOpen: false,
   });
 
-  // Intersection Observer setup with repeating animations
+  // Intersection Observer setup with hide on scroll up functionality
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "-50px 0px",
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -83,22 +95,60 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
         const target = entry.target;
 
         if (target === formRef.current) {
-          setFormVisible(entry.isIntersecting);
-        } else if (target === headerRef.current) {
-          setHeaderVisible(entry.isIntersecting);
-        } else if (target === formContentRef.current) {
-          setContentVisible(entry.isIntersecting);
+          // If form is going out of view and was visible, hide it
+          if (!entry.isIntersecting && isVisible && onHide) {
+            onHide();
+          }
+          // Animate form only if it hasn't been animated yet
+          else if (entry.isIntersecting && !hasAnimated.form) {
+            setFormVisible(true);
+            setHasAnimated((prev) => ({ ...prev, form: true }));
+          }
+        } else if (
+          target === headerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.header
+        ) {
+          setHeaderVisible(true);
+          setHasAnimated((prev) => ({ ...prev, header: true }));
+        } else if (
+          target === formContentRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.content
+        ) {
+          setContentVisible(true);
+          setHasAnimated((prev) => ({ ...prev, content: true }));
         }
       });
     }, observerOptions);
 
-    // Observe elements
-    if (formRef.current) observer.observe(formRef.current);
-    if (headerRef.current) observer.observe(headerRef.current);
-    if (formContentRef.current) observer.observe(formContentRef.current);
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      if (formRef.current) observer.observe(formRef.current);
+      if (headerRef.current) observer.observe(headerRef.current);
+      if (formContentRef.current) observer.observe(formContentRef.current);
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [isVisible, onHide, hasAnimated]);
+
+  // Reset animations when form becomes visible again
+  useEffect(() => {
+    if (isVisible) {
+      // Reset animation states when form is shown again
+      setHasAnimated({
+        form: false,
+        header: false,
+        content: false,
+      });
+      setFormVisible(false);
+      setHeaderVisible(false);
+      setContentVisible(false);
+    }
+  }, [isVisible]);
 
   // Reset form when it becomes visible again after successful submission
   useEffect(() => {
@@ -226,8 +276,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
       // Prepare parameters for email sending to admin
       const templateParams = {
         from_name: formData.name,
-        from_email: "ofekat@ac.sce.ac.il", // Your email - where the message should be sent
-        to_email: "ofekat@ac.sce.ac.il", // Backup field for your email
+        from_email: "ofekat@ac.sce.ac.il",
+        to_email: "ofekat@ac.sce.ac.il",
         phone: formData.phone,
         message: `פנייה חדשה מהאתר CommUnity:
 
@@ -249,7 +299,7 @@ ${formData.message}
 
       const result = await emailjs.send(
         "service_qbgq6it",
-        "template_ozj0x5x", // Using the original template
+        "template_ozj0x5x",
         templateParams,
         "tyAJr20tpxEI5o8yq"
       );

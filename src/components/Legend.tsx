@@ -1,4 +1,4 @@
-// Legend.tsx - Community Legend and Data Display Component with Repeating Scroll Animations
+// Legend.tsx - Community Legend and Data Display Component with One-Time Scroll Animations
 import React, { useState, useEffect, useRef } from "react";
 import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
@@ -58,20 +58,34 @@ const Legend: React.FC<LegendProps> = ({
   const exportRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Animation states
-  const [containerVisible, setContainerVisible] = useState(true);
-  const [headerVisible, setHeaderVisible] = useState(true);
-  const [listVisible, setListVisible] = useState(true);
-  const [exportVisible, setExportVisible] = useState(true);
+  // Animation states - start as false for initial animation
+  const [containerVisible, setContainerVisible] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [listVisible, setListVisible] = useState(false);
+  const [exportVisible, setExportVisible] = useState(false);
   const [itemVisibility, setItemVisibility] = useState<boolean[]>([]);
+
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    container: false,
+    header: false,
+    list: false,
+    export: false,
+    items: new Set<number>(),
+  });
 
   // Update item visibility array when communities change
   useEffect(() => {
-    setItemVisibility(new Array(communities.length).fill(true));
+    setItemVisibility(new Array(communities.length).fill(false));
     itemRefs.current = new Array(communities.length).fill(null);
+    // Reset items animation tracking when communities change
+    setHasAnimated((prev) => ({
+      ...prev,
+      items: new Set<number>(),
+    }));
   }, [communities.length]);
 
-  // Intersection Observer setup with repeating animations
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -82,14 +96,34 @@ const Legend: React.FC<LegendProps> = ({
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === containerRef.current) {
-          setContainerVisible(entry.isIntersecting);
-        } else if (target === headerRef.current) {
-          setHeaderVisible(entry.isIntersecting);
-        } else if (target === listRef.current) {
-          setListVisible(entry.isIntersecting);
-        } else if (target === exportRef.current) {
-          setExportVisible(entry.isIntersecting);
+        if (
+          target === containerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.container
+        ) {
+          setContainerVisible(true);
+          setHasAnimated((prev) => ({ ...prev, container: true }));
+        } else if (
+          target === headerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.header
+        ) {
+          setHeaderVisible(true);
+          setHasAnimated((prev) => ({ ...prev, header: true }));
+        } else if (
+          target === listRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.list
+        ) {
+          setListVisible(true);
+          setHasAnimated((prev) => ({ ...prev, list: true }));
+        } else if (
+          target === exportRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.export
+        ) {
+          setExportVisible(true);
+          setHasAnimated((prev) => ({ ...prev, export: true }));
         }
       });
     }, observerOptions);
@@ -106,9 +140,9 @@ const Legend: React.FC<LegendProps> = ({
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, []);
+  }, [hasAnimated]);
 
-  // Separate effect for observing community items
+  // Separate effect for observing community items - one-time animations
   useEffect(() => {
     if (communities.length === 0) return;
 
@@ -121,12 +155,20 @@ const Legend: React.FC<LegendProps> = ({
       entries.forEach((entry) => {
         const target = entry.target;
         const itemIndex = itemRefs.current.findIndex((ref) => ref === target);
-        if (itemIndex !== -1) {
+        if (
+          itemIndex !== -1 &&
+          entry.isIntersecting &&
+          !hasAnimated.items.has(itemIndex)
+        ) {
           setItemVisibility((prev) => {
             const newVisibility = [...prev];
-            newVisibility[itemIndex] = entry.isIntersecting;
+            newVisibility[itemIndex] = true;
             return newVisibility;
           });
+          setHasAnimated((prev) => ({
+            ...prev,
+            items: new Set([...prev.items, itemIndex]),
+          }));
         }
       });
     }, observerOptions);
@@ -142,7 +184,7 @@ const Legend: React.FC<LegendProps> = ({
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, [communities.length]);
+  }, [communities.length, hasAnimated.items]);
 
   // Handle opening community details popup
   const handleOpenPopup = (community: string) => {
@@ -325,25 +367,25 @@ const Legend: React.FC<LegendProps> = ({
       key={index}
       ref={(el) => (itemRefs.current[index] = el)}
       className={`flex items-center justify-between p-3 cursor-pointer hover:bg-indigo-50 rounded-xl transition duration-200 border border-transparent hover:border-indigo-100 transform transition-all duration-600 ease-out ${
-        itemVisibility[index] !== false
+        itemVisibility[index]
           ? "translate-y-0 opacity-100"
           : "translate-y-4 opacity-0"
       }`}
       style={{
-        transitionDelay:
-          itemVisibility[index] !== false ? `${index * 80}ms` : "0ms",
+        transitionDelay: itemVisibility[index] ? `${index * 80}ms` : "0ms",
       }}
       onClick={() => handleOpenPopup(community.name)}
     >
       <div
         className={`flex items-center gap-3 transform transition-all duration-600 ease-out ${
-          itemVisibility[index] !== false
+          itemVisibility[index]
             ? "translate-x-0 opacity-100"
             : "translate-x-3 opacity-0"
         }`}
         style={{
-          transitionDelay:
-            itemVisibility[index] !== false ? `${index * 80 + 100}ms` : "0ms",
+          transitionDelay: itemVisibility[index]
+            ? `${index * 80 + 100}ms`
+            : "0ms",
         }}
       >
         {onToggleVisibility && (
@@ -353,41 +395,42 @@ const Legend: React.FC<LegendProps> = ({
             onChange={(e) => handleCheckboxChange(community.name, e as any)}
             onClick={(e) => handleCheckboxChange(community.name, e)}
             className={`w-4 h-4 accent-indigo-600 transform transition-all duration-600 ease-out ${
-              itemVisibility[index] !== false
+              itemVisibility[index]
                 ? "scale-100 opacity-100"
                 : "scale-90 opacity-0"
             }`}
             style={{
-              transitionDelay:
-                itemVisibility[index] !== false
-                  ? `${index * 80 + 150}ms`
-                  : "0ms",
+              transitionDelay: itemVisibility[index]
+                ? `${index * 80 + 150}ms`
+                : "0ms",
             }}
           />
         )}
         <span className="text-gray-700 font-medium">{community.name}</span>
         <span
           className={`w-4 h-4 rounded-full flex-shrink-0 transform transition-all duration-600 ease-out ${
-            itemVisibility[index] !== false
+            itemVisibility[index]
               ? "scale-100 opacity-100"
               : "scale-90 opacity-0"
           }`}
           style={{
             backgroundColor: community.color,
-            transitionDelay:
-              itemVisibility[index] !== false ? `${index * 80 + 120}ms` : "0ms",
+            transitionDelay: itemVisibility[index]
+              ? `${index * 80 + 120}ms`
+              : "0ms",
           }}
         />
       </div>
       <div
         className={`flex items-center transform transition-all duration-600 ease-out ${
-          itemVisibility[index] !== false
+          itemVisibility[index]
             ? "translate-x-0 opacity-100"
             : "translate-x-2 opacity-0"
         }`}
         style={{
-          transitionDelay:
-            itemVisibility[index] !== false ? `${index * 80 + 200}ms` : "0ms",
+          transitionDelay: itemVisibility[index]
+            ? `${index * 80 + 200}ms`
+            : "0ms",
         }}
       >
         {renderChevronIcon()}

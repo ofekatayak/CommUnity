@@ -1,4 +1,4 @@
-// SiteIntro.tsx - Main Site Introduction Section Component with Repeating Scroll Animations
+// SiteIntro.tsx - Main Site Introduction Section Component with One-Time Scroll Animations
 import React, { useEffect, useRef, useState } from "react";
 
 // Interface for feature card data
@@ -14,7 +14,7 @@ const SiteIntro: React.FC = () => {
   const featuresRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Animation states
+  // Animation states - start as false for initial animation
   const [heroVisible, setHeroVisible] = useState(false);
   const [featuresVisible, setFeaturesVisible] = useState(false);
   const [cardVisibility, setCardVisibility] = useState<boolean[]>([
@@ -23,44 +23,74 @@ const SiteIntro: React.FC = () => {
     false,
   ]);
 
-  // Intersection Observer setup with repeating animations
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    hero: false,
+    features: false,
+    cards: new Set<number>(),
+  });
+
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "-50px 0px",
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === heroRef.current) {
-          setHeroVisible(entry.isIntersecting);
-        } else if (target === featuresRef.current) {
-          setFeaturesVisible(entry.isIntersecting);
+        if (
+          target === heroRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.hero
+        ) {
+          setHeroVisible(true);
+          setHasAnimated((prev) => ({ ...prev, hero: true }));
+        } else if (
+          target === featuresRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.features
+        ) {
+          setFeaturesVisible(true);
+          setHasAnimated((prev) => ({ ...prev, features: true }));
         } else {
-          // Handle individual cards
+          // Handle individual cards - one-time animations
           const cardIndex = cardRefs.current.findIndex((ref) => ref === target);
-          if (cardIndex !== -1) {
+          if (
+            cardIndex !== -1 &&
+            entry.isIntersecting &&
+            !hasAnimated.cards.has(cardIndex)
+          ) {
             setCardVisibility((prev) => {
               const newVisibility = [...prev];
-              newVisibility[cardIndex] = entry.isIntersecting;
+              newVisibility[cardIndex] = true;
               return newVisibility;
             });
+            setHasAnimated((prev) => ({
+              ...prev,
+              cards: new Set([...prev.cards, cardIndex]),
+            }));
           }
         }
       });
     }, observerOptions);
 
-    // Observe elements
-    if (heroRef.current) observer.observe(heroRef.current);
-    if (featuresRef.current) observer.observe(featuresRef.current);
-    cardRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref);
-    });
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      if (heroRef.current) observer.observe(heroRef.current);
+      if (featuresRef.current) observer.observe(featuresRef.current);
+      cardRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [hasAnimated]);
 
   // Render location/map pin icon
   const renderLocationIcon = () => (
@@ -155,7 +185,7 @@ const SiteIntro: React.FC = () => {
           : "translate-y-8 opacity-0 scale-95"
       }`}
       style={{
-        transitionDelay: cardVisibility[index] ? `${index * 200}ms` : "0ms",
+        transitionDelay: cardVisibility[index] ? `${index * 150}ms` : "0ms",
       }}
     >
       {/* Icon Container with animation */}
@@ -165,7 +195,7 @@ const SiteIntro: React.FC = () => {
         }`}
         style={{
           transitionDelay: cardVisibility[index]
-            ? `${index * 200 + 300}ms`
+            ? `${index * 150 + 200}ms`
             : "0ms",
         }}
       >
@@ -181,7 +211,7 @@ const SiteIntro: React.FC = () => {
         }`}
         style={{
           transitionDelay: cardVisibility[index]
-            ? `${index * 200 + 500}ms`
+            ? `${index * 150 + 350}ms`
             : "0ms",
         }}
       >
@@ -197,7 +227,7 @@ const SiteIntro: React.FC = () => {
         }`}
         style={{
           transitionDelay: cardVisibility[index]
-            ? `${index * 200 + 600}ms`
+            ? `${index * 150 + 450}ms`
             : "0ms",
         }}
       >

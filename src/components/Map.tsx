@@ -1,4 +1,4 @@
-// Map.tsx - Interactive Map Component with Plotly and Repeating Scroll Animations
+// Map.tsx - Interactive Map Component with Plotly and One-Time Scroll Animations
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Plot from "react-plotly.js";
 import { Data } from "plotly.js";
@@ -45,10 +45,18 @@ const Map: React.FC<MapProps> = ({
   const controlsRef = useRef<HTMLDivElement>(null);
   const loadingRef = useRef<HTMLDivElement>(null);
 
-  // Animation states
+  // Animation states - start as false for initial animation
   const [legendVisible, setLegendVisible] = useState(false);
   const [controlsVisible, setControlsVisible] = useState(false);
   const [loadingVisible, setLoadingVisible] = useState(false);
+
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    legend: false,
+    controls: false,
+    loading: false,
+    legendItems: new Set<number>(),
+  });
 
   // Default map settings
   const defaultCenter: MapCenter = { lat: 31.252973, lon: 34.791462 };
@@ -98,34 +106,54 @@ const Map: React.FC<MapProps> = ({
     []
   );
 
-  // Intersection Observer setup with repeating animations
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "-30px 0px",
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === legendRef.current) {
-          setLegendVisible(entry.isIntersecting);
-        } else if (target === controlsRef.current) {
-          setControlsVisible(entry.isIntersecting);
-        } else if (target === loadingRef.current) {
-          setLoadingVisible(entry.isIntersecting);
+        if (
+          target === legendRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.legend
+        ) {
+          setLegendVisible(true);
+          setHasAnimated((prev) => ({ ...prev, legend: true }));
+        } else if (
+          target === controlsRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.controls
+        ) {
+          setControlsVisible(true);
+          setHasAnimated((prev) => ({ ...prev, controls: true }));
+        } else if (
+          target === loadingRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.loading
+        ) {
+          setLoadingVisible(true);
+          setHasAnimated((prev) => ({ ...prev, loading: true }));
         }
       });
     }, observerOptions);
 
-    // Observe elements
-    if (legendRef.current) observer.observe(legendRef.current);
-    if (controlsRef.current) observer.observe(controlsRef.current);
-    if (loadingRef.current) observer.observe(loadingRef.current);
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      if (legendRef.current) observer.observe(legendRef.current);
+      if (controlsRef.current) observer.observe(controlsRef.current);
+      if (loadingRef.current) observer.observe(loadingRef.current);
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [hasAnimated]);
 
   // Initialize map and set up dimension tracking
   useEffect(() => {

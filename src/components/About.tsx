@@ -1,4 +1,4 @@
-// About.tsx - About Section Component with Repeating Scroll Animations
+// About.tsx - About Section Component with One-Time Scroll Animations
 import React, { useEffect, useRef, useState } from "react";
 
 // Interface for component props
@@ -16,7 +16,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
   const teamRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Animation states
+  // Animation states - start as false for initial animation
   const [sectionVisible, setSectionVisible] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -29,60 +29,114 @@ const About: React.FC<AboutProps> = ({ id }) => {
     false,
   ]);
 
-  // Intersection Observer setup with repeating animations
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    section: false,
+    header: false,
+    content: false,
+    mission: false,
+    process: false,
+    team: false,
+    steps: new Set<number>(),
+  });
+
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "-50px 0px",
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === sectionRef.current) {
-          setSectionVisible(entry.isIntersecting);
-        } else if (target === headerRef.current) {
-          setHeaderVisible(entry.isIntersecting);
-        } else if (target === contentRef.current) {
-          setContentVisible(entry.isIntersecting);
-        } else if (target === missionRef.current) {
-          setMissionVisible(entry.isIntersecting);
-        } else if (target === processRef.current) {
-          setProcessVisible(entry.isIntersecting);
-        } else if (target === teamRef.current) {
-          setTeamVisible(entry.isIntersecting);
+        if (
+          target === sectionRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.section
+        ) {
+          setSectionVisible(true);
+          setHasAnimated((prev) => ({ ...prev, section: true }));
+        } else if (
+          target === headerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.header
+        ) {
+          setHeaderVisible(true);
+          setHasAnimated((prev) => ({ ...prev, header: true }));
+        } else if (
+          target === contentRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.content
+        ) {
+          setContentVisible(true);
+          setHasAnimated((prev) => ({ ...prev, content: true }));
+        } else if (
+          target === missionRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.mission
+        ) {
+          setMissionVisible(true);
+          setHasAnimated((prev) => ({ ...prev, mission: true }));
+        } else if (
+          target === processRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.process
+        ) {
+          setProcessVisible(true);
+          setHasAnimated((prev) => ({ ...prev, process: true }));
+        } else if (
+          target === teamRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.team
+        ) {
+          setTeamVisible(true);
+          setHasAnimated((prev) => ({ ...prev, team: true }));
         } else {
-          // Handle individual process steps
+          // Handle individual process steps - one-time animations
           const stepIndex = stepRefs.current.findIndex((ref) => ref === target);
-          if (stepIndex !== -1) {
+          if (
+            stepIndex !== -1 &&
+            entry.isIntersecting &&
+            !hasAnimated.steps.has(stepIndex)
+          ) {
             setStepVisibility((prev) => {
               const newVisibility = [...prev];
-              newVisibility[stepIndex] = entry.isIntersecting;
+              newVisibility[stepIndex] = true;
               return newVisibility;
             });
+            setHasAnimated((prev) => ({
+              ...prev,
+              steps: new Set([...prev.steps, stepIndex]),
+            }));
           }
         }
       });
     }, observerOptions);
 
-    // Observe elements
-    const elementsToObserve = [
-      sectionRef.current,
-      headerRef.current,
-      contentRef.current,
-      missionRef.current,
-      processRef.current,
-      teamRef.current,
-      ...stepRefs.current.filter(Boolean),
-    ];
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      const elementsToObserve = [
+        sectionRef.current,
+        headerRef.current,
+        contentRef.current,
+        missionRef.current,
+        processRef.current,
+        teamRef.current,
+        ...stepRefs.current.filter(Boolean),
+      ];
 
-    elementsToObserve.forEach((element) => {
-      if (element) observer.observe(element);
-    });
+      elementsToObserve.forEach((element) => {
+        if (element) observer.observe(element);
+      });
+    }, 100);
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [hasAnimated]);
 
   // Render step indicator for the process section
   const renderStepIndicator = (stepNumber: number, index: number) => (
@@ -94,7 +148,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
       }`}
       style={{
         transitionDelay: stepVisibility[index]
-          ? `${index * 200 + 300}ms`
+          ? `${index * 150 + 200}ms`
           : "0ms",
       }}
     >
@@ -117,7 +171,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
           : "translate-y-8 opacity-0 scale-95"
       }`}
       style={{
-        transitionDelay: stepVisibility[index] ? `${index * 200}ms` : "0ms",
+        transitionDelay: stepVisibility[index] ? `${index * 150}ms` : "0ms",
       }}
     >
       {renderStepIndicator(stepNumber, index)}
@@ -129,7 +183,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
         }`}
         style={{
           transitionDelay: stepVisibility[index]
-            ? `${index * 200 + 400}ms`
+            ? `${index * 150 + 300}ms`
             : "0ms",
         }}
       >
@@ -143,7 +197,7 @@ const About: React.FC<AboutProps> = ({ id }) => {
         }`}
         style={{
           transitionDelay: stepVisibility[index]
-            ? `${index * 200 + 500}ms`
+            ? `${index * 150 + 400}ms`
             : "0ms",
         }}
       >

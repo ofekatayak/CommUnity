@@ -112,6 +112,11 @@ const Home: React.FC = () => {
     setShowContact(false);
   };
 
+  // Handle contact form hide (when scrolling out of view)
+  const handleContactHide = () => {
+    setShowContact(false);
+  };
+
   // Toggle community visibility with checkbox functionality
   const toggleCommunityVisibility = (communityName: string) => {
     const matches = clusteredCommunities.filter(
@@ -248,7 +253,11 @@ const Home: React.FC = () => {
       id="contact"
     >
       <div className="max-w-3xl mx-auto">
-        <ContactForm onSubmit={handleContactSubmit} isVisible={showContact} />
+        <ContactForm
+          onSubmit={handleContactSubmit}
+          isVisible={showContact}
+          onHide={handleContactHide}
+        />
       </div>
     </div>
   );

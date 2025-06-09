@@ -166,23 +166,37 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
   const exportRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLLabelElement | null)[]>([]);
 
-  // Animation states
-  const [containerVisible, setContainerVisible] = useState(true);
-  const [headerVisible, setHeaderVisible] = useState(true);
-  const [listVisible, setListVisible] = useState(true);
-  const [exportVisible, setExportVisible] = useState(true);
+  // Animation states - start as false for initial animation
+  const [containerVisible, setContainerVisible] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [listVisible, setListVisible] = useState(false);
+  const [exportVisible, setExportVisible] = useState(false);
   const [itemVisibility, setItemVisibility] = useState<boolean[]>([]);
+
+  // Track which elements have been animated once
+  const [hasAnimated, setHasAnimated] = useState({
+    container: false,
+    header: false,
+    list: false,
+    export: false,
+    items: new Set<number>(),
+  });
 
   // State for export menu visibility
   const [showMenu, setShowMenu] = useState(false);
 
   // Update item visibility array when layers change
   useEffect(() => {
-    setItemVisibility(new Array(availableLayers.length).fill(true));
+    setItemVisibility(new Array(availableLayers.length).fill(false));
     itemRefs.current = new Array(availableLayers.length).fill(null);
+    // Reset items animation tracking when layers change
+    setHasAnimated((prev) => ({
+      ...prev,
+      items: new Set<number>(),
+    }));
   }, [availableLayers.length]);
 
-  // Intersection Observer setup with repeating animations
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -193,14 +207,34 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === containerRef.current) {
-          setContainerVisible(entry.isIntersecting);
-        } else if (target === headerRef.current) {
-          setHeaderVisible(entry.isIntersecting);
-        } else if (target === listRef.current) {
-          setListVisible(entry.isIntersecting);
-        } else if (target === exportRef.current) {
-          setExportVisible(entry.isIntersecting);
+        if (
+          target === containerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.container
+        ) {
+          setContainerVisible(true);
+          setHasAnimated((prev) => ({ ...prev, container: true }));
+        } else if (
+          target === headerRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.header
+        ) {
+          setHeaderVisible(true);
+          setHasAnimated((prev) => ({ ...prev, header: true }));
+        } else if (
+          target === listRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.list
+        ) {
+          setListVisible(true);
+          setHasAnimated((prev) => ({ ...prev, list: true }));
+        } else if (
+          target === exportRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.export
+        ) {
+          setExportVisible(true);
+          setHasAnimated((prev) => ({ ...prev, export: true }));
         }
       });
     }, observerOptions);
@@ -217,9 +251,9 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, []);
+  }, [hasAnimated]);
 
-  // Separate effect for observing layer items
+  // Separate effect for observing layer items - one-time animations
   useEffect(() => {
     if (availableLayers.length === 0) return;
 
@@ -232,12 +266,20 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
       entries.forEach((entry) => {
         const target = entry.target;
         const itemIndex = itemRefs.current.findIndex((ref) => ref === target);
-        if (itemIndex !== -1) {
+        if (
+          itemIndex !== -1 &&
+          entry.isIntersecting &&
+          !hasAnimated.items.has(itemIndex)
+        ) {
           setItemVisibility((prev) => {
             const newVisibility = [...prev];
-            newVisibility[itemIndex] = entry.isIntersecting;
+            newVisibility[itemIndex] = true;
             return newVisibility;
           });
+          setHasAnimated((prev) => ({
+            ...prev,
+            items: new Set([...prev.items, itemIndex]),
+          }));
         }
       });
     }, observerOptions);
@@ -253,7 +295,7 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, [availableLayers.length]);
+  }, [availableLayers.length, hasAnimated.items]);
 
   // Handle export menu toggle
   const toggleExportMenu = () => {
@@ -278,13 +320,12 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
       key={layer}
       ref={(el) => (itemRefs.current[index] = el)}
       className={`flex items-center gap-3 text-base font-medium text-gray-800 transform transition-all duration-600 ease-out ${
-        itemVisibility[index] !== false
+        itemVisibility[index]
           ? "translate-y-0 opacity-100"
           : "translate-y-4 opacity-0"
       }`}
       style={{
-        transitionDelay:
-          itemVisibility[index] !== false ? `${index * 80}ms` : "0ms",
+        transitionDelay: itemVisibility[index] ? `${index * 80}ms` : "0ms",
       }}
     >
       <input
@@ -292,24 +333,24 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
         checked={selectedLayers.includes(layer)}
         onChange={() => onToggleLayer(layer)}
         className={`w-4 h-4 accent-indigo-600 transform transition-all duration-600 ease-out ${
-          itemVisibility[index] !== false
-            ? "scale-100 opacity-100"
-            : "scale-90 opacity-0"
+          itemVisibility[index] ? "scale-100 opacity-100" : "scale-90 opacity-0"
         }`}
         style={{
-          transitionDelay:
-            itemVisibility[index] !== false ? `${index * 80 + 150}ms` : "0ms",
+          transitionDelay: itemVisibility[index]
+            ? `${index * 80 + 150}ms`
+            : "0ms",
         }}
       />
       <span
         className={`transform transition-all duration-600 ease-out ${
-          itemVisibility[index] !== false
+          itemVisibility[index]
             ? "translate-x-0 opacity-100"
             : "translate-x-3 opacity-0"
         }`}
         style={{
-          transitionDelay:
-            itemVisibility[index] !== false ? `${index * 80 + 200}ms` : "0ms",
+          transitionDelay: itemVisibility[index]
+            ? `${index * 80 + 200}ms`
+            : "0ms",
         }}
       >
         {layerNameMap[layer] || layer}
