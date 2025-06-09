@@ -1,5 +1,5 @@
-// ContactForm.tsx - Contact Form Component
-import React, { useState, useEffect } from "react";
+// ContactForm.tsx - Contact Form Component with Repeating Scroll Animations
+import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import {
   getEmailValidationError,
@@ -39,6 +39,16 @@ interface AlertState {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
+  // Refs for animation tracking
+  const formRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const formContentRef = useRef<HTMLFormElement>(null);
+
+  // Animation states
+  const [formVisible, setFormVisible] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const [contentVisible, setContentVisible] = useState(false);
+
   // State management
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -60,6 +70,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
     message: "",
     isOpen: false,
   });
+
+  // Intersection Observer setup with repeating animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "-50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (target === formRef.current) {
+          setFormVisible(entry.isIntersecting);
+        } else if (target === headerRef.current) {
+          setHeaderVisible(entry.isIntersecting);
+        } else if (target === formContentRef.current) {
+          setContentVisible(entry.isIntersecting);
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    if (formRef.current) observer.observe(formRef.current);
+    if (headerRef.current) observer.observe(headerRef.current);
+    if (formContentRef.current) observer.observe(formContentRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   // Reset form when it becomes visible again after successful submission
   useEffect(() => {
@@ -247,6 +286,8 @@ ${formData.message}
       hasError
         ? "focus:ring-red-400 focus:border-red-400"
         : "focus:ring-indigo-500 focus:border-indigo-500"
+    } transform transition-all duration-500 ease-out ${
+      contentVisible ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"
     }`;
   };
 
@@ -292,35 +333,72 @@ ${formData.message}
     </svg>
   );
 
-  // Render success message
+  // Render success message with animation
   const renderSuccessMessage = () => (
-    <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center">
-      <div className="w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center">
+    <div
+      className={`bg-green-50 border border-green-200 rounded-lg p-4 mb-4 text-center transform transition-all duration-700 ease-out ${
+        contentVisible
+          ? "translate-y-0 opacity-100 scale-100"
+          : "translate-y-8 opacity-0 scale-95"
+      }`}
+    >
+      <div
+        className={`w-16 h-16 bg-green-100 rounded-full mx-auto mb-4 flex items-center justify-center transform transition-all duration-700 ease-out ${
+          contentVisible ? "scale-100 rotate-0" : "scale-0 rotate-180"
+        }`}
+        style={{ transitionDelay: contentVisible ? "300ms" : "0ms" }}
+      >
         {renderSuccessIcon()}
       </div>
-      <h3 className="text-lg font-semibold text-green-800 mb-2">
+      <h3
+        className={`text-lg font-semibold text-green-800 mb-2 transform transition-all duration-700 ease-out ${
+          contentVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0"
+        }`}
+        style={{ transitionDelay: contentVisible ? "500ms" : "0ms" }}
+      >
         הטופס נשלח בהצלחה!
       </h3>
-      <p className="text-green-700">תודה על פנייתך, ניצור איתך קשר בהקדם.</p>
+      <p
+        className={`text-green-700 transform transition-all duration-700 ease-out ${
+          contentVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-4 opacity-0"
+        }`}
+        style={{ transitionDelay: contentVisible ? "700ms" : "0ms" }}
+      >
+        תודה על פנייתך, ניצור איתך קשר בהקדם.
+      </p>
     </div>
   );
 
-  // Render server error message (keeping for backward compatibility)
+  // Render server error message with animation
   const renderServerError = () => (
-    <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-center">
+    <div
+      className={`bg-red-50 border border-red-200 rounded-lg p-4 mb-4 text-center transform transition-all duration-700 ease-out ${
+        contentVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      }`}
+    >
       <p className="text-red-700">{serverError}</p>
     </div>
   );
 
-  // Render form field with validation
+  // Render form field with validation and animation
   const renderFormField = (
     type: string,
     name: string,
     label: string,
     placeholder: string,
-    isTextarea: boolean = false
+    isTextarea: boolean = false,
+    delay: number = 0
   ) => (
-    <div>
+    <div
+      className={`transform transition-all duration-700 ease-out ${
+        contentVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+      }`}
+      style={{ transitionDelay: contentVisible ? `${delay}ms` : "0ms" }}
+    >
       <label
         htmlFor={name}
         className="block text-sm font-medium text-gray-700 mb-1"
@@ -353,7 +431,13 @@ ${formData.message}
       {/* Fixed space for error messages - maintains consistent height */}
       <div className="min-h-[20px] mt-1">
         {errors[name as keyof ValidationErrors] && touched[name] && (
-          <p className="text-sm text-red-600">
+          <p
+            className={`text-sm text-red-600 transform transition-all duration-500 ease-out ${
+              contentVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-2 opacity-0"
+            }`}
+          >
             {errors[name as keyof ValidationErrors]}
           </p>
         )}
@@ -363,29 +447,87 @@ ${formData.message}
 
   return (
     <>
-      <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+      <div
+        ref={formRef}
+        className={`bg-white rounded-xl shadow-lg p-6 border border-gray-100 transform transition-all duration-1000 ease-out overflow-hidden ${
+          formVisible
+            ? "translate-y-0 opacity-100 scale-100"
+            : "translate-y-12 opacity-0 scale-95"
+        }`}
+      >
         {/* Form Header */}
-        <h2 className="text-2xl font-bold text-indigo-900 mb-2">צור קשר</h2>
-        <p className="text-gray-600 mb-6">
-          יש לך שאלה או בקשה? מלא את הטופס ונחזור אליך בהקדם.
-        </p>
+        <div
+          ref={headerRef}
+          className={`transform transition-all duration-1000 ease-out ${
+            headerVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-8 opacity-0"
+          }`}
+        >
+          <h2
+            className={`text-2xl font-bold text-indigo-900 mb-2 transform transition-all duration-1000 ease-out ${
+              headerVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-4 opacity-0"
+            }`}
+            style={{ transitionDelay: headerVisible ? "200ms" : "0ms" }}
+          >
+            צור קשר
+          </h2>
+          <p
+            className={`text-gray-600 mb-6 transform transition-all duration-1000 ease-out ${
+              headerVisible
+                ? "translate-x-0 opacity-100"
+                : "translate-x-4 opacity-0"
+            }`}
+            style={{ transitionDelay: headerVisible ? "400ms" : "0ms" }}
+          >
+            יש לך שאלה או בקשה? מלא את הטופס ונחזור אליך בהקדם.
+          </p>
+        </div>
 
         {/* Success Message or Form */}
         {submitted ? (
           renderSuccessMessage()
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-            {/* Server Error Message (keeping for backward compatibility) */}
+          <form
+            ref={formContentRef}
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            noValidate
+          >
+            {/* Server Error Message */}
             {serverError && renderServerError()}
 
             {/* Name and Phone Fields Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {renderFormField("text", "name", "שם מלא", "הכנס את שמך המלא")}
-              {renderFormField("tel", "phone", "טלפון", "הכנס מספר טלפון נייד")}
+              {renderFormField(
+                "text",
+                "name",
+                "שם מלא",
+                "הכנס את שמך המלא",
+                false,
+                200
+              )}
+              {renderFormField(
+                "tel",
+                "phone",
+                "טלפון",
+                "הכנס מספר טלפון נייד",
+                false,
+                300
+              )}
             </div>
 
             {/* Email Field */}
-            {renderFormField("email", "email", "אימייל", "הכנס כתובת אימייל")}
+            {renderFormField(
+              "email",
+              "email",
+              "אימייל",
+              "הכנס כתובת אימייל",
+              false,
+              400
+            )}
 
             {/* Message Field */}
             {renderFormField(
@@ -393,7 +535,8 @@ ${formData.message}
               "message",
               "הודעה",
               "כתוב את הודעתך כאן...",
-              true
+              true,
+              500
             )}
 
             {/* Submit Button */}
@@ -404,7 +547,12 @@ ${formData.message}
                 isLoading
                   ? "bg-indigo-400 cursor-not-allowed"
                   : "bg-indigo-600 hover:bg-indigo-700"
-              } text-white rounded-lg font-medium transition-colors shadow-md flex justify-center items-center`}
+              } text-white rounded-lg font-medium transition-all duration-700 shadow-md flex justify-center items-center transform ease-out ${
+                contentVisible
+                  ? "translate-y-0 opacity-100 scale-100"
+                  : "translate-y-4 opacity-0 scale-95"
+              }`}
+              style={{ transitionDelay: contentVisible ? "600ms" : "0ms" }}
             >
               {isLoading ? (
                 <>

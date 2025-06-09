@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Interface for component props
 interface PopupProps {
@@ -9,6 +9,31 @@ interface PopupProps {
 }
 
 const Popup: React.FC<PopupProps> = ({ title, isOpen, onClose, children }) => {
+  // Animation states
+  const [isVisible, setIsVisible] = useState(false);
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+
+  // Handle popup visibility and animations
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      setIsAnimatingOut(false);
+      // Small delay to trigger enter animation
+      const timer = setTimeout(() => {
+        setIsAnimatingOut(false);
+      }, 10);
+      return () => clearTimeout(timer);
+    } else {
+      setIsAnimatingOut(true);
+      // Hide after animation completes
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        setIsAnimatingOut(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   // Handle ESC key press to close popup
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -39,17 +64,32 @@ const Popup: React.FC<PopupProps> = ({ title, isOpen, onClose, children }) => {
     styleElement.id = styleId;
     styleElement.textContent = `
       .popup-animate-fade-in {
-        animation: popupFadeIn 0.2s ease-out;
+        animation: popupFadeIn 0.3s ease-out;
+      }
+      
+      .popup-animate-fade-out {
+        animation: popupFadeOut 0.3s ease-in;
       }
       
       @keyframes popupFadeIn {
         from { 
           opacity: 0; 
-          transform: scale(0.95); 
+          transform: scale(0.9) translateY(-20px); 
         }
         to { 
           opacity: 1; 
-          transform: scale(1); 
+          transform: scale(1) translateY(0); 
+        }
+      }
+      
+      @keyframes popupFadeOut {
+        from { 
+          opacity: 1; 
+          transform: scale(1) translateY(0); 
+        }
+        to { 
+          opacity: 0; 
+          transform: scale(0.9) translateY(-20px); 
         }
       }
       
@@ -83,8 +123,8 @@ const Popup: React.FC<PopupProps> = ({ title, isOpen, onClose, children }) => {
     };
   }, []);
 
-  // Don't render anything if popup is closed
-  if (!isOpen) return null;
+  // Don't render anything if popup is not visible
+  if (!isVisible) return null;
 
   // Handle click on overlay background to close popup
   const handleOverlayClick = (
@@ -114,18 +154,53 @@ const Popup: React.FC<PopupProps> = ({ title, isOpen, onClose, children }) => {
   return (
     <div
       dir="rtl"
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity"
+      className={`fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm transition-all duration-300 ease-out ${
+        isOpen && !isAnimatingOut
+          ? "bg-black/60 opacity-100"
+          : "bg-black/40 opacity-0"
+      }`}
       onClick={handleOverlayClick}
     >
-      <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-md sm:max-w-lg mx-4 sm:mx-auto overflow-hidden max-h-[90vh] border border-gray-100 popup-animate-fade-in">
+      <div
+        className={`relative bg-white rounded-xl shadow-2xl w-full max-w-md sm:max-w-lg mx-4 sm:mx-auto overflow-hidden max-h-[90vh] border border-gray-100 ${
+          isAnimatingOut ? "popup-animate-fade-out" : "popup-animate-fade-in"
+        }`}
+      >
         {/* Header Section */}
-        <div className="bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-purple-500/10 px-6 py-4 border-b border-gray-100">
-          <h2 className="text-xl font-semibold text-indigo-900">{title}</h2>
+        <div
+          className={`bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-purple-500/10 px-6 py-4 border-b border-gray-100 transform transition-all duration-500 ease-out ${
+            isOpen && !isAnimatingOut
+              ? "translate-y-0 opacity-100"
+              : "translate-y-2 opacity-0"
+          }`}
+          style={{
+            transitionDelay: isOpen && !isAnimatingOut ? "100ms" : "0ms",
+          }}
+        >
+          <h2
+            className={`text-xl font-semibold text-indigo-900 transform transition-all duration-500 ease-out ${
+              isOpen && !isAnimatingOut
+                ? "translate-x-0 opacity-100"
+                : "translate-x-4 opacity-0"
+            }`}
+            style={{
+              transitionDelay: isOpen && !isAnimatingOut ? "200ms" : "0ms",
+            }}
+          >
+            {title}
+          </h2>
         </div>
 
         {/* Close Button - positioned for RTL layout (left side) */}
         <button
-          className="absolute top-3 left-3 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-full p-1.5 transition-all"
+          className={`absolute top-3 left-3 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 rounded-full p-1.5 transition-all duration-500 ease-out transform ${
+            isOpen && !isAnimatingOut
+              ? "scale-100 opacity-100 rotate-0"
+              : "scale-0 opacity-0 rotate-90"
+          }`}
+          style={{
+            transitionDelay: isOpen && !isAnimatingOut ? "300ms" : "0ms",
+          }}
           onClick={onClose}
           aria-label="Close popup"
         >
@@ -133,18 +208,17 @@ const Popup: React.FC<PopupProps> = ({ title, isOpen, onClose, children }) => {
         </button>
 
         {/* Content Section - Scrollable */}
-        <div className="px-6 py-4 overflow-y-auto popup-custom-scrollbar max-h-[calc(90vh-80px)]">
+        <div
+          className={`px-6 py-4 overflow-y-auto popup-custom-scrollbar max-h-[calc(90vh-80px)] transform transition-all duration-600 ease-out ${
+            isOpen && !isAnimatingOut
+              ? "translate-y-0 opacity-100"
+              : "translate-y-4 opacity-0"
+          }`}
+          style={{
+            transitionDelay: isOpen && !isAnimatingOut ? "250ms" : "0ms",
+          }}
+        >
           {children}
-        </div>
-
-        {/* Footer Section */}
-        <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 flex justify-end">
-          <button
-            className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all shadow-sm"
-            onClick={onClose}
-          >
-            סגור
-          </button>
         </div>
       </div>
     </div>

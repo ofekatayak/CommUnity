@@ -1,5 +1,5 @@
-// Legend.tsx - Community Legend and Data Display Component
-import React, { useState } from "react";
+// Legend.tsx - Community Legend and Data Display Component with Repeating Scroll Animations
+import React, { useState, useEffect, useRef } from "react";
 import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
 import Popup from "./popups/Popup";
@@ -50,6 +50,99 @@ const Legend: React.FC<LegendProps> = ({
     null
   );
   const [showExportMenu, setShowExportMenu] = useState(false);
+
+  // Refs for animation tracking
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Animation states
+  const [containerVisible, setContainerVisible] = useState(true);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [listVisible, setListVisible] = useState(true);
+  const [exportVisible, setExportVisible] = useState(true);
+  const [itemVisibility, setItemVisibility] = useState<boolean[]>([]);
+
+  // Update item visibility array when communities change
+  useEffect(() => {
+    setItemVisibility(new Array(communities.length).fill(true));
+    itemRefs.current = new Array(communities.length).fill(null);
+  }, [communities.length]);
+
+  // Intersection Observer setup with repeating animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (target === containerRef.current) {
+          setContainerVisible(entry.isIntersecting);
+        } else if (target === headerRef.current) {
+          setHeaderVisible(entry.isIntersecting);
+        } else if (target === listRef.current) {
+          setListVisible(entry.isIntersecting);
+        } else if (target === exportRef.current) {
+          setExportVisible(entry.isIntersecting);
+        }
+      });
+    }, observerOptions);
+
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      if (containerRef.current) observer.observe(containerRef.current);
+      if (headerRef.current) observer.observe(headerRef.current);
+      if (listRef.current) observer.observe(listRef.current);
+      if (exportRef.current) observer.observe(exportRef.current);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, []);
+
+  // Separate effect for observing community items
+  useEffect(() => {
+    if (communities.length === 0) return;
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+        const itemIndex = itemRefs.current.findIndex((ref) => ref === target);
+        if (itemIndex !== -1) {
+          setItemVisibility((prev) => {
+            const newVisibility = [...prev];
+            newVisibility[itemIndex] = entry.isIntersecting;
+            return newVisibility;
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe community items with a small delay to ensure they're rendered
+    const timeoutId = setTimeout(() => {
+      itemRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    }, 200);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [communities.length]);
 
   // Handle opening community details popup
   const handleOpenPopup = (community: string) => {
@@ -226,67 +319,146 @@ const Legend: React.FC<LegendProps> = ({
     </svg>
   );
 
-  // Render individual community item
+  // Render individual community item with animation
   const renderCommunityItem = (community: Community, index: number) => (
     <div
       key={index}
-      className="flex items-center justify-between p-3 cursor-pointer hover:bg-indigo-50 rounded-xl transition duration-200 border border-transparent hover:border-indigo-100"
+      ref={(el) => (itemRefs.current[index] = el)}
+      className={`flex items-center justify-between p-3 cursor-pointer hover:bg-indigo-50 rounded-xl transition duration-200 border border-transparent hover:border-indigo-100 transform transition-all duration-600 ease-out ${
+        itemVisibility[index] !== false
+          ? "translate-y-0 opacity-100"
+          : "translate-y-4 opacity-0"
+      }`}
+      style={{
+        transitionDelay:
+          itemVisibility[index] !== false ? `${index * 80}ms` : "0ms",
+      }}
       onClick={() => handleOpenPopup(community.name)}
     >
-      <div className="flex items-center gap-3">
+      <div
+        className={`flex items-center gap-3 transform transition-all duration-600 ease-out ${
+          itemVisibility[index] !== false
+            ? "translate-x-0 opacity-100"
+            : "translate-x-3 opacity-0"
+        }`}
+        style={{
+          transitionDelay:
+            itemVisibility[index] !== false ? `${index * 80 + 100}ms` : "0ms",
+        }}
+      >
         {onToggleVisibility && (
           <input
             type="checkbox"
             checked={selectedCommunities.includes(community.name)}
             onChange={(e) => handleCheckboxChange(community.name, e as any)}
             onClick={(e) => handleCheckboxChange(community.name, e)}
-            className="w-4 h-4 accent-indigo-600"
+            className={`w-4 h-4 accent-indigo-600 transform transition-all duration-600 ease-out ${
+              itemVisibility[index] !== false
+                ? "scale-100 opacity-100"
+                : "scale-90 opacity-0"
+            }`}
+            style={{
+              transitionDelay:
+                itemVisibility[index] !== false
+                  ? `${index * 80 + 150}ms`
+                  : "0ms",
+            }}
           />
         )}
         <span className="text-gray-700 font-medium">{community.name}</span>
         <span
-          className="w-4 h-4 rounded-full flex-shrink-0"
-          style={{ backgroundColor: community.color }}
+          className={`w-4 h-4 rounded-full flex-shrink-0 transform transition-all duration-600 ease-out ${
+            itemVisibility[index] !== false
+              ? "scale-100 opacity-100"
+              : "scale-90 opacity-0"
+          }`}
+          style={{
+            backgroundColor: community.color,
+            transitionDelay:
+              itemVisibility[index] !== false ? `${index * 80 + 120}ms` : "0ms",
+          }}
         />
       </div>
-      <div className="flex items-center">{renderChevronIcon()}</div>
+      <div
+        className={`flex items-center transform transition-all duration-600 ease-out ${
+          itemVisibility[index] !== false
+            ? "translate-x-0 opacity-100"
+            : "translate-x-2 opacity-0"
+        }`}
+        style={{
+          transitionDelay:
+            itemVisibility[index] !== false ? `${index * 80 + 200}ms` : "0ms",
+        }}
+      >
+        {renderChevronIcon()}
+      </div>
     </div>
   );
 
   // Render empty state when no communities are available
   const renderEmptyState = () => (
-    <div className="text-center py-6">
-      <div className="w-16 h-16 bg-indigo-50 rounded-full mx-auto mb-3 flex items-center justify-center">
+    <div
+      className={`text-center py-6 transform transition-all duration-800 ease-out ${
+        listVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
+    >
+      <div
+        className={`w-16 h-16 bg-indigo-50 rounded-full mx-auto mb-3 flex items-center justify-center transform transition-all duration-800 ease-out ${
+          listVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        }`}
+        style={{ transitionDelay: listVisible ? "200ms" : "0ms" }}
+      >
         {renderWarningIcon()}
       </div>
-      <p className="text-gray-500">לא נמצאו קהילות</p>
+      <p
+        className={`text-gray-500 transform transition-all duration-800 ease-out ${
+          listVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+        }`}
+        style={{ transitionDelay: listVisible ? "400ms" : "0ms" }}
+      >
+        לא נמצאו קהילות
+      </p>
     </div>
   );
 
-  // Render export menu dropdown
+  // Render export menu dropdown with animation
   const renderExportMenu = () => (
-    <div className="absolute bottom-14 w-full bg-white border border-gray-300 rounded shadow-xl z-10">
+    <div
+      className={`absolute bottom-14 w-full bg-white border border-gray-300 rounded shadow-xl z-10 transform transition-all duration-400 ease-out ${
+        showExportMenu ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+      }`}
+    >
       <button
         onClick={handleGeoJSONExport}
-        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100"
+        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100 transition-colors duration-200"
       >
         ייצוא ל־GeoJSON
       </button>
       <button
         onClick={handleExcelExport}
-        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100"
+        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100 transition-colors duration-200"
       >
         ייצוא ל־Excel
       </button>
     </div>
   );
 
-  // Render export section (only for logged-in users)
+  // Render export section (only for logged-in users) with animation
   const renderExportSection = () =>
     isUserLoggedIn && (
-      <div className="relative text-right mt-6">
+      <div
+        ref={exportRef}
+        className={`relative text-right mt-6 transform transition-all duration-800 ease-out ${
+          exportVisible
+            ? "translate-y-0 opacity-100"
+            : "translate-y-6 opacity-0"
+        }`}
+      >
         <button
-          className="bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700"
+          className={`bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700 transform transition-all duration-600 ease-out ${
+            exportVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+          }`}
+          style={{ transitionDelay: exportVisible ? "200ms" : "0ms" }}
           onClick={() => setShowExportMenu(!showExportMenu)}
         >
           ייצוא שכבות מידע📊
@@ -439,20 +611,54 @@ const Legend: React.FC<LegendProps> = ({
 
   return (
     <div className="w-full h-full" dir="rtl">
-      <div className="flex flex-col justify-between h-full">
+      <div
+        ref={containerRef}
+        className={`flex flex-col justify-between h-full transform transition-all duration-1000 ease-out ${
+          containerVisible ? "opacity-100" : "opacity-0"
+        }`}
+        style={{ overflowY: "auto", overflowX: "hidden" }}
+      >
         <div>
           {/* Header Section */}
-          <div className="mb-4">
-            <h3 className="text-xl font-semibold text-indigo-900">
+          <div
+            ref={headerRef}
+            className={`mb-4 transform transition-all duration-800 ease-out ${
+              headerVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }`}
+          >
+            <h3
+              className={`text-xl font-semibold text-indigo-900 transform transition-all duration-800 ease-out ${
+                headerVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-4 opacity-0"
+              }`}
+              style={{ transitionDelay: headerVisible ? "100ms" : "0ms" }}
+            >
               רשימת קהילות
             </h3>
-            <p className="text-sm text-gray-500">
+            <p
+              className={`text-sm text-gray-500 transform transition-all duration-800 ease-out ${
+                headerVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-4 opacity-0"
+              }`}
+              style={{ transitionDelay: headerVisible ? "200ms" : "0ms" }}
+            >
               בחר קהילה לצפייה בפרטים נוספים
             </p>
           </div>
 
           {/* Communities List */}
-          <div className="space-y-2 mt-6">
+          <div
+            ref={listRef}
+            className={`space-y-2 mt-6 transform transition-all duration-800 ease-out ${
+              listVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }`}
+          >
             {communities.length > 0
               ? communities.map(renderCommunityItem)
               : renderEmptyState()}
@@ -470,17 +676,7 @@ const Legend: React.FC<LegendProps> = ({
           isOpen={!!activeCommunity}
           onClose={handleClosePopup}
         >
-          <div className="p-4">
-            {renderPopupContent()}
-            <div className="mt-6 flex justify-end">
-              <button
-                className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition duration-200"
-                onClick={handleClosePopup}
-              >
-                סגור
-              </button>
-            </div>
-          </div>
+          <div className="p-4">{renderPopupContent()}</div>
         </Popup>
       )}
     </div>

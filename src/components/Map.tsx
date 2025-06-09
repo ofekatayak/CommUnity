@@ -1,4 +1,4 @@
-// Map.tsx - Interactive Map Component with Plotly
+// Map.tsx - Interactive Map Component with Plotly and Repeating Scroll Animations
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import Plot from "react-plotly.js";
 import { Data } from "plotly.js";
@@ -39,6 +39,17 @@ const Map: React.FC<MapProps> = ({
   selectedLayers,
   setLayerDataMap,
 }) => {
+  // Refs for animation tracking
+  const containerRef = useRef<HTMLDivElement>(null);
+  const legendRef = useRef<HTMLDivElement>(null);
+  const controlsRef = useRef<HTMLDivElement>(null);
+  const loadingRef = useRef<HTMLDivElement>(null);
+
+  // Animation states
+  const [legendVisible, setLegendVisible] = useState(false);
+  const [controlsVisible, setControlsVisible] = useState(false);
+  const [loadingVisible, setLoadingVisible] = useState(false);
+
   // Default map settings
   const defaultCenter: MapCenter = { lat: 31.252973, lon: 34.791462 };
   const defaultZoom = 12;
@@ -52,9 +63,6 @@ const Map: React.FC<MapProps> = ({
     width: "100%",
     height: "100%",
   });
-
-  // Reference to container element
-  const containerRef = useRef<HTMLDivElement>(null);
 
   // Map layer names in Hebrew - using useMemo to prevent re-creation on every render
   const layerNameMap: Record<string, string> = useMemo(
@@ -89,6 +97,35 @@ const Map: React.FC<MapProps> = ({
     }),
     []
   );
+
+  // Intersection Observer setup with repeating animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "-30px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (target === legendRef.current) {
+          setLegendVisible(entry.isIntersecting);
+        } else if (target === controlsRef.current) {
+          setControlsVisible(entry.isIntersecting);
+        } else if (target === loadingRef.current) {
+          setLoadingVisible(entry.isIntersecting);
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    if (legendRef.current) observer.observe(legendRef.current);
+    if (controlsRef.current) observer.observe(controlsRef.current);
+    if (loadingRef.current) observer.observe(loadingRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   // Initialize map and set up dimension tracking
   useEffect(() => {
@@ -234,23 +271,56 @@ const Map: React.FC<MapProps> = ({
     }));
   };
 
-  // Render active layers legend
+  // Render active layers legend with animation
   const renderActiveLayersLegend = () => {
     const activeLayers = getSelectedLayersForLegend();
 
     if (activeLayers.length === 0) return null;
 
     return (
-      <div className="absolute top-4 left-4 z-10 bg-white rounded-lg shadow-md border border-gray-200 p-3 max-w-xs">
-        <h4 className="text-sm font-semibold text-gray-700 mb-2">
+      <div
+        ref={legendRef}
+        className={`absolute top-4 left-4 z-10 bg-white rounded-lg shadow-md border border-gray-200 p-3 max-w-xs transform transition-all duration-800 ease-out ${
+          legendVisible
+            ? "translate-y-0 opacity-100 scale-100"
+            : "translate-y-4 opacity-0 scale-95"
+        }`}
+      >
+        <h4
+          className={`text-sm font-semibold text-gray-700 mb-2 transform transition-all duration-800 ease-out ${
+            legendVisible
+              ? "translate-x-0 opacity-100"
+              : "translate-x-2 opacity-0"
+          }`}
+          style={{ transitionDelay: legendVisible ? "200ms" : "0ms" }}
+        >
           שכבות פעילות:
         </h4>
         <div className="space-y-1">
           {activeLayers.map((layer, index) => (
-            <div key={index} className="flex items-center gap-2">
+            <div
+              key={index}
+              className={`flex items-center gap-2 transform transition-all duration-600 ease-out ${
+                legendVisible
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-3 opacity-0"
+              }`}
+              style={{
+                transitionDelay: legendVisible
+                  ? `${index * 100 + 400}ms`
+                  : "0ms",
+              }}
+            >
               <div
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: layer.color }}
+                className={`w-3 h-3 rounded-full transform transition-all duration-600 ease-out ${
+                  legendVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                }`}
+                style={{
+                  backgroundColor: layer.color,
+                  transitionDelay: legendVisible
+                    ? `${index * 100 + 500}ms`
+                    : "0ms",
+                }}
               />
               <span className="text-xs text-gray-600">{layer.name}</span>
             </div>
@@ -347,35 +417,70 @@ const Map: React.FC<MapProps> = ({
     </svg>
   );
 
-  // Render loading indicator
+  // Render loading indicator with animation
   const renderLoadingIndicator = () => (
-    <div className="absolute inset-0 flex items-center justify-center bg-gray-50">
+    <div
+      ref={loadingRef}
+      className={`absolute inset-0 flex items-center justify-center bg-gray-50 transform transition-all duration-1000 ease-out ${
+        loadingVisible ? "opacity-100 scale-100" : "opacity-0 scale-95"
+      }`}
+    >
       <div className="flex flex-col items-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-2" />
-        <p className="text-indigo-800 font-medium">טוען מפה...</p>
+        <div
+          className={`animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mb-2 transform transition-all duration-1000 ease-out ${
+            loadingVisible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+          }`}
+          style={{ transitionDelay: loadingVisible ? "200ms" : "0ms" }}
+        />
+        <p
+          className={`text-indigo-800 font-medium transform transition-all duration-1000 ease-out ${
+            loadingVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-4 opacity-0"
+          }`}
+          style={{ transitionDelay: loadingVisible ? "400ms" : "0ms" }}
+        >
+          טוען מפה...
+        </p>
       </div>
     </div>
   );
 
-  // Render zoom control buttons
+  // Render zoom control buttons with animation
   const renderZoomControls = () => (
-    <div className="absolute bottom-4 right-4 z-10 flex flex-col gap-2">
+    <div
+      ref={controlsRef}
+      className={`absolute bottom-4 right-4 z-10 flex flex-col gap-2 transform transition-all duration-800 ease-out ${
+        controlsVisible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-6 opacity-0"
+      }`}
+    >
       <button
-        className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+        className={`w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-all duration-300 border border-gray-100 transform ease-out ${
+          controlsVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        }`}
+        style={{ transitionDelay: controlsVisible ? "200ms" : "0ms" }}
         onClick={handleZoomIn}
         aria-label="Zoom in"
       >
         {renderPlusIcon()}
       </button>
       <button
-        className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+        className={`w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-all duration-300 border border-gray-100 transform ease-out ${
+          controlsVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        }`}
+        style={{ transitionDelay: controlsVisible ? "350ms" : "0ms" }}
         onClick={handleZoomOut}
         aria-label="Zoom out"
       >
         {renderMinusIcon()}
       </button>
       <button
-        className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-colors border border-gray-100"
+        className={`w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center hover:bg-indigo-50 transition-all duration-300 border border-gray-100 transform ease-out ${
+          controlsVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"
+        }`}
+        style={{ transitionDelay: controlsVisible ? "500ms" : "0ms" }}
         onClick={resetMapView}
         aria-label="Reset view"
       >

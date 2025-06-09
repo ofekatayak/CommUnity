@@ -1,5 +1,5 @@
-// SiteIntro.tsx - Main Site Introduction Section Component
-import React from "react";
+// SiteIntro.tsx - Main Site Introduction Section Component with Repeating Scroll Animations
+import React, { useEffect, useRef, useState } from "react";
 
 // Interface for feature card data
 interface FeatureCard {
@@ -9,6 +9,59 @@ interface FeatureCard {
 }
 
 const SiteIntro: React.FC = () => {
+  // Refs for animation tracking
+  const heroRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Animation states
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [featuresVisible, setFeaturesVisible] = useState(false);
+  const [cardVisibility, setCardVisibility] = useState<boolean[]>([
+    false,
+    false,
+    false,
+  ]);
+
+  // Intersection Observer setup with repeating animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "-50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (target === heroRef.current) {
+          setHeroVisible(entry.isIntersecting);
+        } else if (target === featuresRef.current) {
+          setFeaturesVisible(entry.isIntersecting);
+        } else {
+          // Handle individual cards
+          const cardIndex = cardRefs.current.findIndex((ref) => ref === target);
+          if (cardIndex !== -1) {
+            setCardVisibility((prev) => {
+              const newVisibility = [...prev];
+              newVisibility[cardIndex] = entry.isIntersecting;
+              return newVisibility;
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements
+    if (heroRef.current) observer.observe(heroRef.current);
+    if (featuresRef.current) observer.observe(featuresRef.current);
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   // Render location/map pin icon
   const renderLocationIcon = () => (
     <svg
@@ -91,34 +144,95 @@ const SiteIntro: React.FC = () => {
     },
   ];
 
-  // Render individual feature card
+  // Render individual feature card with animation
   const renderFeatureCard = (feature: FeatureCard, index: number) => (
     <div
       key={index}
-      className="bg-white p-6 rounded-xl shadow-md border border-gray-100"
+      ref={(el) => (cardRefs.current[index] = el)}
+      className={`bg-white p-6 rounded-xl shadow-md border border-gray-100 transform transition-all duration-700 ease-out ${
+        cardVisibility[index]
+          ? "translate-y-0 opacity-100 scale-100"
+          : "translate-y-8 opacity-0 scale-95"
+      }`}
+      style={{
+        transitionDelay: cardVisibility[index] ? `${index * 200}ms` : "0ms",
+      }}
     >
-      {/* Icon Container */}
-      <div className="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 mx-auto md:mx-0">
+      {/* Icon Container with animation */}
+      <div
+        className={`w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4 mx-auto md:mx-0 transform transition-all duration-700 ease-out ${
+          cardVisibility[index] ? "rotate-0 scale-100" : "rotate-12 scale-0"
+        }`}
+        style={{
+          transitionDelay: cardVisibility[index]
+            ? `${index * 200 + 300}ms`
+            : "0ms",
+        }}
+      >
         {feature.icon}
       </div>
 
-      {/* Feature Title */}
-      <h3 className="text-lg font-semibold text-indigo-900 mb-2">
+      {/* Feature Title with slide animation */}
+      <h3
+        className={`text-lg font-semibold text-indigo-900 mb-2 transform transition-all duration-700 ease-out ${
+          cardVisibility[index]
+            ? "translate-x-0 opacity-100"
+            : "translate-x-4 opacity-0"
+        }`}
+        style={{
+          transitionDelay: cardVisibility[index]
+            ? `${index * 200 + 500}ms`
+            : "0ms",
+        }}
+      >
         {feature.title}
       </h3>
 
-      {/* Feature Description */}
-      <p className="text-gray-600">{feature.description}</p>
+      {/* Feature Description with slide animation */}
+      <p
+        className={`text-gray-600 transform transition-all duration-700 ease-out ${
+          cardVisibility[index]
+            ? "translate-x-0 opacity-100"
+            : "translate-x-4 opacity-0"
+        }`}
+        style={{
+          transitionDelay: cardVisibility[index]
+            ? `${index * 200 + 600}ms`
+            : "0ms",
+        }}
+      >
+        {feature.description}
+      </p>
     </div>
   );
 
   // Render hero section with title and subtitle
   const renderHeroSection = () => (
-    <div className="max-w-4xl mx-auto text-center">
-      <h1 className="text-4xl font-bold text-indigo-900 mb-4">
+    <div
+      ref={heroRef}
+      className={`max-w-4xl mx-auto text-center transform transition-all duration-1000 ease-out ${
+        heroVisible
+          ? "translate-y-0 opacity-100 scale-100"
+          : "translate-y-12 opacity-0 scale-95"
+      }`}
+    >
+      {/* Main title with bounce effect */}
+      <h1
+        className={`text-4xl font-bold text-indigo-900 mb-4 transform transition-all duration-1000 ease-out ${
+          heroVisible ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0"
+        }`}
+        style={{ transitionDelay: heroVisible ? "200ms" : "0ms" }}
+      >
         ברוכים הבאים ל-CommUnity
       </h1>
-      <p className="text-xl text-gray-700 mb-8">
+
+      {/* Subtitle with delayed slide-in */}
+      <p
+        className={`text-xl text-gray-700 mb-8 transform transition-all duration-1000 ease-out ${
+          heroVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+        }`}
+        style={{ transitionDelay: heroVisible ? "600ms" : "0ms" }}
+      >
         מערכת לסיווג ומיפוי קהילות לפינוי מותאם בשעת חירום
       </p>
     </div>
@@ -126,13 +240,20 @@ const SiteIntro: React.FC = () => {
 
   // Render features grid section
   const renderFeaturesGrid = () => (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-right">
+    <div
+      ref={featuresRef}
+      className={`grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-right transform transition-all duration-1000 ease-out ${
+        featuresVisible
+          ? "translate-y-0 opacity-100"
+          : "translate-y-16 opacity-0"
+      }`}
+    >
       {featureCards.map(renderFeatureCard)}
     </div>
   );
 
   return (
-    <div className="bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-purple-500/10">
+    <div className="bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-purple-500/10 overflow-hidden">
       <div className="container mx-auto px-4 py-12">
         {/* Hero Section */}
         {renderHeroSection()}

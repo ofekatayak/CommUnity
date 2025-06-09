@@ -1,5 +1,5 @@
-// LayersPanel.tsx - Map Layers Control Panel Component
-import React, { useState } from "react";
+// LayersPanel.tsx - Map Layers Control Panel Component with Repeating Scroll Animations
+import React, { useState, useEffect, useRef } from "react";
 import { saveAs } from "file-saver";
 import * as XLSX from "xlsx";
 
@@ -159,8 +159,101 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
   onToggleLayer,
   layerDataMap,
 }) => {
+  // Refs for animation tracking
+  const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const exportRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLLabelElement | null)[]>([]);
+
+  // Animation states
+  const [containerVisible, setContainerVisible] = useState(true);
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const [listVisible, setListVisible] = useState(true);
+  const [exportVisible, setExportVisible] = useState(true);
+  const [itemVisibility, setItemVisibility] = useState<boolean[]>([]);
+
   // State for export menu visibility
   const [showMenu, setShowMenu] = useState(false);
+
+  // Update item visibility array when layers change
+  useEffect(() => {
+    setItemVisibility(new Array(availableLayers.length).fill(true));
+    itemRefs.current = new Array(availableLayers.length).fill(null);
+  }, [availableLayers.length]);
+
+  // Intersection Observer setup with repeating animations
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+
+        if (target === containerRef.current) {
+          setContainerVisible(entry.isIntersecting);
+        } else if (target === headerRef.current) {
+          setHeaderVisible(entry.isIntersecting);
+        } else if (target === listRef.current) {
+          setListVisible(entry.isIntersecting);
+        } else if (target === exportRef.current) {
+          setExportVisible(entry.isIntersecting);
+        }
+      });
+    }, observerOptions);
+
+    // Small delay to ensure elements are rendered
+    const timeoutId = setTimeout(() => {
+      if (containerRef.current) observer.observe(containerRef.current);
+      if (headerRef.current) observer.observe(headerRef.current);
+      if (listRef.current) observer.observe(listRef.current);
+      if (exportRef.current) observer.observe(exportRef.current);
+    }, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, []);
+
+  // Separate effect for observing layer items
+  useEffect(() => {
+    if (availableLayers.length === 0) return;
+
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "-10px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target;
+        const itemIndex = itemRefs.current.findIndex((ref) => ref === target);
+        if (itemIndex !== -1) {
+          setItemVisibility((prev) => {
+            const newVisibility = [...prev];
+            newVisibility[itemIndex] = entry.isIntersecting;
+            return newVisibility;
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe layer items with a small delay to ensure they're rendered
+    const timeoutId = setTimeout(() => {
+      itemRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref);
+      });
+    }, 200);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observer.disconnect();
+    };
+  }, [availableLayers.length]);
 
   // Handle export menu toggle
   const toggleExportMenu = () => {
@@ -179,55 +272,113 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
     setShowMenu(false);
   };
 
-  // Render layer checkbox item
-  const renderLayerCheckbox = (layer: string) => (
+  // Render layer checkbox item with animation
+  const renderLayerCheckbox = (layer: string, index: number) => (
     <label
       key={layer}
-      className="flex items-center gap-3 text-base font-medium text-gray-800"
+      ref={(el) => (itemRefs.current[index] = el)}
+      className={`flex items-center gap-3 text-base font-medium text-gray-800 transform transition-all duration-600 ease-out ${
+        itemVisibility[index] !== false
+          ? "translate-y-0 opacity-100"
+          : "translate-y-4 opacity-0"
+      }`}
+      style={{
+        transitionDelay:
+          itemVisibility[index] !== false ? `${index * 80}ms` : "0ms",
+      }}
     >
       <input
         type="checkbox"
         checked={selectedLayers.includes(layer)}
         onChange={() => onToggleLayer(layer)}
-        className="w-4 h-4 accent-indigo-600"
+        className={`w-4 h-4 accent-indigo-600 transform transition-all duration-600 ease-out ${
+          itemVisibility[index] !== false
+            ? "scale-100 opacity-100"
+            : "scale-90 opacity-0"
+        }`}
+        style={{
+          transitionDelay:
+            itemVisibility[index] !== false ? `${index * 80 + 150}ms` : "0ms",
+        }}
       />
-      <span>{layerNameMap[layer] || layer}</span>
+      <span
+        className={`transform transition-all duration-600 ease-out ${
+          itemVisibility[index] !== false
+            ? "translate-x-0 opacity-100"
+            : "translate-x-3 opacity-0"
+        }`}
+        style={{
+          transitionDelay:
+            itemVisibility[index] !== false ? `${index * 80 + 200}ms` : "0ms",
+        }}
+      >
+        {layerNameMap[layer] || layer}
+      </span>
     </label>
   );
 
-  // Render export menu options
+  // Render export menu options with animation
   const renderExportMenu = () => (
-    <div className="absolute bottom-14 w-full bg-white border border-gray-300 rounded shadow-xl z-10">
+    <div
+      className={`absolute bottom-14 w-full bg-white border border-gray-300 rounded shadow-xl z-10 transform transition-all duration-400 ease-out ${
+        showMenu ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
+      }`}
+    >
       <button
         onClick={handleGeoJSONExport}
-        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100"
+        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100 transition-colors duration-200"
       >
         ייצוא ל־GeoJSON
       </button>
       <button
         onClick={handleExcelExport}
-        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100"
+        className="block w-full text-right px-4 py-3 text-sm text-gray-800 hover:bg-gray-100 transition-colors duration-200"
       >
         ייצוא ל־Excel (נקודות)
       </button>
     </div>
   );
 
-  // Render layers list section
+  // Render layers list section with animation
   const renderLayersList = () => (
-    <div>
-      <h3 className="font-semibold text-indigo-900 mb-3 text-lg">שכבות מידע</h3>
+    <div
+      ref={listRef}
+      className={`transform transition-all duration-800 ease-out ${
+        listVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
+    >
+      <h3
+        ref={headerRef}
+        className={`font-semibold text-indigo-900 mb-3 text-lg transform transition-all duration-800 ease-out ${
+          headerVisible
+            ? "translate-x-0 opacity-100"
+            : "translate-x-4 opacity-0"
+        }`}
+        style={{ transitionDelay: headerVisible ? "200ms" : "0ms" }}
+      >
+        שכבות מידע
+      </h3>
       <div className="space-y-3">
-        {availableLayers.map(renderLayerCheckbox)}
+        {availableLayers.map((layer, index) =>
+          renderLayerCheckbox(layer, index)
+        )}
       </div>
     </div>
   );
 
-  // Render export section
+  // Render export section with animation
   const renderExportSection = () => (
-    <div className="relative text-right mt-6">
+    <div
+      ref={exportRef}
+      className={`relative text-right mt-6 transform transition-all duration-800 ease-out ${
+        exportVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+      }`}
+    >
       <button
-        className="bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700"
+        className={`bg-indigo-600 text-white w-full py-3 rounded-xl text-base font-semibold hover:bg-indigo-700 transform transition-all duration-600 ease-out ${
+          exportVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+        }`}
+        style={{ transitionDelay: exportVisible ? "200ms" : "0ms" }}
         onClick={toggleExportMenu}
       >
         ייצוא שכבות מידע💾
@@ -237,7 +388,13 @@ const LayersPanel: React.FC<LayersPanelProps> = ({
   );
 
   return (
-    <div className="flex flex-col justify-between h-full">
+    <div
+      ref={containerRef}
+      className={`flex flex-col justify-between h-full transform transition-all duration-1000 ease-out ${
+        containerVisible ? "opacity-100" : "opacity-0"
+      }`}
+      style={{ overflowY: "auto", overflowX: "hidden" }}
+    >
       {/* Layers List Section */}
       {renderLayersList()}
 

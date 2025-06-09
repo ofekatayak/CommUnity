@@ -1,4 +1,4 @@
-// SearchBar.tsx - Enhanced Search Input Component with Autocomplete
+// SearchBar.tsx - Enhanced Search Input Component with Autocomplete and Map Scroll
 import React, { useState, useRef, useEffect } from "react";
 
 // Interface for search result items
@@ -40,6 +40,72 @@ const SearchBar: React.FC<SearchBarProps> = ({
   // Refs for DOM manipulation
   const searchInputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
+
+  // Function to scroll to map section
+  const scrollToMap = () => {
+    // חיפוש אלמנט המפה לפי selector שונים
+    const mapSelectors = [
+      '[data-testid="map-section"]', // אם יש data-testid
+      ".map-section", // אם יש class
+      "#map-section", // אם יש id
+      'div[class*="map"]', // כל div שיש לו class שמכיל "map"
+      'div[class*="Map"]', // כל div שיש לו class שמכיל "Map"
+    ];
+
+    let mapElement: Element | null = null;
+
+    // ניסיון למצוא את אלמנט המפה
+    for (const selector of mapSelectors) {
+      mapElement = document.querySelector(selector);
+      if (mapElement) break;
+    }
+
+    // אם לא מצאנו את המפה, ננסה למצוא לפי הטקסט "מפה אינטראקטיבית"
+    if (!mapElement) {
+      const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+      for (const heading of headings) {
+        if (heading.textContent?.includes("מפה אינטראקטיבית")) {
+          mapElement = heading.closest(
+            'div[class*="flex"], div[class*="container"], section'
+          );
+          break;
+        }
+      }
+    }
+
+    // אם עדיין לא מצאנו, ננסה למצוא container שמכיל Plot (מ-Plotly)
+    if (!mapElement) {
+      const plotElement = document.querySelector(
+        '[class*="plotly"], .js-plotly-plot'
+      );
+      if (plotElement) {
+        mapElement = plotElement.closest(
+          'div[class*="bg-white"], div[class*="rounded"]'
+        );
+      }
+    }
+
+    // אם מצאנו את המפה, נגלול אליה
+    if (mapElement) {
+      const headerHeight = 80; // גובה ה-header הדביק (כולל מרווח)
+      const elementPosition =
+        mapElement.getBoundingClientRect().top +
+        window.pageYOffset -
+        headerHeight;
+
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth",
+      });
+    } else {
+      // fallback - גלילה לחצי העמוד אם לא מצאנו את המפה
+      const halfPageHeight = document.body.scrollHeight / 2;
+      window.scrollTo({
+        top: halfPageHeight,
+        behavior: "smooth",
+      });
+    }
+  };
 
   // Generate search results based on input
   const generateSearchResults = (input: string): SearchResultItem[] => {
@@ -103,6 +169,11 @@ const SearchBar: React.FC<SearchBarProps> = ({
     setSearchValue("");
     setShowSuggestions(false);
     setSuggestions([]);
+
+    // Scroll to map with a small delay to allow the selection to process
+    setTimeout(() => {
+      scrollToMap();
+    }, 300);
   };
 
   // Handle keyboard navigation
