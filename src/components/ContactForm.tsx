@@ -1,4 +1,4 @@
-// ContactForm.tsx - Contact Form Component with Hide on Scroll Up
+// ContactForm.tsx - Contact Form Component with One-Time Scroll Animations
 import React, { useState, useEffect, useRef } from "react";
 import emailjs from "emailjs-com";
 import {
@@ -12,7 +12,6 @@ import AlertPopup from "./popups/AlertPopup";
 interface ContactFormProps {
   onSubmit?: () => void;
   isVisible: boolean;
-  onHide?: () => void; // Add callback to hide the form
 }
 
 // Interface for form validation errors
@@ -39,11 +38,7 @@ interface AlertState {
   isOpen: boolean;
 }
 
-const ContactForm: React.FC<ContactFormProps> = ({
-  onSubmit,
-  isVisible,
-  onHide,
-}) => {
+const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, isVisible }) => {
   // Refs for animation tracking
   const formRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
@@ -83,7 +78,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
     isOpen: false,
   });
 
-  // Intersection Observer setup with hide on scroll up functionality
+  // Intersection Observer setup with one-time animations
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -94,16 +89,13 @@ const ContactForm: React.FC<ContactFormProps> = ({
       entries.forEach((entry) => {
         const target = entry.target;
 
-        if (target === formRef.current) {
-          // If form is going out of view and was visible, hide it
-          if (!entry.isIntersecting && isVisible && onHide) {
-            onHide();
-          }
-          // Animate form only if it hasn't been animated yet
-          else if (entry.isIntersecting && !hasAnimated.form) {
-            setFormVisible(true);
-            setHasAnimated((prev) => ({ ...prev, form: true }));
-          }
+        if (
+          target === formRef.current &&
+          entry.isIntersecting &&
+          !hasAnimated.form
+        ) {
+          setFormVisible(true);
+          setHasAnimated((prev) => ({ ...prev, form: true }));
         } else if (
           target === headerRef.current &&
           entry.isIntersecting &&
@@ -133,9 +125,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
       clearTimeout(timeoutId);
       observer.disconnect();
     };
-  }, [isVisible, onHide, hasAnimated]);
+  }, [hasAnimated]);
 
-  // Reset animations when form becomes visible again
+  // Reset animations when form becomes visible again (after form was closed)
   useEffect(() => {
     if (isVisible) {
       // Reset animation states when form is shown again
@@ -276,8 +268,8 @@ const ContactForm: React.FC<ContactFormProps> = ({
       // Prepare parameters for email sending to admin
       const templateParams = {
         from_name: formData.name,
-        from_email: "ofekat@ac.sce.ac.il",
-        to_email: "ofekat@ac.sce.ac.il",
+        from_email: "ofekat@ac.sce.ac.il", // Your email - where the message should be sent
+        to_email: "ofekat@ac.sce.ac.il", // Backup field for your email
         phone: formData.phone,
         message: `פנייה חדשה מהאתר CommUnity:
 
@@ -299,7 +291,7 @@ ${formData.message}
 
       const result = await emailjs.send(
         "service_qbgq6it",
-        "template_ozj0x5x",
+        "template_ozj0x5x", // Using the original template
         templateParams,
         "tyAJr20tpxEI5o8yq"
       );
